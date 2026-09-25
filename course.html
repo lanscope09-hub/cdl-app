@@ -327,6 +327,10 @@ const LESSONS = [
      ans:'D', keys:['test ideas and experiment with more ease'],
      why:{A:'把應用效能的<b>全部控制權</b>交給雲端供應商講得太絕對，不是企業現代化的合理動機。',B:'自動部署基礎設施是技術手段之一，不是驅動「現代化決策」的核心理由。',C:'題目講的是要脫離僵化架構，「停止漸進式改變」邏輯上跟現代化的精神相反。',D:'<b>test ideas and experiment with more ease</b> 正是官方 agile 效益的定義「develop new applications and rapidly get them into production」——更容易做實驗、快速迭代。'}}
   ],
+  odd: [
+    {items:['A bank rethinks how its branches, staff, and mobile app work together so customers can open accounts in minutes instead of days.',' A hospital uses new digital tools to change its patient check-in process and trains nurses to work in a more data-driven way.','A logistics company copies its existing servers to a public cloud exactly as they are, with no changes to its processes or customer experience.','A publisher changes its business model, internal culture, and reader experience to adapt to how people now consume news online.'].map(x=>x.trim()), odd:2, main:'Digital transformation', opts:['Cloud migration','Integration tax','Open standard'], ans:'Cloud migration', why:'<br><b>💡 差在哪</b>：另外 3 句都有「流程、文化、顧客體驗」至少一項跟著改變，這是官方對 digital transformation 的定義（C1 官方課程）。第 3 句只是把伺服器原封不動搬上雲（<b>exactly as they are, with no changes</b>），做事方法完全沒變，所以只算 cloud migration。<br><b>🔑 考場怎麼用</b>：看到「搬上雲」先別急著選 transformation，再找有沒有講到人、流程或顧客體驗也在變。沒有的話，就只是 migration。<br><b>❌ 其他選項</b>：Integration tax 講的是新 AI 工具硬裝在舊平台上產生的隱形代價，這句沒有提到任何代價。Open standard 是公開的技術規格（像 HTTP），跟搬家無關。'},
+    {items:['Developers around the world can read, change, and share the code of this database engine for free.','A decentralized community builds this software in public, guided by transparency and the open exchange of ideas.','Every web browser and server follows the same publicly available HTTP specification, so products from different vendors can talk to each other.','Because its source code is public, a company can take this tool to any cloud provider without asking permission.'], odd:2, main:'Open source', opts:['Open standard','Vendor lock-in','Scalability'], ans:'Open standard', why:'<br><b>💡 差在哪</b>：另外 3 句講的都是<b>程式碼本身</b>公開、社群一起改，這是 open source（C1 官方課程）。第 3 句講的是大家遵守同一份<b>公開規格</b>（<b>publicly available HTTP specification</b>），各家產品自己做、但能互通，這是 open standard。官方舉的 open standard 例子正好就是 HTTP 和 XML。<br><b>🔑 考場怎麼用</b>：看到 code、community、modify 就往 open source 想；看到 specification、guidelines、interoperable、HTTP／XML 就往 open standard 想。<br><b>❌ 其他選項</b>：Vendor lock-in 是被單一廠商綁住、想走走不掉，這句剛好相反，講的是大家都能互通。Scalability 是資源能跟著需求放大縮小，跟規格無關。'}
+  ],
   gloss: { 'elasticity': '彈性：隨工作負載增減自動快速調配運算資源的能力', 'demand': '需要、要求', 'meet': '符合', 'gives': '給予（give 的第三人稱單數）', 'worry': '擔心', 'about': '關於', 'development': '發展、開發', 'get': '取得、獲得', 'production': '製作、生產', 'worrying': '擔心', 'across': '橫跨、遍及', 'multiple': '多個的', 'isolated': '隔離的', 'instead': '而不是', 'capacity': '容量', 'task': '任務', 'old': '舊的', 'notices': '注意到（notice 的第三人稱單數）', 'costs': '成本（複數）', 'were': '是（be 動詞過去式）', 'tuning': '調校中（tune 的動名詞）', 'word': '字', 'might': '可能', 'future': '未來的', 'community': '社群', 'rather': '而是、寧可', 'format': '格式', 'scheduling': '排程', 'adds': '加上（第三人稱）', 'challenge': '挑戰', 'entire': '整個的', 'follow': '遵循', 'together': '一起', 'against': '針對、對…不利', 'user': '使用者', 'prompted': '提示、下提示', 'everyone': '每個人', 'items': '項目（複數）', 'secure': '安全的、使…安全', 'challenges': '挑戰（複數）', 'looking': '尋找中（look 的動名詞）', 'agent': '客服人員、AI agent（會自己執行任務的程式）',
     'access':'存取、取用','accuracy':'準確度','actually':'實際上','adapt':'調整、適應','addresses':'處理、解決（address 第三人稱單數）','adjusts':'調整（adjust 第三人稱單數）',
     'adoption':'採用、導入','adopts':'採用（adopt 第三人稱單數）','adopted':'採用了的（adopt 過去分詞）','advancements':'進展、發展（複數）','advantage':'優勢','agentic':'agentic（自主行動的，見 agentic AI）','agile':'agile：敏捷，能快速開發並上線新應用','agility':'agility：敏捷度，能快速反應、快速推出新做法',
@@ -1544,6 +1548,7 @@ JSON、XML、email 這種<b>有標籤但沒有嚴格表格</b>的資料是 <span
     'on-premise':'地端的、機構內部的（同 on-premises）','payroll':'薪資、發薪系統','huge':'巨大的','arrives':'到達（arrive 第三人稱單數）','combining':'結合（combine 動名詞）','rich':'豐富的','floor':'現場、樓層（factory floor 指工廠現場）','classic':'典型的','ride-sharing':'共乘服務','vehicles':'車輛（複數）','high-volume':'大量的','clickstream':'點擊流（使用者在網頁上的點擊紀錄資料）','overnight':'隔夜的、一夜之間的','provision':'佈建、準備（伺服器等資源）','servers':'伺服器（複數）','themselves':'他們自己','hospitality':'餐旅業、旅宿業','rely':'依賴','scattered':'分散的、零散的','gut':'直覺的（gut instinct 指直覺）','instinct':'直覺','just':'僅僅、只是','spanner':'Cloud Spanner：Google Cloud 的全球分散式交易型資料庫，不是分析倉儲','optimal':'最佳的','roll-back':'回滾（復原到先前狀態）','compute':'運算（這裡指 Compute Engine，用來跑虛擬機的運算服務）','bigtable':'Cloud Bigtable：Google Cloud 的 NoSQL 資料庫，不是資料處理管線','i':'我','dataprep':'Dataprep：Google Cloud 的資料清理準備工具，不是處理引擎','dataplex':'Dataplex：Google Cloud 的資料治理與目錄工具，不是處理引擎','vms':'虛擬機（複數，Virtual Machines）','subscribe':'訂閱（Pub/Sub 的 Sub，接收方訂閱主題）','ingestion':'擷取：資料管線最前面接收資料的階段，Pub/Sub 負責的工作'
   },
   notes: [
+    '（2026-09-25 補揭露）hunt 與卡片把 Managed Service for Apache Spark（舊名 Dataproc）說成「接手既有 Hadoop／Spark 工作」的服務：官方課程全文 C1–C6 沒有出現 Hadoop 或 Dataproc 字樣，這個對應來自 Google Cloud 官方產品文件（Dataproc 定位為託管的 Spark 與 Hadoop 服務）與考古題語境，不是官方課程逐字內容。',
     '卡片 1（BigQuery 的分析角色）對應官方 M3_L1: Making data useful and accessible 開場段落。',
     '卡片 2、3（Looker、BigQuery＋Looker）對應官方 M3_L2: Business intelligence and insights using Looker，含官方【小測驗】（Looker 100% web-based）。',
     '卡片 4–8（streaming analytics、Pub/Sub、Dataflow、Managed Service for Apache Spark、對照表、誘餌）對應官方 M3_L3: Streaming analytics 全段內容與 Cloud Corner 逐字稿。',
@@ -1673,7 +1678,7 @@ JSON、XML、email 這種<b>有標籤但沒有嚴格表格</b>的資料是 <span
   ],
   hunt: [
     {chunks:['A software company builds an AI agent that can understand a complex customer support ticket,', " look up the customer's order history in the CRM,", ' and automatically execute a fix in the ticketing system', ' without a human stepping in at each stage.'], keys:[0,1,2], opts:['Agentic AI','Generative AI','Business intelligence'], ans:'Agentic AI', why:'<br><b>💡 這個概念在講什麼</b>：官方對 agentic AI 的定義是能自己<b>推理</b>（reason）、<b>規劃</b>（plan）、<b>執行多步驟行動</b>（execute multi-step actions），只要極少人力介入（minimal human supervision）就能完成複雜目標。它跟只會生一份草稿的 generative AI 不一樣：generative AI 負責寫出內容，agentic AI 是接下來自己查資料、動手做完整件事。像 generative AI 幫你寫好一封客服回覆草稿；agentic AI 則是真的去查歷史紀錄、動手把問題修好，全程不用人盯著每一步。<br><b>🔑 題目哪幾個字帶你到這裡</b>：<b>look up the customer’s order history in the CRM</b> 與 <b>automatically execute a fix in the ticketing system</b>＝這兩句幾乎逐字對應官方客服案例「an agent can understand a complex problem, access the customer’s history in the CRM, and execute a fix in the ticketing system」；<b>understand a complex customer support ticket</b>＝理解複雜問題，是官方描述的第一步。三個動作串成一條自己走完的流程，正是 agentic AI。<br><b>❌ 其他選項為什麼不對</b>：Generative AI 只負責生出內容（像草稿），題目描述的是接下來一連串自己查資料、動手修好問題的動作，已經超出「生成內容」的範圍。Business intelligence 是彙整、呈現營運資訊做報表，跟自動查歷史紀錄、修工單完全無關。<br><b>🔄 換個說法就換答案</b>：如果題目只寫「這個 AI 幫客服人員生成一封建議回覆草稿，由人工決定要不要採用、要不要動手處理」，那就只是 generative AI，還沒到 agentic AI 自己動手完成整件事的門檻。'},
-    {chunks:['A search engine used to rely on thousands of hand-coded rules to decide which result to show for a query,', ' but as the number of queries and users grew,', ' the rulebook became too complex to maintain,', ' so the team trained a model on click data to predict the best ranking instead.'], keys:[0,3], opts:['Machine learning','Generative AI','Data analytics'], ans:'Machine learning', why:'<br><b>💡 這個概念在講什麼</b>：ML 是 AI 底下的一種做法，讓機器自己從資料裡學，不用工程師把規則寫死（explicitly programmed）。官方明講 ML 特別適合解決「取代或簡化規則系統」這種商業問題：規則多到維護不動時，改成讓模型從實際資料（像使用者點擊紀錄）自己學出規律。官方原例就是 Google 搜尋：以前用手刻規則判斷「giants」該顯示棒球隊還是美式足球隊，規則寫到程式碼複雜到炸掉，後來改用 ML 從點擊資料學排序。<br><b>🔑 題目哪幾個字帶你到這裡</b>：<b>hand-coded rules</b> 加上 <b>the rulebook became too complex to maintain</b>＝對應官方「the whole codebase became [too complex]. This is a perfect problem for ML to solve」；<b>trained a model on click data to predict the best ranking</b>＝幾乎逐字對應官方「a machine learning model can be trained to predict the rank for search results」，這正是官方舉的第一種 ML 商業問題。<br><b>❌ 其他選項為什麼不對</b>：Generative AI 是用來生出全新內容（像文字、圖片），題目講的是訓練模型預測排序、取代規則，不是生內容，方向不對。Data analytics 是彙整原始資料、看過去發生了什麼，題目講的是訓練模型去預測排序（面向未來的判斷），跟只看過去的 data analytics 方向相反。<br><b>🔄 換個說法就換答案</b>：如果題目改成「這家公司想產生一份去年每項查詢量的月報表，給主管檢視趨勢」，那就是彙整過去資料做報表，答案會變成 data analytics/business intelligence，不是 ML。'},
+    {chunks:['A search engine used to rely on thousands of hand-coded rules to decide which result to show for a query,', ' but as the number of queries and users grew,', ' the rulebook became too complex to maintain,', ' so the team trained a model on click data to predict the best ranking instead.'], keys:[0,2,3], opts:['Machine learning','Generative AI','Data analytics'], ans:'Machine learning', why:'<br><b>💡 這個概念在講什麼</b>：ML 是 AI 底下的一種做法，讓機器自己從資料裡學，不用工程師把規則寫死（explicitly programmed）。官方明講 ML 特別適合解決「取代或簡化規則系統」這種商業問題：規則多到維護不動時，改成讓模型從實際資料（像使用者點擊紀錄）自己學出規律。官方原例就是 Google 搜尋：以前用手刻規則判斷「giants」該顯示棒球隊還是美式足球隊，規則寫到程式碼複雜到炸掉，後來改用 ML 從點擊資料學排序。<br><b>🔑 題目哪幾個字帶你到這裡</b>：<b>hand-coded rules</b> 加上 <b>the rulebook became too complex to maintain</b>＝對應官方「the whole codebase became [too complex]. This is a perfect problem for ML to solve」；<b>trained a model on click data to predict the best ranking</b>＝幾乎逐字對應官方「a machine learning model can be trained to predict the rank for search results」，這正是官方舉的第一種 ML 商業問題。<br><b>❌ 其他選項為什麼不對</b>：Generative AI 是用來生出全新內容（像文字、圖片），題目講的是訓練模型預測排序、取代規則，不是生內容，方向不對。Data analytics 是彙整原始資料、看過去發生了什麼，題目講的是訓練模型去預測排序（面向未來的判斷），跟只看過去的 data analytics 方向相反。<br><b>🔄 換個說法就換答案</b>：如果題目改成「這家公司想產生一份去年每項查詢量的月報表，給主管檢視趨勢」，那就是彙整過去資料做報表，答案會變成 data analytics/business intelligence，不是 ML。'},
     {chunks:["A bank's loan-approval model keeps making decisions that customers do not understand,", ' so regulators ask the bank to show why each application was approved or denied,', " which means the bank needs tools that can interpret the model's internal logic", ' rather than just monitoring whether the output looks reasonable.'], keys:[1,2], opts:['Explainable AI','Responsible AI','Data analytics'], ans:'Explainable AI', why:'<br><b>💡 這個概念在講什麼</b>：Explainable AI 是 responsible AI 這套治理架構底下更聚焦的一塊，專門處理「模型內部邏輯看不看得懂、預測結果解釋得出來」。官方用「黑盒子」比喻模型不透明的問題，Explainable AI 就是專門幫你解讀這些預測、確保透明度的一套工具。像 responsible AI 是公司的治理章程，Explainable AI 是章程裡專門管「把黑盒子打開來給大家看」的那一條。<br><b>🔑 題目哪幾個字帶你到這裡</b>：<b>regulators ask the bank to show why each application was approved or denied</b>＝監管機關要求銀行講出「為什麼」核准或拒絕，正是官方情境裡「模型做出奇怪的決定卻講不出原因，就沒辦法讓使用者信任」的翻版；<b>interpret the model’s internal logic</b>＝幾乎逐字對應官方對 explainable AI 的定義「help you interpret these predictions」。<br><b>❌ 其他選項為什麼不對</b>：Responsible AI 管的是整套治理架構——公平性、有沒有人負責、要不要監控 data drift，範圍比題目大；題目聚焦在「解釋單一決策的內部邏輯」這個更窄的問題，屬於 Explainable AI 專門處理的範圍。Data analytics 是彙整歷史資料做報表，跟解釋模型內部判斷邏輯完全無關。<br><b>🔄 換個說法就換答案</b>：如果題目改成「這家銀行想確保核貸模型不會因為性別、種族產生不公平的偏見，並持續監控模型有沒有跟現況脫節（data drift）」，答案就會變成 Responsible AI。'},
     {chunks:["An airline's operations team pulls last year's annual reports", ' to build a dashboard showing customer demographics and sales trends,', ' but the dashboard only tells them what already happened', ' and cannot predict which flights are at risk of complaints next month.'], keys:[2,3], opts:['Data analytics/business intelligence','Machine learning','Agentic AI'], ans:'Data analytics/business intelligence', why:'<br><b>💡 這個概念在講什麼</b>：Data analytics／business intelligence 是檢查原始資料、整理出結論，回答「過去發生了什麼」；AI／ML 不一樣，是用資料去預測「接下來會怎樣」。官方用航空公司員工 Maya 的例子講這個對比：她看去年年報做出報表，那只是 data analytics，官方原文形容「there’s nothing new or transformational about this decision-making process」；如果她想預測哪班飛機接下來容易被客訴，才需要靠 ML。像報表告訴你昨天發生了什麼，ML 告訴你明天可能發生什麼。<br><b>🔑 題目哪幾個字帶你到這裡</b>：<b>the dashboard only tells them what already happened</b>＝幾乎逐字對應官方「Both are examples of backward-looking data. They look at what happened in the past」；<b>cannot predict which flights are at risk of complaints next month</b>＝直接點出這個儀表板做不到的事，正是官方 Maya 案例裡「predict the satisfaction rate of each flight or predict customer complaints」要靠 ML 才能做到的部分。<br><b>❌ 其他選項為什麼不對</b>：Machine learning 才是用來預測哪些航班容易被客訴的工具，但題目描述的儀表板明講「cannot predict」，代表題目問的是「這個只看過去的儀表板叫什麼」，不是問怎麼幫它加上預測能力。Agentic AI 講的是自主規劃、執行多步驟行動，題目只是一個靜態儀表板，沒有任何自主行動，跟 agentic AI 無關。<br><b>🔄 換個說法就換答案</b>：如果題目改成「這個團隊接下來想預測哪些航班下個月容易被客訴，好提前調整服務」，答案就會變成 machine learning（AI／ML）。'}
   ],
@@ -3441,7 +3446,7 @@ function openLesson(id){
   UI.i = 0; UI.sel = []; UI.phase = 'hunt'; UI.showNo = null; UI.qNo = null;
   render(); window.scrollTo(0,0);
 }
-function goStage(n){ UI.stage = n; UI.i = 0; UI.sel = []; UI.phase='hunt'; UI.showNo=null; render(); window.scrollTo(0,0); }
+function goStage(n){ UI.stage = n; UI.i = 0; UI.b4 = null; UI.c4 = null; UI._p4 = undefined; UI.sel = []; UI.phase='hunt'; UI.showNo=null; render(); window.scrollTo(0,0); }
 function goHome(){ UI.view='home'; render(); window.scrollTo(0,0); }
 
 /* ======================= 課程頁 ======================= */
@@ -3524,15 +3529,78 @@ function hashStr(t){ let x=2166136261; for (const c of t) { x ^= c.charCodeAt(0)
 function permOf(n, tag){ const a=[...Array(n).keys()]; let x=hashStr(tag)||1; for(let i=n-1;i>0;i--){ x=(Math.imul(x,1103515245)+12345)>>>0; const j=(x>>>8)%(i+1); [a[i],a[j]]=[a[j],a[i]]; } return a; }
 function mixOpts(opts, tag){ return permOf(opts.length, tag).map(k => opts[k]); }
 
-/* ④ 判：全英文新題 */
+/* ④ 判：B 拆誘答（mcq 前 3 題）＋ C 找出不同類（odd，沒有就退回一般選擇題） */
+function st4List(l){
+  const out = l.mcq.slice(0,3).map((q,k) => ({t:'B', q, k}));
+  if (Array.isArray(l.odd) && l.odd.length) l.odd.forEach(o => out.push({t:'C', o}));
+  else l.mcq.slice(3).forEach(q => out.push({t:'M', q}));
+  return out;
+}
+function maskOpts(txt, opts){
+  // 把理由裡出現的選項名稱遮掉：整個選項、選項裡連續 2 個字以上的片語、選項裡大寫開頭的專有名詞
+  const stop = /^(a|an|the|of|to|for|and|or|its|it|with|but|not|in|on|by|from|as|is|are|be|use|using|only|more|most|all|any|each|this|that|their|your|new)$/i;
+  const cands = new Set();
+  opts.forEach(o => { const w = o.replace(/[.,;:()]/g,' ').split(/\s+/).filter(Boolean);
+    if (o.length <= 60) cands.add(o);
+    for (let n = Math.min(4, w.length); n >= 2; n--) for (let i = 0; i + n <= w.length; i++) { const g = w.slice(i, i+n); if (!stop.test(g[0]) && !stop.test(g[n-1])) cands.add(g.join(' ')); }
+    w.forEach((x,i) => { if (i > 0 && /^[A-Z][A-Za-z0-9-]{2,}$/.test(x) && !stop.test(x)) cands.add(x); if (/^[A-Z]{2,}[a-z]*$/.test(x)) cands.add(x); }); });
+  let h = txt;
+  [...cands].sort((x,y) => y.length - x.length).forEach(c => {
+    const re = new RegExp('(^|[^A-Za-z])(' + c.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')(?![A-Za-z])', 'gi'); h = h.replace(re, '$1〔某選項〕'); });
+  return h.replace(/(〔某選項〕[\s／、]*){2,}/g, '〔某選項〕');
+}
 function st4(l, s){
-  const n = l.mcq.length;
+  const list = st4List(l), n = list.length;
   if (UI.i >= n) {
     const ok = s.s4.filter(Boolean).length;
-    return `<div class="box"><div class="res">${ok} / ${n}</div><p>${ok===n?'全英文情境全對，可以上考場原題了。':'錯的那題記得它的誘餌長什麼樣子，⑤ 會再遇到。'}</p>
-      <div class="row"><button class="btn" onclick="LS(UI.id).s4=[];saveS();UI.i=0;UI._p4=undefined;render()">🔁 再練一次</button><button class="btn pri" onclick="goStage(5)">去 ⑤ 驗收 →</button></div></div>`;
+    return `<div class="box"><div class="res">${ok} / ${n}</div><p>${ok===n?'刪去法和換包裝都沒難倒你，可以上考場原題了。':'配錯的理由再看一次，錯的選項錯在哪，就是考場上刪掉它的依據。'}</p>
+      <div class="row"><button class="btn" onclick="LS(UI.id).s4=[];saveS();UI.i=0;UI._p4=undefined;UI.b4=null;UI.c4=null;render()">🔁 再練一次</button><button class="btn pri" onclick="goStage(5)">去 ⑤ 驗收 →</button></div></div>`;
   }
-  const it = l.mcq[UI.i], answered = UI._p4 !== undefined;
+  const it = list[UI.i];
+  if (it.t === 'B') return st4B(l, s, it.q, n);
+  if (it.t === 'C') return st4C(l, s, it.o, n);
+  return st4M(l, s, it.q, n);
+}
+function st4B(l, s, q, n){
+  const ord = permOf(q.opts.length, 'q'+l.id+'|'+q.stem), wrong = ord.filter(k => LET[k] !== q.ans);
+  const rs = permOf(wrong.length, 'r'+l.id+'|'+q.stem).map(j => wrong[j]);   // 理由的顯示順序（存原始選項 index）
+  const B = UI.b4 || (UI.b4 = {pick:{}, done:false}); const done = B.done;
+  const rows = wrong.map(k => { const L_ = LET[k], p = B.pick[L_];
+    const c = done ? (p === k ? 'ok' : 'bad') : '';
+    return `<div class="opt ${c}" style="cursor:default"><b>${LET[ord.indexOf(k)]}.</b> <span class="en-t">${esc(q.opts[k])}</span>
+      <div class="row" style="margin-top:6px;gap:6px;flex-wrap:wrap">${rs.map((r,ri) => `<button class="btn sm ${p===r?'pri':''}" ${done?'disabled':''} onclick="b4Pick('${L_}',${r})">理由 ${ri+1}</button>`).join('')}</div>
+      ${done && p !== k ? `<div class="tiny" style="margin-top:4px">正確是理由 ${rs.indexOf(k)+1}</div>` : ''}</div>`; }).join('');
+  const all = wrong.every(k => B.pick[LET[k]] !== undefined);
+  return `${progress(UI.i, n)}<p class="tiny">第 ${UI.i+1} / ${n} 題 · 🔪 拆誘答：正解已經給你，替每個錯的選項配上「它錯在哪」</p>
+   <div class="box" data-mode="learn"><div class="big en-t">${done ? boldKeys(q.stem, [q.key]) : esc(q.stem)}</div>
+   <div class="opt ok" style="cursor:default"><b>✅ ${LET[ord.indexOf(LET.indexOf(q.ans))]}.</b> <span class="en-t">${esc(q.opts[LET.indexOf(q.ans)])}</span>${done ? `<div class="tiny" style="color:#c4d2e8;margin-top:4px">${q.why[q.ans]}</div>` : ''}</div>
+   <p class="tiny" style="margin:10px 0 4px"><b>三條理由</b>（各對應一個錯的選項）：</p>
+   ${rs.map((r,ri) => `<div class="tiny" style="margin:6px 0;line-height:1.7"><b>理由 ${ri+1}</b>　${maskOpts(q.why[LET[r]], q.opts)}</div>`).join('')}
+   ${rows}</div>
+   ${!done ? `<div class="nav"><span></span><button class="btn pri" ${all?'':'disabled'} onclick="b4Check()">對答案</button></div>`
+     : `<div class="fb ${s.s4[UI.i]?'ok':'bad'}">${s.s4[UI.i]?'✅ 三個都配對！':'❌ 有配錯，看上面紅框的正確理由。'} 決勝片段：<b class="key en-t">${esc(q.key)}</b></div>
+     <div class="nav"><span></span><button class="btn pri" onclick="s4Next()">下一題 →</button></div>`}`;
+}
+function b4Pick(L_, r){ UI.b4.pick[L_] = r; render(); }
+function b4Check(){ const l=L(), s=LS(l.id), q=st4List(l)[UI.i].q; const B=UI.b4; B.done=true;
+  s.s4[UI.i] = q.opts.every((o,k) => LET[k]===q.ans || B.pick[LET[k]]===k); saveS(); render(); }
+function st4C(l, s, o, n){
+  const ord = permOf(o.items.length, 'c'+l.id+'|'+o.items[0]);
+  const C = UI.c4 || (UI.c4 = {p:null, c:null}); const p1 = C.p !== null, p2 = C.c !== null;
+  return `${progress(UI.i, n)}<p class="tiny">第 ${UI.i+1} / ${n} 題 · 🔍 找出不同類：4 句裡有 3 句在講同一件事，挑出講別的那一句</p>
+   <div class="box" data-mode="learn">${ord.map((k,pi) => { let c=''; if(p1){ c = k===o.odd ? 'ok' : (k===C.p ? 'bad' : 'dim'); }
+     return `<button class="opt ${c}" ${p1?'disabled':''} onclick="c4Pick(${k})"><b>${pi+1}.</b> <span class="en-t">${esc(o.items[k])}</span></button>`; }).join('')}</div>
+   ${p1 ? `<div class="fb ${C.p===o.odd?'ok':'bad'}">${C.p===o.odd?'✅ 對，就是這句。':'❌ 不同類的是第 '+(ord.indexOf(o.odd)+1)+' 句。'} 另外 3 句都在講 <b>${esc(o.main)}</b>。</div>
+     <p><b>步驟 2：</b>那第 ${ord.indexOf(o.odd)+1} 句在講什麼？</p>
+     ${mixOpts(o.opts, 'co'+l.id+'|'+o.items[0]).map(x => { let c=''; if(p2){ c = x===o.ans?'ok':(x===C.c?'bad':'dim'); }
+       return `<button class="opt ${c}" ${p2?'disabled':''} onclick="c4Opt(${o.opts.indexOf(x)})">${esc(x)}</button>`; }).join('')}` : ''}
+   ${p2 ? `<div class="fb ${o.opts[C.c]===o.ans?'ok':'bad'}">${o.opts[C.c]===o.ans?'✅ 對！':'❌ 正解是 '+esc(o.ans)+'。'} ${o.why}</div>
+     <div class="nav"><span></span><button class="btn pri" onclick="s4Next()">下一題 →</button></div>` : ''}`;
+}
+function c4Pick(k){ UI.c4.p = k; render(); }
+function c4Opt(k){ const l=L(), s=LS(l.id), o=st4List(l)[UI.i].o; UI.c4.c = k; s.s4[UI.i] = (UI.c4.p===o.odd && o.opts[k]===o.ans); saveS(); render(); }
+function st4M(l, s, it, n){
+  const answered = UI._p4 !== undefined;
   const stem = answered ? boldKeys(it.stem, [it.key]) : esc(it.stem);
   const ord = permOf(it.opts.length, 'q'+l.id+'|'+it.stem), showL = orig => LET[ord.indexOf(LET.indexOf(orig))];
   return `${progress(UI.i, n)}<p class="tiny">第 ${UI.i+1} / ${n} 題 · 全英文，答完才有中文</p>
@@ -3543,8 +3611,8 @@ function st4(l, s){
    ${answered ? `<div class="fb ${UI._p4===it.ans?'ok':'bad'}">${UI._p4===it.ans?'✅ 對！':'❌ 正解是 '+showL(it.ans)+'。'} 決勝片段：<b class="key en-t">${esc(it.key)}</b></div>
      <div class="nav"><span></span><button class="btn pri" onclick="s4Next()">下一題 →</button></div>` : ''}`;
 }
-function s4Pick(k){ const l=L(), s=LS(l.id); UI._p4 = k; s.s4[UI.i] = (k === l.mcq[UI.i].ans); saveS(); render(); }
-function s4Next(){ UI._p4 = undefined; UI.i++; if (UI.i >= L().mcq.length) markDone(4); render(); window.scrollTo(0,0); }
+function s4Pick(k){ const l=L(), s=LS(l.id), q=st4List(l)[UI.i].q; UI._p4 = k; s.s4[UI.i] = (k === q.ans); saveS(); render(); }
+function s4Next(){ UI._p4 = undefined; UI.b4 = null; UI.c4 = null; UI.i++; if (UI.i >= st4List(L()).length) markDone(4); render(); window.scrollTo(0,0); }
 function boldKeys(text, keys){
   let h = esc(text);
   keys.forEach(k => { const ek = esc(k); const i = h.indexOf(ek); if (i >= 0) h = h.slice(0,i) + `<b class="key">${ek}</b>` + h.slice(i+ek.length); });
