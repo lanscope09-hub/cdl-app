@@ -266,10 +266,10 @@ const LESSONS = [
     {en:'Any company can build a compatible product based on this publicly accessible specification, such as HTTP.', opts:['Open standard','Open source','Proprietary software'], ans:'Open standard', why:'<b>publicly accessible specification, such as HTTP</b> = 官方對 open standard 的定義與舉例。'}
   ],
   hunt: [
-    {chunks:['A traditional retail chain is under pressure from nimble digital-first competitors,',' so leadership decides to modernize its checkout systems, retrain staff,',' and redesign customer service processes',' to keep pace with changing market expectations.'], keys:[0,3], opts:['Digital transformation','Cloud migration','Data governance'], ans:'Digital transformation', why:'<b>redesign customer service processes</b> ＋因應 <b>changing market expectations</b> = 流程、文化、顧客體驗一起變 → digital transformation。'},
-    {chunks:['A retailer bolts new AI tools onto its old, one-size-fits-all cloud platform,',' and soon notices hidden costs showing up as extra complexity,',' higher latency,',' and new security risks that were never in the original budget.'], keys:[0,3], opts:['Integration tax','Vendor lock-in','Data-driven insights'], ans:'Integration tax', why:'<b>bolts new AI tools onto its old … cloud</b> ＋冒出 <b>hidden costs</b>（複雜度、延遲、資安風險）= 官方定義的 integration tax。'},
-    {chunks:['A research team is tuning how the model picks its next word.',' Instead, this Google Cloud offering pairs custom-designed TPUs',' with open software and a flexible consumption model',' to train and deploy AI applications with exceptional performance.'], keys:[1,2], opts:['AI Hypercomputer','Global network','Cost-effectiveness'], ans:'AI Hypercomputer', why:'<b>custom-designed TPUs</b> ＋開放軟體＋彈性付費，正是 AI Hypercomputer 整合硬體、軟體、付費模式的官方定義。'},
-    {chunks:['A nonprofit wants its data pipeline software to stay portable across any cloud provider it might use in the future,',' so it chooses code that a decentralized community can freely inspect, modify, and share,',' built on a philosophy of transparency and open exchange of ideas,',' rather than one vendor\'s proprietary format.'], keys:[1,2], opts:['Open source','Open standard','Proprietary format'], ans:'Open source', why:'<b>decentralized community</b> ＋ <b>transparency and open exchange of ideas</b> = 官方對 open source 的定義，重點在程式碼與社群，不是規格。'}
+    {chunks:['A traditional retail chain is under pressure from nimble digital-first competitors,',' so leadership decides to modernize its checkout systems, retrain staff,',' and redesign customer service processes',' to keep pace with changing market expectations.'], keys:[1,2], opts:['Digital transformation','Cloud migration','Data governance'], ans:'Digital transformation', why:'<br><b>💡 這個概念在講什麼</b>：官方對 digital transformation 的定義是「用新科技去改變<b>業務流程、文化、顧客體驗</b>，跟上市場的變化」。重點在「人和做事的方法一起變」，光換機器不算。像一家老麵包店，換了新烤箱只是升級設備；連店員的訓練、點餐流程、跟客人互動的方式都改了，才叫轉型。<br><b>🔑 題目哪幾個字帶你到這裡</b>：<b>retrain staff</b>＝文化（人的做法）在變；<b>redesign customer service processes</b>＝流程和顧客體驗在變。技術、人、流程三個一起動，就是轉型。<br><b>❌ 其他選項為什麼不對</b>：Cloud migration（上雲搬遷）只是把系統搬到雲上，題目重點是整家公司的做法在改，範圍大很多。Data governance（資料治理）管的是資料誰能用、怎麼保管，題目完全沒提資料。<br><b>🔄 換個說法就換答案</b>：如果題目只寫「把收銀系統整套搬到雲端，員工和流程都不變」，那就只是 cloud migration，還沒到轉型。'},
+    {chunks:['A retailer bolts new AI tools onto its old, one-size-fits-all cloud platform,',' and soon notices hidden costs',' showing up as extra complexity, higher latency, and new security risks',' that slow its innovation to a crawl.'], keys:[0,1], opts:['Integration tax','Vendor lock-in','Data-driven insights'], ans:'Integration tax', why:'<br><b>💡 這個概念在講什麼</b>：integration tax（整合稅）是把新的 AI 工具，硬裝在一套沒為 AI 設計的舊雲端上，結果一直付出看不見的代價。就像老房子加蓋一層，管線、電路全是舊的，接不順就得一直花力氣補。官方列的代價有四種：複雜度、延遲高、新的資安風險、成本失控（C1 官方課程）。叫它「稅」，是因為這筆錢不會寫在帳單上，但你每天都在繳。<br><b>🔑 題目哪幾個字帶你到這裡</b>：<b>bolts new AI tools onto its old … cloud platform</b>＝新工具硬接到舊平台，這是成因；<b>hidden costs</b>＝看不見的代價，這是結果。成因和結果都出現，就是 integration tax。後面列的複雜度、延遲、資安風險，是在幫你確認這個判斷。<br><b>❌ 其他選項為什麼不對</b>：Vendor lock-in（被廠商綁住）講的是「想換一家雲卻換不掉」，題目裡沒有人想換廠商。Data-driven insights（用資料做決策）是好處，題目講的是苦頭，方向相反。<br><b>🔄 換個說法就換答案</b>：如果題目改成「這家零售商想換到別家雲，卻發現資料和程式都搬不走」，答案就變成 Vendor lock-in。'},
+    {chunks:['A research lab needs to train and deploy large AI models with exceptional performance,',' so it chooses Google Cloud infrastructure built around custom-designed TPUs,',' native support for open-source frameworks like PyTorch and JAX,',' and a flexible consumption model with pay-as-you-go options.'], keys:[0,1], opts:['AI Hypercomputer','Global network','Cost-effectiveness'], ans:'AI Hypercomputer', why:'<br><b>💡 這個概念在講什麼</b>：AI Hypercomputer 是 Google 專門給 AI 用的整套基礎設施，官方說它讓客戶用極好的效能和效率去<b>訓練、部署</b> AI。把它想成一座專門蓋來跑 AI 的工廠：機器用 Google 自己設計的 TPU（專為 AI 打造的晶片），工人可以用他們熟的開源工具（PyTorch、JAX），付費方式也彈性（用多少付多少）。硬體、軟體、付費三件事打包在一起（C1、C3 官方課程）。<br><b>🔑 題目哪幾個字帶你到這裡</b>：<b>train and deploy large AI models with exceptional performance</b>＝這是 AI Hypercomputer 的官方用途原句；<b>custom-designed TPUs</b>＝它最招牌的硬體。看到 TPU 加上訓練 AI，就往 AI Hypercomputer 想。<br><b>❌ 其他選項為什麼不對</b>：Global network（全球網路）講的是 Google 的海底電纜和機房網路，讓資料傳得快，題目重點是訓練 AI 的算力。Cost-effectiveness（划算）只對應題目最後那段付費方式，是其中一個優點，沒辦法代表整套基礎設施。<br><b>🔄 換個說法就換答案</b>：如果題目寫「用戶在世界各地都要低延遲存取，靠 Google 的私有光纖網路」，答案就變成 Global network。'},
+    {chunks:['A nonprofit wants its data pipeline software to stay portable across any cloud provider it might use in the future,',' so it chooses code that a decentralized community can freely inspect, modify, and share,',' built on a philosophy of transparency and open exchange of ideas,',' rather than one vendor’s proprietary format.'], keys:[1,2], opts:['Open source','Open standard','Proprietary format'], ans:'Open source', why:'<br><b>💡 這個概念在講什麼</b>：open source（開放原始碼）是<b>程式碼本身</b>公開，任何人都能免費使用、修改、分享，通常由一群分散各地的人一起開發（C1 官方課程）。它容易跟 open standard（開放標準）搞混。開放標準公開的是<b>規格</b>，像 HTTP、XML，大家照同一套規則做，產品就能互通。比喻一下：open source 像把整份食譜連作法公開，誰都能改；open standard 像規定插頭長什麼樣，各家自己做電器，但都插得進同一個插座。<br><b>🔑 題目哪幾個字帶你到這裡</b>：<b>a decentralized community can freely inspect, modify, and share</b>＝程式碼公開、大家一起改；<b>transparency and open exchange of ideas</b>＝官方對 open source 的原話。重點落在「程式碼和社群」，所以選 open source。<br><b>❌ 其他選項為什麼不對</b>：Open standard 講的是公開規格，題目講的是公開程式碼、社群一起改。Proprietary format（廠商私有格式）正好是題目說不要的東西（rather than）。<br><b>🔄 換個說法就換答案</b>：如果題目寫「採用大家公認的公開規格（例如 HTTP），讓不同廠商的產品能互相溝通」，答案就變成 Open standard。'},
   ],
   mcq: [
     {stem:'A logistics company moves its scheduling software from its own servers onto a cloud provider\'s virtual machines, without changing how dispatchers work, how routes are planned, or how customers are served. What has this company done?',
@@ -381,7 +381,7 @@ const LESSONS = [
     'stay':'保持','stays':'保持（stay 第三人稱單數）','step':'步驟','steps':'步驟（複數）','stop':'停止','storage':'儲存空間','storing':'儲存中（store 動名詞）','strategic':'策略性的','streams':'串流（stream 第三人稱單數）','strengthen':'強化','sudden':'突然的','surge':'暴增、激增','survive':'生存、存活下來','systems':'系統（複數）',
     'tactical':'戰術性的','take':'採取','team':'團隊','tech':'技術（technology 縮寫）','technologies':'科技（複數）','technology':'科技、技術','ten':'十','test':'測試','third-party':'第三方的','third':'第三的',
     'then':'接著、然後','there':'（There is）有','third':'第三的','thrive':'茁壯、興盛','thus':'（thus far）到目前為止','time-to-value':'從投入到產生價值的時間','too':'太過','tools':'工具（複數）','tool':'工具','top':'頂尖的、頂端','top-down':'由上而下的',
-    'touches':'接觸到（touch 第三人稱單數）','tpu':'張量處理器（TPU）：Google 設計用來加速 AI 運算的晶片','tpus':'張量處理器（複數）','traditional':'傳統的','traffic':'流量','transaction':'交易','transformation':'轉型','transformative':'轉型性的','transformational':'轉型性的',
+    'slow':'使變慢；慢的','innovation':'創新','crawl':'爬行（to a crawl＝慢到像在爬）','around':'圍繞著；在…周圍','native':'原生的、內建的','open-source':'開放原始碼的','frameworks':'框架（framework 複數，寫程式用的現成工具組）','pytorch':'PyTorch：常用的開源 AI 開發框架','jax':'JAX：Google 開發的開源 AI 運算框架','touches':'接觸到（touch 第三人稱單數）','tpu':'張量處理器（TPU）：Google 設計用來加速 AI 運算的晶片','tpus':'張量處理器（複數）','traditional':'傳統的','traffic':'流量','transaction':'交易','transformation':'轉型','transformative':'轉型性的','transformational':'轉型性的',
     'transparency':'透明度','travel':'旅遊、旅行','turning':'扭轉、轉換中','two':'二、兩個','under':'在…之下（承受壓力）','underlying':'底層的','undoing':'撤銷中','unexpected':'意料之外的','unmatched':'無可匹敵的','upfront':'預先的、事前的','upgrades':'升級（複數）','usage':'使用量','uses':'使用（use 第三人稱單數）','using':'使用中（use 動名詞）','utilize':'運用',
     'value':'價值','vendor':'廠商','vendor\'s':'廠商的（所有格）','video':'影片、視訊','view':'檢視','viewer':'觀看者','viewers':'觀看者（複數）','virtual':'虛擬的',
     'visibility':'透明度、能見度','vms':'虛擬機器（VMs，Virtual Machines 複數）','waiting':'等待中（wait 動名詞）','want':'想要','wants':'想要（want 第三人稱單數）','way':'方式','web':'網頁、網路的','whether':'是否','whose':'…的（關係代名詞，表所屬）','wide':'廣的','will':'將會','won\'t':'不會（will not 縮寫）','work':'工作、需要處理','workflow':'工作流程','workflows':'工作流程（複數）','workloads':'工作負載（複數）',
@@ -3357,7 +3357,7 @@ function toast(msg){ const t = document.getElementById('toast'); t.textContent =
 function getVocab(){ try { return JSON.parse(localStorage.getItem(VOCAB_KEY)) || {}; } catch(e){ return {}; } }
 function addVocab(word, zh, origin, example){
   const st = getVocab(); const k = word.toLowerCase();
-  if (st[k]) { st[k].count = (st[k].count||0) + 1; st[k].lastAddedAt = new Date().toISOString(); }
+  if (st[k]) { st[k].count = (st[k].count||0) + 1; st[k].lastAddedAt = new Date().toISOString(); if (origin && origin !== st[k].origin) { st[k].origins = st[k].origins || []; if (!st[k].origins.includes(origin)) st[k].origins.push(origin); } }
   else st[k] = { word, zh: zh || '待補', role:'課程標記', chain:'', hook:'', example: example||'', scenario:'', origin, count:1, firstAddedAt:new Date().toISOString() };
   try { localStorage.setItem(VOCAB_KEY, JSON.stringify(st)); } catch(e){}
   return st[k].count;
@@ -3473,7 +3473,7 @@ function st2(l, s){
   const answered = s.s2[UI.i] !== undefined && UI._p2 !== undefined;
   return `${progress(UI.i, n)}<p class="tiny">第 ${UI.i+1} / ${n} 題 · 這句英文在講哪一個？</p>
    <div class="box" data-mode="learn"><div class="big en-t">${esc(it.en)}</div><button class="speak" data-say="${esc(it.en)}">🔊 唸給我聽</button></div>
-   ${it.opts.map(o => { let c=''; if(answered){ c = o===it.ans ? 'ok' : (o===UI._p2 ? 'bad' : 'dim'); }
+   ${mixOpts(it.opts, 'm'+l.id+'|'+it.en).map(o => { let c=''; if(answered){ c = o===it.ans ? 'ok' : (o===UI._p2 ? 'bad' : 'dim'); }
       return `<button class="opt ${c}" ${answered?'disabled':''} onclick="s2Pick(${it.opts.indexOf(o)})">${esc(o)}</button>`; }).join('')}
    ${answered ? `<div class="fb ${UI._p2===it.ans?'ok':'bad'}">${UI._p2===it.ans?'✅ 對！':'❌ 正解是 '+it.ans+'。'} ${it.why}</div>
      <div class="nav"><span></span><button class="btn pri" onclick="s2Next()">下一題 →</button></div>` : ''}`;
@@ -3502,7 +3502,7 @@ function st3(l, s){
   return `${progress(UI.i, n)}<div class="box big en-t" data-mode="learn">${sent}</div>
    <p class="tiny">🟩 綠色 = 鑰匙片段 ${UI.sel.some(k=>!it.keys.includes(k))?'· 🟥 紅色 = 你點了但不是關鍵':''} · 你抓到 ${hit} / ${it.keys.length} 段</p>
    <p><b>步驟 2：</b>所以答案是？</p>
-   ${it.opts.map(o => { let c=''; if(answered){ c = o===it.ans?'ok':(o===UI._p3?'bad':'dim'); }
+   ${mixOpts(it.opts, 'h'+l.id+'|'+it.chunks[0]).map(o => { let c=''; if(answered){ c = o===it.ans?'ok':(o===UI._p3?'bad':'dim'); }
      return `<button class="opt ${c}" ${answered?'disabled':''} onclick="s3Pick(${it.opts.indexOf(o)})">${esc(o)}</button>`; }).join('')}
    ${answered ? `<div class="fb ${UI._p3===it.ans?'ok':'bad'}">${UI._p3===it.ans?'✅ 對！':'❌ 正解是 '+it.ans+'。'} ${it.why}</div>
      <div class="nav"><span></span><button class="btn pri" onclick="s3Next()">下一題 →</button></div>` : ''}`;
@@ -3510,6 +3510,11 @@ function st3(l, s){
 function s3Tog(k){ UI.sel = UI.sel.includes(k) ? UI.sel.filter(x=>x!==k) : UI.sel.concat(k); render(); }
 function s3Pick(k){ const l=L(), s=LS(l.id), it=l.hunt[UI.i], o=it.opts[k]; UI._p3=o; const hit = UI.sel.some(k=>it.keys.includes(k)); s.s3[UI.i] = (o===it.ans && hit); UI.phase='done'; saveS(); render(); }
 function s3Next(){ UI.i++; UI.sel=[]; UI.phase='hunt'; UI._p3=undefined; if (UI.i >= L().hunt.length) markDone(3); render(); }
+
+/* 選項洗牌：資料裡正解都放第一個，顯示時依題目內容固定打亂（同一題每次順序一樣） */
+function hashStr(t){ let x=2166136261; for (const c of t) { x ^= c.charCodeAt(0); x = Math.imul(x, 16777619) >>> 0; } return x; }
+function permOf(n, tag){ const a=[...Array(n).keys()]; let x=hashStr(tag)||1; for(let i=n-1;i>0;i--){ x=(Math.imul(x,1103515245)+12345)>>>0; const j=(x>>>8)%(i+1); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function mixOpts(opts, tag){ return permOf(opts.length, tag).map(k => opts[k]); }
 
 /* ④ 判：全英文新題 */
 function st4(l, s){
@@ -3521,12 +3526,13 @@ function st4(l, s){
   }
   const it = l.mcq[UI.i], answered = UI._p4 !== undefined;
   const stem = answered ? boldKeys(it.stem, [it.key]) : esc(it.stem);
+  const ord = permOf(it.opts.length, 'q'+l.id+'|'+it.stem), showL = orig => LET[ord.indexOf(LET.indexOf(orig))];
   return `${progress(UI.i, n)}<p class="tiny">第 ${UI.i+1} / ${n} 題 · 全英文，答完才有中文</p>
    <div class="box" data-mode="${answered?'learn':'none'}"><div class="big en-t">${stem}</div>
-   ${it.opts.map((o,k) => { const L_ = LET[k]; let c=''; if(answered){ c = L_===it.ans?'ok':(L_===UI._p4?'bad':'dim'); }
-     return `<button class="opt ${c}" ${answered?'disabled':''} onclick="s4Pick('${L_}')"><b>${L_}.</b> <span class="en-t">${answered ? boldKeys(o, [it.key]) : esc(o)}</span>${answered?`<div class="tiny" style="color:#c4d2e8;margin-top:4px">${it.why[L_]}</div>`:''}</button>`; }).join('')}
+   ${ord.map((k,p) => { const o = it.opts[k], L_ = LET[k]; let c=''; if(answered){ c = L_===it.ans?'ok':(L_===UI._p4?'bad':'dim'); }
+     return `<button class="opt ${c}" ${answered?'disabled':''} onclick="s4Pick('${L_}')"><b>${LET[p]}.</b> <span class="en-t">${answered ? boldKeys(o, [it.key]) : esc(o)}</span>${answered?`<div class="tiny" style="color:#c4d2e8;margin-top:4px">${it.why[L_]}</div>`:''}</button>`; }).join('')}
    </div>
-   ${answered ? `<div class="fb ${UI._p4===it.ans?'ok':'bad'}">${UI._p4===it.ans?'✅ 對！':'❌ 正解是 '+it.ans+'。'} 決勝片段：<b class="key en-t">${esc(it.key)}</b></div>
+   ${answered ? `<div class="fb ${UI._p4===it.ans?'ok':'bad'}">${UI._p4===it.ans?'✅ 對！':'❌ 正解是 '+showL(it.ans)+'。'} 決勝片段：<b class="key en-t">${esc(it.key)}</b></div>
      <div class="nav"><span></span><button class="btn pri" onclick="s4Next()">下一題 →</button></div>` : ''}`;
 }
 function s4Pick(k){ const l=L(), s=LS(l.id); UI._p4 = k; s.s4[UI.i] = (k === l.mcq[UI.i].ans); saveS(); render(); }
@@ -3646,7 +3652,10 @@ function qLine(q, E){
 }
 function resultText(){
   const l = L(), s = LS(l.id), E = s.ex;
-  return [`【CDL 第${l.id}課驗收】${s.score}/${l.exam.length}（${s.green?'轉綠':'未轉綠'}）`].concat(l.exam.map(q => qLine(q, E))).join('\n');
+  const V = getVocab(), tag = `CDL課程 第${l.id}課`;
+  const vw = Object.values(V).filter(v => (v.origin||'') === tag || (v.origins||[]).includes(tag));
+  const vl = vw.length ? ['', `【①–④ 點過的生字】${vw.length} 個`, vw.map(v => `${v.word}（${v.zh||'待補'}）×${v.count||1}`).join('、')] : [];
+  return [`【CDL 第${l.id}課驗收】${s.score}/${l.exam.length}（${s.green?'轉綠':'未轉綠'}）`].concat(l.exam.map(q => qLine(q, E))).concat(vl).join('\n');
 }
 function xRetry(){ const s = LS(UI.id); s.ex = {a:{},g:{},m:{},r:{},t:{},done:{},sub:false}; saveS(); UI.showNo = null; UI.qNo = null; render(); window.scrollTo(0,0); }
 
