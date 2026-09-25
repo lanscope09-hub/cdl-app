@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Cloud Digital Leader — 官方 Sample Questions (29題)</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #38bdf8;
+      --primary-hover: #0284c7;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --border: #334155;
+      --accent: #f59e0b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px 16px;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    h1 {
+      font-size: 1.75rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .stats-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card-bg);
+      padding: 14px 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .stats-item { font-size: 0.95rem; }
+    .stats-val { font-weight: bold; color: var(--primary); }
+    .btn-filter {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .btn-filter.active, .btn-filter:hover {
+      background: var(--primary);
+      color: #0f172a;
+      font-weight: 600;
+      border-color: var(--primary);
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 24px;
+      margin-bottom: 20px;
+      transition: border-color 0.2s;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .q-badge {
+      background: #0284c7;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .sec-badge {
+      font-size: 0.8rem;
+      color: var(--accent);
+      background: rgba(245, 158, 11, 0.1);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .q-text {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 18px;
+      color: #ffffff;
+      white-space: pre-line;
+    }
+    .opts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .opt-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .opt-label:hover {
+      background: rgba(56, 189, 248, 0.08);
+      border-color: var(--primary);
+    }
+    .opt-label input {
+      margin-top: 4px;
+      cursor: pointer;
+    }
+    .opt-label.selected {
+      border-color: var(--primary);
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .opt-label.correct {
+      border-color: var(--success) !important;
+      background: rgba(34, 197, 94, 0.15) !important;
+      color: #86efac;
+    }
+    .opt-label.wrong {
+      border-color: var(--danger) !important;
+      background: rgba(239, 68, 68, 0.15) !important;
+      color: #fca5a5;
+    }
+    .action-bar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .btn-submit {
+      background: var(--primary);
+      color: #0f172a;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: var(--primary-hover); }
+    .explain-box {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.7);
+      border-left: 4px solid var(--primary);
+      display: none;
+    }
+    .kw-box {
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+    .why-box {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Cloud Digital Leader 官方 Sample Questions</h1>
+      <p class="subtitle">Google 官方 29 題樣題全收錄・真題實測・即測即評</p>
+    </header>
+
+    <div class="stats-bar">
+      <div class="stats-item">已答：<span class="stats-val" id="answered-count">0</span> / 29</div>
+      <div class="stats-item">正確率：<span class="stats-val" id="accuracy-val">0%</span></div>
+      <div style="display:flex; gap:8px;">
+        <button class="btn-filter active" id="filter-all" onclick="setFilter('all')">全部 (29)</button>
+        <button class="btn-filter" id="filter-wrong" onclick="setFilter('wrong')">錯題 (0)</button>
+      </div>
+    </div>
+
+    <div id="questions-list"></div>
+  </div>
+
+  <script>
+    const data = [{"no":1,"q":"How can Google Cloud help an organization achieve its sustainability goals?","opts":["A) Google Cloud data centers are carbon free.","B) Data centers have maximum physical security.","C) Data centers are regionally distributed around the world.","D) Google Cloud data centers are ISO certified for their environmental performance and efficiency."],"ans":"D","kw":"sustainability goals / environmental performance and efficiency","kwZh":"永續目標 / 環境表現與效率","why":"Google Cloud 資料中心具備 ISO 14001（環境管理）與 ISO 50001（能源管理）等獨立第三方認證。選項 A 錯誤是因為 Google 是以 2030 年達成 24/7 全時無碳為目標，並非現況所有機房皆已碳中和。","sec":"1.1 / 6.2"},{"no":2,"q":"An organization is monitoring a service level indicator based on the volume of traffic that their application is receiving. Why is it important to monitor this indicator?","opts":["A) The volume of traffic always affects the user experience.","B) High traffic levels are frequently tied to degrading performance.","C) Historical trends in traffic can be used for capacity planning.","D) Low traffic volumes always indicate configuration issues."],"ans":"C","kw":"traffic volume / historical trends / capacity planning","kwZh":"流量大小 / 歷史趨勢 / 容量規劃","why":"流量型 SLI 記錄負載變化，其歷史趨勢能幫助團隊預測何時需要擴充或調整硬體資源，做長期的容量規劃（Capacity Planning）。","sec":"6.2"},{"no":3,"q":"An organization has raised a support case with Google Cloud Customer Care. When is it appropriate for a case to be escalated?","opts":["A) When a high-impact issue needs to be resolved as fast as possible","B) When the priority of the ticket has been set incorrectly","C) When flagging a break in the process or a communication issue","D) When a case has been resolved and needs to be reopened"],"ans":"C","kw":"escalated / break in the process / communication issue","kwZh":"升級工單 / 流程中斷 / 溝通卡關","why":"Google Cloud 官方規定：Escalation（升級）是用於處理流程中斷（process break）或溝通受阻，而不是用來加速技術問題解決；若問題緊急影響巨大，正確做法是提高優先級（Priority P1），非升級。","sec":"6.2"},{"no":4,"q":"An organization wants to track and understand its expenses on Google Cloud and receive recommendations on cost optimizations. Which tool should the organization use?","opts":["A) Cloud Billing reports","B) Resource quotas and thresholds","C) Committed use discounts","D) Invoices"],"ans":"A","kw":"track expenses / recommendations on cost optimizations","kwZh":"追蹤費用 / 成本最佳化建議","why":"Cloud Billing reports（帳單報告）提供視覺化的花費趨勢圖，並內建 Recommendations 推薦最佳化建議（如閒置 VM、承諾使用折扣等）。","sec":"6.1"},{"no":5,"q":"An organization wants to analyze data collected from a fleet of rental vehicles. Onboard sensors send location data every 30 seconds. They want to ingest this data. Which Google product or service should they use?","opts":["A) Dataflow","B) Pub/Sub","C) Cloud SQL","D) Cloud Storage"],"ans":"B","kw":"sensors / every 30 seconds / ingest","kwZh":"感測器 / 每 30 秒 / 攝取資料","why":"Pub/Sub 是 Google Cloud 核心的即時事件與串流資料攝取（Ingestion）服務，專門接收來自 IoT、感測器或應用程式的大規模串流數據。","sec":"2.3"},{"no":6,"q":"An organization wants to compare the total cost of ownership (TCO) of operating in the cloud versus on-premises. What on-premises costs should be compared to cloud operating costs?","opts":["A) The cost of on-premises operational overhead","B) The initial investment cost of on-premises hardware","C) The maintenance cost of replacing on-premises hardware","D) The cost of on-premises hardware investment, operational overhead, and missed-opportunity costs"],"ans":"D","kw":"TCO / hardware investment, operational overhead, missed-opportunity costs","kwZh":"總擁有成本 / 硬體投資、維運開銷、錯失機會成本","why":"地端 TCO 不只包含採購硬體的資本支出（CapEx），還包含機房水電維運、人力開銷，以及因調度緩慢而錯失業務市場的「機會成本」（Missed-opportunity costs）。","sec":"1.1 / 6.1"},{"no":7,"q":"An organization is migrating their business applications from on-premises to the cloud. \nHow could this impact their operations and personnel costs?","opts":["A) Increased on-premises hardware maintenance costs","B) Reduced cloud software licensing costs","C) Reduced on-premises infrastructure management costs","D) Increased cloud hardware management costs"],"ans":"C","kw":"impact on personnel / reduced on-premises infrastructure management","kwZh":"人事與維運影響 / 減少地端基礎設施管理","why":"將地端工作負載搬遷至雲端，硬體與實體資料中心維護由 Google 負責，因此能直接減少地端基礎設施的管理成本與人員負擔。","sec":"1.1 / 6.1"},{"no":8,"q":"An organization is implementing a cloud center of excellence by creating a central partnership across finance, technology and business function teams. What is a benefit of this approach?","opts":["A) Enabling individual project teams to apply their own approach to security.","B) Ensuring that there is visibility into ongoing cloud spend.","C) Reviewing cloud decisions on a quarterly basis.","D) Owning all cloud spending budgets across the organization."],"ans":"B","kw":"cloud center of excellence (CCoE) / visibility into cloud spend","kwZh":"雲端卓越中心 / 雲端支出的能見度","why":"CCoE 結合財務、IT 與業務部門，推行 FinOps 最佳實務，核心效益是打破資訊孤島，確保整個組織對雲端即時支出具有透明度與能見度。","sec":"6.1"},{"no":9,"q":"An organization wants to deploy new workloads to the cloud, but must keep some systems on-premises for compliance reasons. They need to centrally manage both environments. Which type of environment would suit the organization?","opts":["A) Multi cloud environment","B) Virtual machine environment","C) Hybrid cloud environment","D) Container environment"],"ans":"C","kw":"deploy to cloud / keep on-premises / centrally manage both","kwZh":"部分部署雲端 / 部分保留地端 / 集中管理兩者","why":"同時使用地端私有環境與公有雲環境，並具備互通與集中管理能力，即為典型的「混合雲」（Hybrid Cloud）架構。","sec":"1.2"},{"no":10,"q":"An organization is establishing best practices for financial governance in the cloud. They have multiple teams building applications. Which Google-recommended approach should the organization use to manage spending?","opts":["A) Define ownership for projects, and establish financial accountability for project owners.","B) Define ownership for projects, but centralize financial accountability.","C) Set a fixed cloud spend budget across all projects.","D) Centralize financial accountability, and review spending monthly."],"ans":"A","kw":"financial governance / define ownership / financial accountability","kwZh":"財務治理 / 定義專案所有權 / 建立財務當責","why":"Google 推薦的雲端財務治理最佳實務：明確定義各專案的所有者（Ownership），並讓專案擁有者為其架構與產生的帳單負起當責（Financial Accountability）。","sec":"6.1"},{"no":11,"q":"A retail store has discovered a cost-effective solution for creating self-service kiosks. They can use existing check-out hardware and purchase a virtual customer service application. Why do they also need an API?","opts":["A) To update the check-out hardware remotely.","B) To migrate all customer data for disaster recovery.","C) To connect the new application with the legacy system.","D) To connect the check-out hardware to the public cloud."],"ans":"C","kw":"new application / legacy system / API","kwZh":"新應用程式 / 既有遺留系統 / API 串接","why":"API（應用程式介面）的主要商業價值之一，就是作為溝通橋樑，讓新開發的現代應用能與現有的舊版核心系統（Legacy system）安全交換資料。","sec":"4.3"},{"no":12,"q":"An organization is looking for a solution to help them build applications using their preferred programming language and tools. They also want to minimize time spent on infrastructure management.\nWhat solution should the organization use?","opts":["A) Bare Metal Solution","B) Dataproc","C) Pub/Sub","D) Cloud Run"],"ans":"D","kw":"preferred language / minimize infrastructure management","kwZh":"自選語言與工具 / 基礎設施管理最小化","why":"Cloud Run 是完全代管的無伺服器容器平台，開發者可打包任何語言與依賴套件，無需管理任何底層伺服器與基礎架構。","sec":"4.2"},{"no":13,"q":"What would provide near-unlimited availability of computing resources without requiring an organization to procure and provision new equipment?","opts":["A) Public cloud","B) Private cloud","C) Microservices","D) Containers"],"ans":"A","kw":"near-unlimited availability / without procuring equipment","kwZh":"近乎無限資源 / 免採購新硬體","why":"公有雲（Public Cloud）由雲端服務商建置與維護全球超大規模基礎設施，企業隨需租用，具備彈性擴充且無需自行採購硬體設備。","sec":"1.2"},{"no":14,"q":"In Google’s cloud security model, which aspect emphasizes the importance of keeping sensitive information safe and secret?","opts":["A) Integrity","B) Confidentiality","C) Availability","D) Compliance"],"ans":"B","kw":"CIA triad / safe and secret / confidentiality","kwZh":"資安 CIA 三要素 / 安全且保密 / 機密性","why":"CIA 三要素中：Confidentiality（機密性）強調保護敏感資料不被未授權者看見；Integrity（完整性）強調防竄改；Availability（可用性）強調隨時可用。","sec":"5.1"},{"no":15,"q":"An organization needs to store structured, semi-structured, and unstructured data in its raw, native format in the same repository.\nWhich cloud data management solution should the organization use?","opts":["A) Data lake","B) Data warehouse","C) Database","D) Data mesh"],"ans":"A","kw":"raw, native format / structured, semi-structured, unstructured","kwZh":"原生原始格式 / 結構化、半結構化、非結構化並存","why":"Data lake（資料湖）的定義就是以原始格式（Raw, native format）集中儲存所有類型的資料（結構化/半結構化/非結構化），供後續探索與分析。","sec":"2.1"},{"no":16,"q":"Which cybersecurity threat can lead to information being stolen or damaged without a user ever being aware?","opts":["A) Ransomware attack","B) SLA policy violation","C) Malware attack","D) Incomplete data input"],"ans":"C","kw":"without user ever being aware / stolen or damaged","kwZh":"使用者完全毫無察覺 / 資料被竊或破壞","why":"Malware（惡意軟體，如木馬、間諜軟體）常在系統背景隱蔽運作竊取機密，使用者難以肉眼察覺；而 Ransomware（勒索軟體）則會主動跳出勒索警示。","sec":"5.1"},{"no":17,"q":"How would an organization benefit from using Looker?","opts":["A) Advanced business intelligence and analytics","B) Optimal identity and access management","C) Leading serverless warehousing technology","D) Robust data roll-back accuracy"],"ans":"A","kw":"Looker / advanced business intelligence and analytics","kwZh":"Looker / 進階商業智慧與視覺化分析","why":"Looker 是 Google Cloud 的旗艦商業智慧（BI）與現代化資料分析平台，具備 LookML 語意建模與強大儀表板視覺化能力。","sec":"2.3"},{"no":18,"q":"An organization needs a platform to create custom end-to-end artificial intelligence models.\n\nWhich Google Cloud product or service should the organization use?","opts":["A) Recommendations AI","B) Dataproc","C) Compute Engine","D) Vertex AI"],"ans":"D","kw":"custom end-to-end AI models","kwZh":"客製化端到端 AI 模型平台","why":"Vertex AI（或新考綱中的 Agent Platform / AI Platform）是 Google Cloud 統一的一站式端到端機器學習與 AI 開發平台。","sec":"3.2"},{"no":19,"q":"An organization needs to control access for users and resources within Google Cloud. Which service should the organization use?","opts":["A) Hardware-based encryption","B) Cloud VPN","C) Cloud Interconnect","D) Cloud IAM"],"ans":"D","kw":"control access / users and resources / IAM","kwZh":"控制存取權限 / 使用者與資源 / IAM","why":"Cloud IAM（身分與存取管理）用於集中定義「誰（Who）對哪項資源（Resource）擁有什麼權限（Role）」。","sec":"5.1"},{"no":20,"q":"An organization is moving its operations to the cloud, but needs to migrate a legacy application without making any changes to the code. Which migration path should the organization choose?","opts":["A) Replatform","B) Refactor","C) Rehost","D) Retire"],"ans":"C","kw":"migrate legacy app / without making any changes to code","kwZh":"遷移舊應用 / 不改任何程式碼","why":"Rehost（也就是 Lift and Shift 搬遷）將既有系統原封不動直接放上雲端 VM，完全不改寫內部程式碼架構。","sec":"4.1"},{"no":21,"q":"An organization has a small app that sends a mobile notification to a customer whenever a new order is placed on their website. They require a simple, event-driven, serverless service to host the code. Which service should the organization choose?","opts":["A) Cloud Functions","B) Kubernetes Engine","C) Cloud Run","D) Compute Engine"],"ans":"A","kw":"small app / event-driven / serverless / order placed","kwZh":"小程式 / 事件驅動 / 無伺服器 / 新訂單觸發","why":"Cloud Functions（新版 Cloud Run functions）專為輕量、單一用途的事件驅動（Event-driven）短生命週期程式碼量身打造。","sec":"4.2"},{"no":22,"q":"According to Google’s AI principles, which scenario is an irresponsible use of AI technology?","opts":["A) Creating mass blog posts by using generative AI.","B) Using data on previous customer interactions.","C) Forecasting customers that are likely to have a higher lifetime value.","D) Tracking user activity in financial organizations."],"ans":"A","kw":"AI principles / irresponsible use / creating mass blog posts","kwZh":"AI 原則 / 不負責任的使用 / 大量生成垃圾部落格文章","why":"利用生成式 AI 大規模生產未經查核的垃圾文章或假訊息，違反 Google 負責任 AI 避免產生不公危害與虛假內容的原則。","sec":"3.1"},{"no":23,"q":"An organization wants to migrate multiple virtual machines to the cloud. Which Google service should they choose?","opts":["A) Compute Engine","B) Kubernetes Engine","C) Cloud Functions","D) Cloud Run"],"ans":"A","kw":"migrate multiple virtual machines","kwZh":"遷移多台虛擬機器","why":"Compute Engine 是 Google Cloud 核心的 IaaS 虛擬機器服務，是地端 VM 搬遷至雲端的主要目的地。","sec":"4.2"},{"no":24,"q":"An organization's developers are growing increasingly frustrated by the limitations of their on-premises infrastructure. \nHow would they benefit from leveraging cloud technology?","opts":["A) They can optimize maintenance for their on-premises infrastructure.","B) They can expect 100% service availability.","C) They can avoid the limitations of serverless computing.","D) They can have new tools to innovate and optimize resource usage."],"ans":"D","kw":"frustrated by on-premises / tools to innovate and optimize resource usage","kwZh":"地端受限受挫 / 創新工具與最佳化資源利用","why":"雲端技術讓開發者擺脫硬體採購等待，提供豐富的代管與 PaaS/Serverless 創新工具，並能根據需求自動伸縮資源。","sec":"1.1"},{"no":25,"q":"A global organization is developing an application to manage payments and online bank accounts in multiple regions. Each transaction must be handled consistently in their database, and they anticipate almost unlimited growth in the amount of data stored. \nWhich Google Cloud product should the organization choose?","opts":["A) Cloud Spanner","B) BigQuery","C) Cloud SQL","D) Cloud Storage"],"ans":"A","kw":"global / payments and bank accounts / handled consistently / almost unlimited growth","kwZh":"全球 / 跨區銀行支付 / 強一致性 / 近乎無限擴展","why":"全球分佈（Global）＋ 跨區域強一致性（ACID / Consistent）＋ 無限水平擴充 ＝ 唯一的絕對解答：Cloud Spanner。","sec":"2.2"},{"no":26,"q":"An organization wants an economical solution to store data such as files, graphical images, and videos and to access and share them securely. \nWhich Google Cloud product or service should the organization use?","opts":["A) Cloud Spanner","B) Cloud SQL","C) Cloud Storage","D) BigQuery"],"ans":"C","kw":"economical / files, images, videos / store securely","kwZh":"經濟實惠 / 檔案、圖片、影片 / 安全儲存分享","why":"非結構化物件檔案（圖片、影音、備份）最經濟實惠且具備細粒度安全存取的儲存服務即為 Cloud Storage（物件儲存）。","sec":"2.2"},{"no":27,"q":"Why is data stored in Google Cloud secure and private?","opts":["A) Data is encrypted when an appropriate tag is applied.","B) Data is encrypted by the Security Command Center.","C) Data is encrypted by Cloud Data Loss Prevention.","D) Data is encrypted by default."],"ans":"D","kw":"secure and private / encrypted by default","kwZh":"安全與隱私 / 預設自動加密","why":"Google Cloud 具備「預設加密」（Encrypted by default）特性，無論是靜態儲存（at rest）或傳輸中（in transit）的資料均自動以高等級金鑰加密。","sec":"5.1"},{"no":28,"q":"How is privacy defined in the context of cloud technology?","opts":["A) Procedures to authenticate user identity","B) Restrictions on data access and sharing","C) Compliance with regulatory standards","D) Susceptibility to data breaches and cyber attacks"],"ans":"B","kw":"privacy defined / restrictions on data access and sharing","kwZh":"隱私定義 / 資料存取與分享的限制","why":"在雲端科技中，Privacy（隱私權）的核心定義是：資料擁有者對其資料的存取、使用與分享享有控制權與限制規範。","sec":"5.1"},{"no":29,"q":"When an organization adopts cloud technology, how does their total cost of ownership (TCO) shift?","opts":["A) Away from operational expenditure toward capital expenditure","B) Away from capital expenditure toward operational expenditure","C) Away from cost management toward capital expenditure","D) Away from operational expenditure toward cost management"],"ans":"B","kw":"TCO shift / capital expenditure toward operational expenditure","kwZh":"TCO 轉變 / 資本支出轉向營運支出 (CapEx -> OpEx)","why":"採用雲端運算讓企業擺脫前期一次性龐大硬體採購（CapEx），轉為依照實際使用量計費的靈活日常營運開銷（OpEx）。","sec":"1.1 / 6.1"}];
+    let userAnswers = {};
+    let tempSelections = {};
+    let filterMode = 'all';
+
+    function render() {
+      const container = document.getElementById("questions-list");
+      container.innerHTML = "";
+
+      let answered = 0;
+      let correct = 0;
+      let wrongCount = 0;
+
+      data.forEach((item) => {
+        const state = userAnswers[item.no];
+        if (state) {
+          answered++;
+          if (state.isCorrect) correct++;
+          else wrongCount++;
+        }
+
+        if (filterMode === 'wrong' && (!state || state.isCorrect)) {
+          return;
+        }
+
+        const card = document.createElement("div");
+        card.className = "card";
+        card.id = "card-" + item.no;
+
+        let optsHtml = "";
+        item.opts.forEach((optStr) => {
+          const letterMatch = optStr.match(/^([A-D])\)/);
+          const letter = letterMatch ? letterMatch[1] : "";
+          let optClass = "opt-label";
+          if (state) {
+            if (letter === item.ans) optClass += " correct";
+            else if (letter === state.pick) optClass += " wrong";
+          } else if (tempSelections[item.no] === letter) {
+            optClass += " selected";
+          }
+
+          optsHtml += '<label class="' + optClass + '" onclick="selectOption(' + item.no + ', \'' + letter + '\')">' +
+            '<input type="radio" name="q_' + item.no + '" value="' + letter + '" ' +
+            (state && state.pick === letter ? "checked " : "") +
+            (state ? "disabled" : "") + '>' +
+            '<span>' + optStr + '</span>' +
+          '</label>';
+        });
+
+        card.innerHTML =
+          '<div class="card-header">' +
+            '<span class="q-badge">Question ' + item.no + '</span>' +
+            '<span class="sec-badge">Section ' + item.sec + '</span>' +
+          '</div>' +
+          '<div class="q-text">' + item.q + '</div>' +
+          '<div class="opts">' + optsHtml + '</div>' +
+          (!state ?
+            '<div class="action-bar">' +
+              '<button class="btn-submit" onclick="submitAnswer(' + item.no + ')">確認答案</button>' +
+            '</div>' : '') +
+          '<div class="explain-box" style="display: ' + (state ? 'block' : 'none') + '">' +
+            '<div class="kw-box">🔑 <strong>決勝關鍵字</strong>：' + item.kw + '（' + item.kwZh + '）</div>' +
+            '<div class="why-box">💡 <strong>官方解析</strong>：' + item.why + '</div>' +
+          '</div>';
+
+        container.appendChild(card);
+      });
+
+      document.getElementById("answered-count").textContent = answered;
+      document.getElementById("accuracy-val").textContent = answered > 0 ? Math.round((correct / answered) * 100) + "%" : "0%";
+      document.getElementById("filter-wrong").textContent = '錯題 (' + wrongCount + ')';
+    }
+
+    function selectOption(no, letter) {
+      if (userAnswers[no]) return;
+      tempSelections[no] = letter;
+      render();
+    }
+
+    function submitAnswer(no) {
+      const pick = tempSelections[no];
+      if (!pick) {
+        alert("請先選擇一個選項！");
+        return;
+      }
+      const item = data.find(q => q.no === no);
+      userAnswers[no] = {
+        pick: pick,
+        isCorrect: pick === item.ans
+      };
+      render();
+    }
+
+    function setFilter(mode) {
+      filterMode = mode;
+      document.getElementById("filter-all").classList.toggle("active", mode === 'all');
+      document.getElementById("filter-wrong").classList.toggle("active", mode === 'wrong');
+      render();
+    }
+
+    render();
+  </script>
+</body>
+</html>

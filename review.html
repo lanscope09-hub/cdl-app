@@ -1,0 +1,539 @@
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CDL 考前總複習</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0b1020;color:#e6edf7;font:16px/1.7 -apple-system,"PingFang TC",sans-serif;padding-bottom:60px}
+header{position:sticky;top:0;z-index:20;background:#111a33;border-bottom:1px solid #24365e;padding:9px 11px}
+h1{margin:0 0 7px;font-size:15px;color:#7dd3fc}
+.jump{display:flex;gap:5px;overflow-x:auto;padding-bottom:2px}
+.jump::-webkit-scrollbar{height:0}
+.chip{background:#182642;color:#a9bcd8;border:1px solid #2c3f66;border-radius:20px;padding:5px 11px;font-size:12.5px;white-space:nowrap;cursor:pointer;flex:0 0 auto;text-decoration:none}
+main{padding:0 12px;max-width:820px;margin:0 auto}
+section{scroll-margin-top:96px;margin-top:26px}
+h2{font-size:17px;color:#fbbf24;border-bottom:2px solid #fbbf24;padding-bottom:6px;margin:0 0 12px}
+h3{font-size:15px;color:#7dd3fc;margin:20px 0 8px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th{background:#182642;color:#cbd7ea;text-align:left;padding:7px 9px;font-weight:600;border:1px solid #2c3f66}
+td{padding:7px 9px;border:1px solid #24365e;vertical-align:top}
+td:first-child{white-space:nowrap;font-weight:700;color:#5eead4}
+.en{color:#fde047;font-family:ui-monospace,monospace;font-size:12.8px}
+.box{background:#131c33;border-left:4px solid #38bdf8;border-radius:8px;padding:11px 13px;margin:12px 0}
+.box.warn{border-left-color:#f59e0b;background:#1f1608}
+.box.key{border-left-color:#34d399;background:#0e2c22}
+.box b{color:#fff}
+.big{font-size:15.5px;font-weight:700;color:#5eead4;margin:6px 0}
+ol,ul{padding-left:22px;margin:8px 0}
+li{margin:5px 0;font-size:14px}
+.split{background:#0f1c33;border:1px solid #2c3f66;border-radius:9px;padding:10px 12px;margin:9px 0}
+.split .q{color:#fbbf24;font-weight:700;font-size:14.5px}
+.split .a{font-size:13.8px;color:#c4d2e8;margin-top:4px}
+code{background:#1e293b;padding:1px 5px;border-radius:4px;color:#99f6e4;font-size:13px}
+.tiny{font-size:12.5px;color:#8fa3bf}
+</style>
+
+<header>
+<h1>📕 CDL 考前總複習 · 60 分鐘掃完</h1>
+<div class="jump">
+<a class="chip" href="#a">考場鐵則</a>
+<a class="chip" href="#b">五大分水嶺</a>
+<a class="chip" href="#c">資料庫</a>
+<a class="chip" href="#d">計算部署</a>
+<a class="chip" href="#e">AI/ML</a>
+<a class="chip" href="#f">安全維運</a>
+<a class="chip" href="#g">必背數字</a>
+<a class="chip" href="#h">高頻字</a>
+<a class="chip" href="#i">網路</a>
+<a class="chip" href="#j">維運SRE</a>
+<a class="chip" href="#k">成本</a>
+<a class="chip" href="#l">數位轉型</a>
+<a class="chip" href="#m">答題模式</a>
+<a class="chip" href="#n">生字850</a>
+</div>
+</header>
+
+<main>
+
+<section id="a">
+<h2>① 考場鐵則（先看這 5 條）</h2>
+<div class="box key">
+<div class="big">70% 就過 — 50 題可以錯 15 題。</div>
+你不需要全會。被一題卡住 3 分鐘，比答錯那題傷更重。
+</div>
+<ol>
+<li><b>不確定就先標記跳過</b>，全部答完再回頭。前面卡太久導致後面來不及，是最冤的失分。</li>
+<li><b>兩個選項都像的時候，選「最託管、最不用自己顧」的那個。</b> CDL 的出題立場永遠偏向 Google 建議做法。</li>
+<li><b>看到極端字眼要提高警覺</b>：<span class="en">always / never / all / only</span> 開頭的選項通常是錯的。</li>
+<li><b>題目問「最快 / 最省事 / 沒有專業人力」→ 選現成服務</b>，不要選要自己建的。</li>
+<li><b>先讀最後一句問句</b>，再回頭讀情境。很多長題幹的前半段是干擾。</li>
+</ol>
+</section>
+
+<section id="b">
+<h2>② 五大決勝分水嶺（最高頻）</h2>
+<p class="tiny">CDL 的陷阱幾乎都是「兩個產品看起來都對」。每一組都有唯一的分水嶺，記分水嶺比記產品有用。</p>
+
+<div class="split"><div class="q">1. 碰不碰 OS？</div>
+<div class="a">要碰／要裝驅動／<span class="en">full control</span> → <b>Compute Engine</b>　｜　不想碰／<span class="en">fully managed</span> → 往 Cloud Run、App Engine 走</div></div>
+
+<div class="split"><div class="q">2. 交出的是 code 還是 container？</div>
+<div class="a">交<b>程式碼</b> → App Engine（web app）、Cloud Functions（一段函式）<br>交<b>容器</b> → Cloud Run（一個）、GKE（一群）</div></div>
+
+<div class="split"><div class="q">3. 一個容器還是一群容器？</div>
+<div class="a">一個貨櫃叫 Uber → <b>Cloud Run</b>　｜　一座港口要塔台調度（<span class="en">Kubernetes / orchestration / microservices</span>）→ <b>GKE</b><br><span class="tiny">⚠️ 看到 container 別反射選 Cloud Run，要再看「一個 vs 一群」</span></div></div>
+
+<div class="split"><div class="q">4. 誰管 node？</div>
+<div class="a">自己管 → <b>GKE Standard</b>　｜　<span class="en">without managing nodes</span> → <b>GKE Autopilot</b></div></div>
+
+<div class="split"><div class="q">5. 事件觸發還是常駐服務？</div>
+<div class="a"><span class="en">triggered when X happens / event-driven</span> → <b>Cloud Functions</b>　｜　接請求、開服務 → <b>Cloud Run</b><br><span class="tiny">⚠️ 兩者都會出現 serverless、pay only when running，那些字切不開它們</span></div></div>
+
+<div class="box warn"><b>收尾口訣：</b>碰硬體找包場，碰 OS 找 CE，塔台管群不管台（Autopilot 連台都不管），廚房只收食譜還會試吃分流（App Engine），門鈴有事才叮咚（Functions）。</div>
+</section>
+
+<section id="c">
+<h2>③ 資料庫五顆（最好拿分）</h2>
+<table>
+<tr><th>產品</th><th>一句話</th><th>觸發字</th></tr>
+<tr><td>Cloud Spanner</td><td>全球關聯式 + 強一致</td><td class="en">global、ACID、strong consistency、跨國金融交易、unlimited scale</td></tr>
+<tr><td>Cloud SQL</td><td>老牌關聯式搬上雲</td><td class="en">MySQL、PostgreSQL、migrate、single region</td></tr>
+<tr><td>BigQuery</td><td>資料倉儲，SQL 分析</td><td class="en">data warehouse、analytics、pay per query、報表 BI</td></tr>
+<tr><td>Bigtable</td><td>NoSQL，收海量即時資料</td><td class="en">IoT、time-series、low latency、millions of devices</td></tr>
+<tr><td>Firestore</td><td>行動 App 後端</td><td class="en">mobile app backend、flexible schema、sync to devices</td></tr>
+</table>
+
+<h3>三組必考陷阱</h3>
+<div class="split"><div class="q">Cloud SQL vs Spanner（都是 SQL）</div>
+<div class="a">單區域、MySQL/PostgreSQL、一般規模 → <b>Cloud SQL</b><br>全球、ACID、無限擴展 → <b>Spanner</b></div></div>
+
+<div class="split"><div class="q">Bigtable vs BigQuery（名字超像，其實無關）</div>
+<div class="a"><b>Bigtable 收資料，BigQuery 分析資料。兩件事，不是兩步驟。</b><br><span class="tiny">⚠️ 它們<b>沒有</b>先後或依賴關係，別記成「先 Bigtable 才能 BigQuery」</span></div></div>
+
+<div class="split"><div class="q">Spanner vs Firestore（都講「即時同步」）</div>
+<div class="a">有 <span class="en">no errors / guarantee / ACID / 交易 / SQL / global</span> → <b>Spanner</b><br>有 <span class="en">mobile app / flexible schema / sync to devices</span> → <b>Firestore</b><br><span class="tiny">⚠️ <span class="en">real-time sync</span> 是 Firestore 的誘餌字，要找「保證」級的字才是 Spanner</span></div></div>
+</section>
+
+<section id="d">
+<h2>④ 計算部署八顆</h2>
+<table>
+<tr><th>產品</th><th>決勝鑰匙字</th></tr>
+<tr><td>Compute Engine</td><td class="en">full control、custom OS、kernel、driver、lift and shift</td></tr>
+<tr><td>Spot VM</td><td class="en">lowest cost、batch、interruptible、fault-tolerant</td></tr>
+<tr><td>Sole-tenant Node</td><td class="en">dedicated physical hardware、not shared、BYOL、compliance 實體隔離</td></tr>
+<tr><td>GKE</td><td class="en">Kubernetes、orchestration、microservices、cluster</td></tr>
+<tr><td>GKE Autopilot</td><td class="en">Kubernetes + without managing nodes</td></tr>
+<tr><td>App Engine</td><td class="en">web application、PaaS、traffic splitting、versions</td></tr>
+<tr><td>Cloud Run</td><td class="en">a single container、serverless、scale to zero</td></tr>
+<tr><td>Cloud Functions</td><td class="en">event-driven、triggered when、small piece of code</td></tr>
+</table>
+<div class="box warn">
+<b>兩個「不是新產品，是省事模式」：</b><br>
+・<b>Spot VM</b> 不是另一種機器 → 是 Compute Engine 的離峰價<br>
+・<b>Autopilot</b> 不是另一個產品 → 是 GKE 的免顧 node 模式
+</div>
+<div class="box"><b>App Engine vs Cloud Run 的唯一指紋：</b>題幹點名 <span class="en">traffic splitting / versions</span> → App Engine；點名 <span class="en">container</span> → Cloud Run。</div>
+</section>
+
+<section id="e">
+<h2>⑤ AI / ML 四層 + 三輔助</h2>
+<div class="box key">
+<b>核心問題只有一個：這個團隊有多少 ML 能力、想不想自己訓練模型？</b>
+</div>
+<table>
+<tr><th>層級</th><th>什麼時候選它</th><th>觸發字</th></tr>
+<tr><td>預訓練 API</td><td>標準任務、要快、沒有 ML 人力</td><td class="en">pre-trained、no data science expertise、as quickly as possible</td></tr>
+<tr><td>AutoML</td><td>要用自己的資料做客製模型，但不想寫 code</td><td class="en">custom model、your own data、no code、labeled data</td></tr>
+<tr><td>Vertex AI 自訂訓練</td><td>有資料科學團隊，要完全控制</td><td class="en">data science team、full control、TensorFlow、hyperparameters</td></tr>
+<tr><td>BigQuery ML</td><td>資料已在 BigQuery，用 SQL 就想做</td><td class="en">data already in BigQuery、SQL、analyst（非 data scientist）</td></tr>
+</table>
+
+<div class="box warn">
+<b>兩個已驗證的陷阱：</b><br>
+① 題目提到 <span class="en">machine learning</span> <b>不代表</b>答案是 AutoML／Vertex AI。標準辨識任務 + 想快速整合 → 仍然是<b>預訓練 API</b>。<br>
+② 「資料在 BigQuery」<b>不是</b>決勝字。要 TensorFlow 客製 + 完全控制 → 仍然是 <b>Vertex AI 自訂訓練</b>。
+</div>
+
+<h3>三個獨立專才（不套四層架構）</h3>
+<div class="split"><div class="a">
+有<b>對話</b>互動 → <b>Dialogflow</b>（<span class="en">chatbot、virtual agent</span>）<br>
+有<b>文件</b>要抽欄位 → <b>Document AI</b>（<span class="en">extract data from forms、KYC</span>）<br>
+要<b>生出</b>全新內容 → <b>Gemini / 生成式 AI</b>（<span class="en">generate、create</span>，不只是分類）
+</div></div>
+</section>
+
+<section id="f">
+<h2>⑥ 安全維運（配分最重的一塊）</h2>
+
+<h3>IAM 三種角色</h3>
+<table>
+<tr><td>Basic Role</td><td>Owner/Editor/Viewer，範圍大、老派 <span class="en">broad、legacy</span></td></tr>
+<tr><td>Predefined Role</td><td>Google 切好的精細包 <span class="en">fine-grained、specific service</span></td></tr>
+<tr><td>Custom Role</td><td><b>Google 沒有現成組合剛好符合</b>時才自己拼</td></tr>
+</table>
+<div class="box warn">
+・<span class="en">audit / external auditor</span> 出現 → 給<b>最小夠用</b>角色（例如 Storage Object Viewer），<b>不是</b> Owner/Editor<br>
+・Predefined vs Custom 的分水嶺<b>不是</b>「specific」這個字，是「<b>Google 有沒有現成的剛好符合</b>」<br>
+・Custom Role <b>不會</b>用久了變成 Predefined，兩者是平行系統<br>
+・給程式／機器用的身分 = <b>Service Account</b>（沒有人類登入）<br>
+・一群人共用權限、新人自動繼承 = <b>Google Group</b>
+</div>
+
+<h3>資源階層（反直覺，必背）</h3>
+<div class="box key">
+<div class="big">Organization → Folder → Project → Resource</div>
+政策由上往下<b>繼承且疊加</b>（<span class="en">inherit、additive</span>）——<b>越往下只會越多，不會越少。</b><br>
+<span class="tiny">⚠️ 反直覺陷阱：不是「層級越細優先權越大」，下層<b>無法</b>用一般 IAM 收回上層給的權限。</span>
+</div>
+<div class="box">
+<b>環境隔離（dev / staging / prod）要用獨立 Project。</b><br>
+・不是 label（label 不提供邊界，只是標籤）<br>
+・不是 Folder（Folder 是分組容器，<b>Project 才是計費邊界</b>）
+</div>
+
+<h3>共同責任模型</h3>
+<div class="box key">
+<b>Security OF the Cloud</b>（機房、硬體）→ 永遠 <b>Google</b> 負責<br>
+<b>Security IN the Cloud</b>（資料、存取）→ 永遠 <b>客戶</b> 負責<br><br>
+IaaS 客戶顧 OS + 防火牆 + 資料｜PaaS 只顧程式碼 + 資料｜SaaS 主要顧「誰能存取」<br>
+<b>通則：不管哪一層，「誰能存取資料」永遠是客戶的責任。</b>
+</div>
+
+<h3>加密</h3>
+<div class="split"><div class="a">
+<span class="en">at rest</span>（靜態）與 <span class="en">in transit</span>（傳輸中）→ Google <b>預設自動加密</b>，客戶不用設定<br>
+<b>CMEK</b>：客戶管金鑰規則與輪替，<b>Google 仍負責實際加解密</b><br>
+<b>CSEK</b>：客戶每次自己提供鑰匙，<b>Google 完全不存</b>，鑰匙掉了資料救不回<br>
+<span class="tiny">決勝句：題幹說「Google 還在幫忙做加解密」→ CMEK；「Google 完全不留鑰匙」→ CSEK</span>
+</div></div>
+
+<h3>監控 vs 日誌</h3>
+<div class="split"><div class="a">
+<b>Cloud Monitoring</b> = 看<b>數字</b>（<span class="en">metrics、dashboard、uptime check</span>）<br>
+<b>Cloud Logging</b> = 看<b>紀錄</b>（<span class="en">events as text、troubleshooting、audit trail</span>）
+</div></div>
+
+<h3>SLA / SLO / SLI 三兄弟</h3>
+<div class="box key">
+<b>SLI</b> = 量測出來的<b>實際數字</b>（<span class="en">measured、actual</span>）<br>
+<b>SLO</b> = 內部設定的<b>目標</b>（<span class="en">internal target</span>）<br>
+<b>SLA</b> = 對外<b>合約承諾</b>，沒達標要<b>賠錢</b>（<span class="en">contract、penalty</span>）<br>
+<b>Error Budget</b> = SLO 允許失敗的額度，還沒用完可以衝新功能，快用完轉守<br>
+<span class="tiny">⚠️ 陷阱：題目可能只描述定義（如「還剩多少失敗容許空間」）而不點名詞彙，要能反應過來</span>
+</div>
+
+<h3>支援方案</h3>
+<div class="split"><div class="a">
+Basic（免費，無回應保證）＜ Standard（工作時間）＜ Enhanced（24/7）＜ <b>Premium</b><br>
+<b>只有 Premium 配 Technical Account Manager（TAM）</b> — 這是最明確的單一識別特徵，看到 TAM 直接選 Premium。
+</div></div>
+</section>
+
+<section id="g">
+<h2>⑦ 必背數字</h2>
+<table>
+<tr><th>可用性</th><th>每年可停機約</th></tr>
+<tr><td>99%</td><td>3.65 天</td></tr>
+<tr><td>99.9%</td><td>8.76 小時</td></tr>
+<tr><td>99.99%</td><td>52 分鐘</td></tr>
+<tr><td>99.999%</td><td>5 分鐘</td></tr>
+</table>
+<p class="tiny">不用精算，記「<b>每多一個 9，容忍停機時間除以 10</b>」即可。</p>
+<div class="box">
+<b>儲存類別（存取頻率越低越便宜，但取用費越貴）</b><br>
+Standard（常存取）→ Nearline（<b>每月</b>一次）→ Coldline（<b>每季</b>一次）→ Archive（<b>每年</b>一次／長期封存）
+</div>
+</section>
+
+<section id="h">
+<h2>⑧ 高頻英文字（看到就要反應）</h2>
+<table>
+<tr><th>英文</th><th>中文</th><th>看到它通常指向</th></tr>
+<tr><td class="en">lift and shift</td><td>原封不動搬上雲</td><td>Compute Engine</td></tr>
+<tr><td class="en">fully managed</td><td>全代管</td><td>託管服務，非自建</td></tr>
+<tr><td class="en">scale to zero</td><td>沒人用縮到 0</td><td>Cloud Run / Functions</td></tr>
+<tr><td class="en">event-driven</td><td>事件驅動</td><td>Cloud Functions</td></tr>
+<tr><td class="en">interruptible</td><td>可被中斷</td><td>Spot VM</td></tr>
+<tr><td class="en">least privilege</td><td>最小權限</td><td>IAM 給剛好夠用的角色</td></tr>
+<tr><td class="en">inherit / additive</td><td>繼承／疊加</td><td>資源階層，上層規則只加不減</td></tr>
+<tr><td class="en">billing boundary</td><td>計費邊界</td><td>Project（不是 Folder）</td></tr>
+<tr><td class="en">at rest / in transit</td><td>靜態／傳輸中</td><td>加密，Google 預設就做了</td></tr>
+<tr><td class="en">rotation</td><td>金鑰輪替</td><td>CMEK 才有</td></tr>
+<tr><td class="en">strong consistency</td><td>強一致</td><td>Cloud Spanner</td></tr>
+<tr><td class="en">time-series</td><td>時序資料</td><td>Bigtable</td></tr>
+<tr><td class="en">data warehouse</td><td>資料倉儲</td><td>BigQuery</td></tr>
+<tr><td class="en">pre-trained</td><td>預先訓練好的</td><td>現成 API，不用自己訓練</td></tr>
+<tr><td class="en">labeled data</td><td>已標記資料</td><td>AutoML</td></tr>
+<tr><td class="en">hybrid</td><td>混合雲</td><td>句中同時有地端 + 雲端</td></tr>
+<tr><td class="en">multi-cloud</td><td>多雲</td><td>兩家以上雲商，<b>沒</b>提地端</td></tr>
+<tr><td class="en">vendor lock-in</td><td>廠商鎖定</td><td>選開放標準／開源／可攜性</td></tr>
+<tr><td class="en">CapEx / OpEx</td><td>資本支出／營運支出</td><td>上雲 = CapEx 轉 OpEx</td></tr>
+<tr><td class="en">TCO</td><td>總持有成本</td><td>比較上雲划不划算</td></tr>
+<tr><td class="en">provision</td><td>佈建、開機器出來</td><td>「不用自己 provision」= 託管／公有雲</td></tr>
+<tr><td class="en">unstructured data</td><td>非結構化資料</td><td>影音圖文、逐字稿、留言</td></tr>
+</table>
+</section>
+
+
+<section id="i">
+<h2>⑨ 網路（考點集中在「怎麼連」）</h2>
+
+<h3>地端連上雲的四種路</h3>
+<table>
+<tr><th>方案</th><th>什麼時候選</th><th>觸發字</th></tr>
+<tr><td>Dedicated Interconnect</td><td>不可走公網、要 SLA、頻寬大，直連 Google</td><td class="en">dedicated connection、not over public internet、SLA</td></tr>
+<tr><td>Partner Interconnect</td><td>同上，但透過電信商轉接（自家機房離 Google 太遠）</td><td class="en">through a service provider / partner</td></tr>
+<tr><td>Cloud VPN</td><td>走公網但加密，<b>要馬上通</b>、頻寬需求不大</td><td class="en">quickly、encrypted tunnel、over the internet、IPsec</td></tr>
+<tr><td>Direct / Carrier Peering</td><td>只是要接觸 Google 公開服務，不進 VPC</td><td class="en">peering</td></tr>
+</table>
+<div class="box warn"><b>分水嶺：</b>看「時間急不急」——要馬上通 → <b>Cloud VPN</b>；要高頻寬 + SLA、可以等 → <b>Interconnect</b>。</div>
+
+<h3>VPC 相關</h3>
+<div class="split"><div class="a">
+<b>Shared VPC</b> → 同一個<b>組織內</b>多專案共用同一張網路<br>
+<b>VPC Peering</b> → <b>跨組織／跨專案</b>互連兩張獨立的網路<br>
+<b>Private Google Access</b> → VM <b>沒有外部 IP</b>，但要連 Google 服務（是「網路路徑」層設定）<br>
+<b>Cloud NAT</b> → VM 要連<b>外部網際網路</b>（下載更新等），但不想給它公開 IP
+</div></div>
+
+<h3>防護與流量</h3>
+<div class="split"><div class="a">
+<b>Cloud Armor</b> → 擋 DDoS 與網頁攻擊（第 7 層），搭全球外部 HTTP(S) 負載平衡器<br>
+<b>Firewall rules</b> → 題幹出現 <span class="en">enter and leave the network</span>（進出網路）<br>
+<b>IAM / 2SV</b> → 題幹講的是<b>身分驗證</b>而非流量<br>
+<b>Cloud CDN</b> → 靜態內容快取到離使用者近的地方<br>
+<b>Cloud DNS</b> → 網域名稱解析
+</div></div>
+
+<div class="box key"><b>延遲與容錯的差別（常混）：</b><br>
+跨洲<b>延遲</b>高 → 在使用者所在的 <b>region</b> 建複本<br>
+同區<b>容錯</b> → 跨多個 <b>zone</b> 部署<br>
+<span class="tiny">region = 地理區域（台灣、東京）；zone = 同一區域內的獨立機房</span>
+</div>
+</section>
+
+<section id="j">
+<h2>⑩ 維運監控 + SRE 文化</h2>
+
+<h3>Operations Suite 五件套（誰看什麼）</h3>
+<table>
+<tr><th>工具</th><th>看什麼</th><th>觸發字</th></tr>
+<tr><td>Cloud Monitoring</td><td><b>數字</b>指標</td><td class="en">metrics、dashboards、uptime check</td></tr>
+<tr><td>Cloud Logging</td><td><b>文字</b>事件紀錄</td><td class="en">events、logs、audit trail、troubleshooting</td></tr>
+<tr><td>Cloud Trace</td><td>請求<b>走過哪些服務</b>、卡在哪</td><td class="en">latency、request path、distributed tracing</td></tr>
+<tr><td>Cloud Profiler</td><td>程式吃了多少 CPU / 記憶體</td><td class="en">CPU、memory consumption</td></tr>
+<tr><td>Error Reporting</td><td>把錯誤自動歸類、通知</td><td class="en">errors grouped、alerts</td></tr>
+</table>
+<div class="box warn">
+・題目要「<b>一站式</b>維運工具」→ <b>Google Cloud Operations Suite</b>（整套的名字）<br>
+・出現 <span class="en">latency</span> 或「請求走了哪些服務」→ <b>Cloud Trace</b>，不要選加 log<br>
+・跨多服務找「卡在哪一段」→ <b>Trace</b>；看單一服務「發生了什麼」→ <b>Logging</b><br>
+・<b>Cloud Debugger</b> = 在正式環境「看」變數狀態，<b>不停機、不改程式</b>。凡是敘述「要改程式重新部署」的一律錯
+</div>
+
+<h3>SRE / DevOps 文化題（常考觀念，不考工具）</h3>
+<div class="split"><div class="a">
+<b>toil（苦工）</b> = 重複的人工作業。自動化的首要目標就是<b>消除 toil</b><br>
+<b>blameless postmortem（無咎責檢討）</b> = 對事不對人，失敗是學習資料<b>不是懲罰理由</b><br>
+<b>measure everything</b> 指的是<b>系統的可靠度與健康</b>（SLI/SLO），不是人的感受或財務數字<br>
+<span class="tiny">⚠️ 選項只要出現 blame（責備）、懲處、究責 → 幾乎一定是錯的</span>
+</div></div>
+
+<h3>Error Budget 怎麼用</h3>
+<div class="box key">
+SLO <b>達標</b>且錯誤預算<b>還有餘</b> → 可以放膽發新版、衝創新<br>
+SLO <b>沒達成</b> → 凍結新功能，先修穩定性<br>
+<span class="tiny">⚠️ error budget 是<b>自己內部 SLO 的餘裕</b>；SLA 沒達成是<b>對外賠錢</b>。兩件事別混。</span>
+</div>
+
+<h3>產品生命週期（合規題會用）</h3>
+<div class="split"><div class="a">
+Preview / Alpha / Beta（<b>沒有 SLA</b>）→ <b>GA</b>（有 SLA）→ Deprecated（SLA 到期前仍有效）<br>
+<span class="tiny">合規／正式環境的題目只收<b>有 SLA</b> 的版本，看到 Beta 就淘汰</span>
+</div></div>
+
+<h3>備份 vs 備援（字面很像，考點不同）</h3>
+<div class="split"><div class="a">
+題幹出現 <span class="en">restore 還原 / recover 復原</span> → <b>backup 備份</b><br>
+題幹出現 <span class="en">avoid single point of failure 避免單點故障</span> → <b>redundancy 備援</b><br>
+<b>災難復原三原則</b>：備份要<b>異地</b>、要<b>定期演練還原</b>、<b>單一地點的備份不算備援</b>
+</div></div>
+</section>
+
+<section id="k">
+<h2>⑪ 成本管理</h2>
+<table>
+<tr><th>方案</th><th>什麼時候選</th></tr>
+<tr><td>CUD 承諾折扣</td><td>用量<b>穩定可預測</b>且 ≥ 1 年（1 年或 3 年）</td></tr>
+<tr><td>SUD 持續使用折扣</td><td><b>自動</b>累積，不用承諾，折扣較小</td></tr>
+<tr><td>Spot / Preemptible</td><td>可<b>被中斷</b>的批次工作，最便宜</td></tr>
+<tr><td>隨用隨付</td><td>短期、臨時、無法預測</td></tr>
+<tr><td>Reservations 預留</td><td>要「<b>保證拿得到容量</b>」（與折扣是<b>兩件事</b>，可併用）</td></tr>
+</table>
+<div class="box warn">
+・<b>要省錢</b> → CUD（承諾折扣）；<b>要保證有機器可用</b> → Reservations（預留）。這兩個常被混在同一題裡<br>
+・看到 <span class="en">across all projects</span>（跨專案）+ <span class="en">easily</span> → <b>CUD discount sharing</b>（折扣共用）；逐專案設定的選項一律排除
+</div>
+
+<h3>BigQuery 計費三種</h3>
+<div class="split"><div class="a">
+偶爾查 → <b>On-demand</b>（依<b>掃描量</b>計費）<br>
+長期穩定大量 → <b>固定費率／預留 slots</b><br>
+短時間爆量 → <b>Flex Slots</b>
+</div></div>
+
+<h3>成本觀念題</h3>
+<div class="split"><div class="a">
+<b>CapEx → OpEx</b>：上雲把「一次買斷硬體」換成「按用量付費」。<br>
+<span class="tiny">⚠️ 選項若寫「把 pay-as-you-go 改成 capital expenditure」→ 方向相反，一律錯</span><br>
+<b>TCO</b>（總持有成本）= 全部成本，算它的目的是<b>比較上雲划不划算</b><br>
+<b>預算警示</b>只會<b>通知</b>，<b>不會</b>自動停掉服務（常見陷阱）
+</div></div>
+</section>
+
+<section id="l">
+<h2>⑫ 數位轉型與商業概念（79 題，題目最抽象）</h2>
+
+<h3>雲端五大特徵</h3>
+<div class="split"><div class="a">
+「多客戶<b>共用</b>」→ <span class="en">multi-tenancy</span><br>
+「按需<b>伸縮</b>」→ <span class="en">elasticity</span><br>
+「任何裝置<b>連得上</b>」→ <span class="en">broad network access</span><br>
+「自己<b>開通</b>不用等人」→ <span class="en">on-demand self-service</span><br>
+「用多少<b>算多少</b>」→ <span class="en">measured service</span>
+</div></div>
+
+<h3>三種服務模型</h3>
+<div class="box key">
+想維持<b>自己掌控</b>底層 → <b>IaaS</b>　｜　不想管、想<b>交出去</b> → <b>PaaS / SaaS</b><br>
+<span class="tiny">跨章對照：Compute Engine（IaaS）→ App Engine / Cloud Run（PaaS）→ Workspace（SaaS）</span>
+</div>
+
+<h3>部署模型</h3>
+<div class="split"><div class="a">
+地端 <b>+</b> 公有雲並存 → <b>hybrid 混合雲</b><br>
+兩家以上公有雲、<b>沒提地端</b> → <b>multi-cloud 多雲</b><br>
+「不想再管基礎設施」→ <b>public cloud 公有雲</b><br>
+法規要求資料留地端／留境內 → 選「<b>受管制的部分留地端 + 其餘上雲</b>」（混合雲思維）<br>
+<span class="tiny">⚠️「全部不動」與「無視法規」永遠是錯的選項</span>
+</div></div>
+
+<h3>Anthos 與 Apigee（這兩個很好認）</h3>
+<div class="split"><div class="a">
+題目同時出現 <span class="en">consistent</span> 與 <span class="en">multi-cloud / hybrid</span> → <b>Anthos</b><br>
+「不想被單一廠商綁 + 跨多雲 + 已在用容器」→ <b>Anthos</b>（只講「要跑容器」才選 GKE）<br><br>
+「把 API 開放給<b>外部／合作夥伴</b>、要<b>收費</b>、要<b>控管流量</b>」→ <b>Apigee</b><br>
+<span class="tiny">⚠️ 看到 API 管理需求，不要選「自己寫程式」的選項</span>
+</div></div>
+
+<h3>API 題的固定模式</h3>
+<div class="box warn">
+只要題幹同時出現 <span class="en">existing / legacy</span>（舊系統）與 <span class="en">new application</span>（新應用）→ 答案永遠是「<b>用 API 讓新舊互通</b>」。<br>
+「舊系統不能動／沒預算改造，但要讓別人用到裡面的資料」→ 選 <b>API</b>；出現 Compute Engine、GKE、Anthos 這種<b>要先搬遷</b>的選項就淘汰。<br>
+看到 <span class="en">manually</span> 手動、<span class="en">case-by-case</span> 逐案 → 一定是錯的。
+</div>
+
+<h3>雲端成熟度四階（考過，要記順序）</h3>
+<div class="box key">
+<b>tactical 戰術 → strategic 策略 → transformational 轉型</b><br>
+問「怎麼往上一級」→ 選帶 <span class="en">culture 文化、blameless 無責備、visibility 透明、programmatic 自動化</span> 的選項<br>
+問 <span class="en">transformational</span> 做法 → 選帶 <span class="en">culture、continuous 持續、shared 共享、peer 同儕</span> 的<br>
+<span class="tiny">⚠️ 看到 isolated 孤立、blame 責備、one-off 一次性 → 淘汰</span>
+</div>
+
+<h3>組織與文化題的固定答法</h3>
+<div class="split"><div class="a">
+<span class="en">silos</span>（孤島）題 → 選 <b>shared goals 共同目標 / shared ownership 共同當責</b><br>
+痛點是 <span class="en">inflexible / rigid</span>（僵化）→ 選「更容易嘗試、<b>更快迭代</b>」<br>
+痛點是「被限制」→ 選帶 <span class="en">innovate 創新、new tools</span> 的<br>
+「什麼促成現代化決定」→ 答案幾乎都是「<b>舊做法太慢／太貴／太僵化</b>」<br>
+題幹有 <span class="en">automatically</span> → 淘汰所有含 <span class="en">manually、self-assess 自評、visit 親自前往</span> 的選項
+</div></div>
+
+<h3>代管服務自動包辦什麼</h3>
+<div class="box key">
+記三個：<b>patching 修補、upgrades 升版、底層維運</b>。<br>
+<b>使用者權限、資料政策、成本決策 永遠是客戶自己的事</b>（呼應共同責任模型）。
+</div>
+</section>
+
+<section id="m">
+<h2>⑬ 答題模式與選項陷阱（不用背知識就能拿分）</h2>
+<div class="box key"><div class="big">這一章可能是全篇最划算的。</div>
+CDL 的錯誤選項有固定寫法，認出來就能先刪掉兩個。
+</div>
+
+<h3>看到就幾乎可以淘汰的字</h3>
+<table>
+<tr><th>選項裡出現</th><th>為什麼錯</th></tr>
+<tr><td class="en">always / never / cannot / all of the time</td><td>絕對字眼，雲端幾乎不做絕對承諾</td></tr>
+<tr><td class="en">100% availability</td><td><b>一律錯</b>。雲端只承諾 SLA 幾個 9，沒有 100%</td></tr>
+<tr><td class="en">manually / case-by-case</td><td>題幹通常在問自動化，手動一定不是答案</td></tr>
+<tr><td class="en">blame / 究責 / 懲處</td><td>SRE 文化題的反面，一律錯</td></tr>
+<tr><td>「預算／成本不用擔心」</td><td>上雲只是換一種花錢方式，不是不用錢</td></tr>
+<tr><td>「自己保有硬體掌控」</td><td>問「上雲好處」時，這方向就是錯的</td></tr>
+<tr><td class="en">pay-as-you-go → CapEx</td><td>方向相反，上雲是 CapEx → OpEx</td></tr>
+</table>
+
+<h3>什麼時候選 All of the Above</h3>
+<div class="box warn">
+選項 A/B/C <b>各講一項都成立的好處、彼此不衝突</b>，而且有 All of the Above → <b>選它</b>。<br>
+典型場景：問某產品（如 Anthos、Spanner）「有哪些能力」的列舉題。
+</div>
+
+<h3>複選題的處理</h3>
+<div class="split"><div class="a">
+題幹寫 <span class="en">Select two / Choose two</span> → <b>一定要選滿兩個</b>，少選不給分。<br>
+「上雲對本業有什麼幫助」複選 → 選「<b>省掉維運與採購</b>」那兩個。
+</div></div>
+
+<h3>兩個選項都對的時候</h3>
+<div class="box key">
+① 找<b>唯一指紋</b>：<span class="en">traffic splitting</span>→App Engine、<span class="en">container</span>→Cloud Run、TAM→Premium<br>
+② 沒有指紋時，選<b>更託管、更省事</b>的那個<br>
+③ 題幹強調「<b>最快／立刻</b>」→ 選現成服務；強調「<b>完全控制</b>」→ 選要自己管的
+</div>
+</section>
+
+<section id="n">
+<h2>⑭ 生字總表（850 個，掃過去有印象就好）</h2>
+<p class="tiny">全部來自 416 題逐題標註。右上角數字是它在題庫出現的次數，<b>次數多的優先看</b>。可以用搜尋框查字。</p>
+<input id="vsearch" placeholder="🔍 輸入英文或中文查字…" style="width:100%;padding:9px 11px;margin:8px 0 12px;background:#131c33;border:1px solid #2c3f66;border-radius:8px;color:#e6edf7;font-size:14px">
+<div id="vroot"></div>
+</section>
+
+<section>
+<h2>最後一件事</h2>
+<div class="box key">
+<div class="big">70%。50 題錯 15 題還是過。</div>
+遇到完全沒看過的題，<b>選最託管、最像 Google 官方建議的那個</b>，然後往下走，不要回頭想。
+</div>
+<p class="tiny" style="margin-top:20px">素材來自你 7/7 驗收轉綠的學習筆記 + 416 題解析萃取 ｜ 產生於 2026-08-12</p>
+</section>
+
+</main>
+
+<script>
+const VOCAB = [{"name": "資安・權限", "rows": [{"w": "credentials", "g": "帳號憑證（帳號密碼這類身分驗證資料）", "c": 3}, {"w": "policy", "g": "政策設定（IAM policy＝誰有什麼權限的設定）", "c": 3}, {"w": "vulnerability", "g": "漏洞（vulnerable 有漏洞的、易受攻擊的）", "c": 3}, {"w": "audit", "g": "稽核（auditor 稽核人員）", "c": 2}, {"w": "authentication", "g": "驗證身分／authorization 授權（前者「你是誰」，後者「你能做什麼」）", "c": 2}, {"w": "perimeter", "g": "周界、邊界（傳統資安的「圍牆」概念）", "c": 2}, {"w": "posture", "g": "態勢（security posture＝資安態勢、整體防護狀況）", "c": 2}, {"w": "ransomware", "g": "勒索軟體（ransom 贖金 + software → 加密你的資料勒索贖金）", "c": 2}, {"w": "api key api", "g": "金鑰（呼叫外部服務的通行碼）", "c": 1}, {"w": "audit log", "g": "稽核記錄（留下誰在何時做了什麼）", "c": 1}, {"w": "authorization", "g": "授權（author 賦予權力 → 給你做事的權限）", "c": 1}, {"w": "based on their identity", "g": "依其身分而定", "c": 1}, {"w": "bring-your-own-license", "g": "自帶授權（BYOL，把原本買的授權帶過來用）", "c": 1}, {"w": "conduct", "g": "執行、進行（conduct an audit 進行稽核）", "c": 1}, {"w": "detect", "g": "偵測（a threat is detected＝偵測到威脅）", "c": 1}, {"w": "encrypt", "g": "加密（en- 使 + crypt 隱密 → 變成讀不懂的內容）", "c": 1}, {"w": "encrypted", "g": "加密的（crypt 隱藏 → 把內容藏起來只有持鑰匙的人看得懂）", "c": 1}, {"w": "identity", "g": "身分（identity and access＝身分與存取）", "c": 1}, {"w": "license", "g": "軟體授權", "c": 1}, {"w": "licenses", "g": "軟體授權（使用軟體的合法權利，要付費）", "c": 1}, {"w": "licensing", "g": "授權（軟體使用權條款）", "c": 1}, {"w": "malicious", "g": "惡意的", "c": 1}, {"w": "malicious intent", "g": "惡意企圖（malicious 惡意的）", "c": 1}, {"w": "management", "g": "管理（這裡指 API 的權限、流量、計費一起管）", "c": 1}, {"w": "owasp", "g": "開放網頁應用安全計畫（公認的十大網頁弱點清單）", "c": 1}, {"w": "patching", "g": "打補丁（修安全漏洞）", "c": 1}, {"w": "permission", "g": "權限（permit 允許 → 被允許做的事）", "c": 1}, {"w": "phishing", "g": "網路釣魚（拼法源自 fishing，放餌釣你的帳密）", "c": 1}, {"w": "pose a threat", "g": "構成威脅（pose 造成、擺出）", "c": 1}, {"w": "priority", "g": "優先序（Google Cloud 防火牆數字越小越優先）", "c": 1}, {"w": "privilege", "g": "特權、權限（least privilege 最小權限）", "c": 1}, {"w": "proof of concept", "g": "概念驗證（PoC，證明「這條路走得通」的可運作樣品）", "c": 1}, {"w": "rotate", "g": "輪替（金鑰定期換新；名詞 rotation）", "c": 1}, {"w": "securely", "g": "安全地（secure 安全的 + -ly）", "c": 1}, {"w": "security update", "g": "安全性更新（＝patch 修補程式）", "c": 1}, {"w": "service mesh", "g": "服務網格（微服務之間的流量與安全管理層）", "c": 1}, {"w": "social engineering", "g": "社交工程（不攻擊系統，攻擊人的信任與疏忽）", "c": 1}, {"w": "tunnel", "g": "通道（隧道 → 加密後像挖一條專用地道）", "c": 1}, {"w": "validate", "g": "驗證（確認可不可行）", "c": 1}, {"w": "verify", "g": "驗證、核實", "c": 1}, {"w": "zero-trust", "g": "零信任（不預設信任任何連線，每次都驗證）", "c": 1}]}, {"name": "網路・基礎架構", "rows": [{"w": "on-premises", "g": "地端、自家機房（premises 房舍 → 在自己房子裡）", "c": 5}, {"w": "cluster", "g": "叢集（一組協同運作的節點；clustered 已組成叢集的）", "c": 3}, {"w": "distributed", "g": "分散式的（散在多台機器／多個容器上）", "c": 3}, {"w": "bandwidth", "g": "頻寬（band 頻帶 + width 寬度）", "c": 2}, {"w": "bucket", "g": "儲存桶（Cloud Storage 存放物件的容器）", "c": 2}, {"w": "connectivity", "g": "連線能力（connect 連接的名詞形）", "c": 2}, {"w": "containerize", "g": "容器化（把應用打包成 container 執行）", "c": 2}, {"w": "establish", "g": "建立（stable 穩固 → 把連線立起來）", "c": 2}, {"w": "hypervisor", "g": "虛擬機監控器（管理與切分虛擬機的底層軟體）", "c": 2}, {"w": "latency", "g": "延遲（從發出請求到收到回應中間的等待時間）", "c": 2}, {"w": "on-premise", "g": "地端（premise 場所 → 自家機房）", "c": 2}, {"w": "replicate", "g": "複製（re 再 + plicate 摺疊 → 在別的區域再摺一份出來）", "c": 2}, {"w": "traffic", "g": "流量（車流 → 網路上跑的資料量）", "c": 2}, {"w": "appliance", "g": "設備、裝置（此處指實體傳輸盒）", "c": 1}, {"w": "bare metal", "g": "裸機（不裝虛擬層的實體機）", "c": 1}, {"w": "co-located data center", "g": "代管機房（把自己的機器寄放在別人機房）", "c": 1}, {"w": "co-location facility", "g": "主機代管機房（co- 共同 + location 場地）", "c": 1}, {"w": "container", "g": "容器（把程式跟環境打包成一個貨櫃）", "c": 1}, {"w": "containers", "g": "容器（把應用程式打包成的輕量執行單元）", "c": 1}, {"w": "dataset", "g": "資料集（BigQuery 存放資料表的容器）", "c": 1}, {"w": "delay", "g": "延遲、拖慢（deliberate 拖 → 慢了下來）", "c": 1}, {"w": "disaster recovery", "g": "災難復原（機房出事時把服務救回來的計畫）", "c": 1}, {"w": "evacuating", "g": "撤離、搬離（evacuate 淨空 → 把機房清空搬走）", "c": 1}, {"w": "fabric", "g": "網路骨幹（原意織品 → 交織起來的網路結構）", "c": 1}, {"w": "geographic area", "g": "地理區域", "c": 1}, {"w": "geographies", "g": "地理區域（考題用來指「國家／地區市場」）", "c": 1}, {"w": "hardware", "g": "硬體", "c": 1}, {"w": "independent applications", "g": "彼此獨立的應用程式（互不直接連線）", "c": 1}, {"w": "internet service provider", "g": "網路服務供應商", "c": 1}, {"w": "live migrate", "g": "即時遷移（不關機把 VM 搬到另一台實體主機）", "c": 1}, {"w": "low-latency", "g": "低延遲的（latency 延遲時間）", "c": 1}, {"w": "maintenance event", "g": "維護事件（機房檢修）", "c": 1}, {"w": "metric", "g": "指標（可量化的數字，例如呼叫次數、延遲）", "c": 1}, {"w": "multi-region", "g": "多地區（同一大洲內跨多個位置，兼顧延遲與備援）", "c": 1}, {"w": "near real-time", "g": "近即時（幾乎即時，允許幾秒延遲）", "c": 1}, {"w": "near-real-time", "g": "近即時（幾乎是即時，但允許幾秒延遲）", "c": 1}, {"w": "on-premises data center", "g": "地端資料中心", "c": 1}, {"w": "peer", "g": "對接、對等連線（同輩、平起平坐 → 兩個網路平等互連）", "c": 1}, {"w": "physical hardware", "g": "實體硬體", "c": 1}, {"w": "physical infrastructure", "g": "實體基礎架構（機房、機器、電力）", "c": 1}, {"w": "refresh", "g": "汰換更新（硬體到期換新）", "c": 1}, {"w": "region / zone", "g": "區域／可用區（region 是地理大區，內含多個 zone）", "c": 1}, {"w": "route", "g": "路由、路徑（路線 → 封包該往哪走的規則）", "c": 1}, {"w": "serverless", "g": "無伺服器的（不必自己開機器，Google 幫你調度資源）", "c": 1}, {"w": "single region", "g": "單一區域（服務範圍只在一個地理區）", "c": 1}, {"w": "sole-tenancy", "g": "單一租戶（硬體不與別人共用）", "c": 1}, {"w": "subnet", "g": "子網路（sub 之下 + net 網路 → VPC 底下切出的一段 IP 範圍）", "c": 1}, {"w": "virtualized", "g": "虛擬化的", "c": 1}, {"w": "virtually", "g": "虛擬地（透過網路而非實體）", "c": 1}, {"w": "vlan", "g": "虛擬區域網路（把實體網路切成多個邏輯網段）", "c": 1}, {"w": "zone", "g": "可用區（region 底下的獨立機房單位）", "c": 1}]}, {"name": "維運・可靠度", "rows": [{"w": "availability", "g": "可用度（available 可用的 → 服務正常可用的比例）", "c": 5}, {"w": "deployment", "g": "部署（把程式送上線的動作）", "c": 3}, {"w": "downtime", "g": "停機時間（down 停擺 + time → 服務不能用的時間）", "c": 3}, {"w": "fully managed", "g": "全代管的（Google 幫你維運，不用自己顧機器）", "c": 3}, {"w": "overhead", "g": "管理負擔、額外開銷（management overhead ＝ 維運要花的人力）", "c": 3}, {"w": "absorb", "g": "吸收、承受（此處指「能忍受多少停機」）", "c": 2}, {"w": "manage", "g": "管理、維運", "c": 2}, {"w": "managed service", "g": "代管服務（雲商幫你顧底層維運）", "c": 2}, {"w": "redundancy", "g": "備援、冗餘（多準備一份，壞了還有替代）", "c": 2}, {"w": "roll out", "g": "推出、部署上線（把新東西鋪出去）", "c": 2}, {"w": "backup", "g": "備份", "c": 1}, {"w": "deployment locations", "g": "部署據點", "c": 1}, {"w": "failover", "g": "容錯移轉（主機掛掉時自動切換到備援機）", "c": 1}, {"w": "fault tolerant", "g": "容錯的", "c": 1}, {"w": "fault-tolerant", "g": "容錯的（fault 故障 + tolerant 容忍 → 壞一台還能撐住）", "c": 1}, {"w": "flavour", "g": "版本、型態（原意「口味」→ 同一產品的不同口味）", "c": 1}, {"w": "fully-managed", "g": "全託管的（備份、修補、擴容都由 Google 代勞）", "c": 1}, {"w": "inventory records", "g": "庫存紀錄", "c": 1}, {"w": "managed", "g": "代管的（Google 幫你顧底層維運）", "c": 1}, {"w": "monitor", "g": "監控", "c": 1}, {"w": "offline", "g": "離線、停機（下線）", "c": 1}, {"w": "performance", "g": "效能（跑得快不快、穩不穩）", "c": 1}, {"w": "recovery", "g": "復原（recover 恢復 → 出事後回到正常的過程）", "c": 1}, {"w": "restore", "g": "還原、復原（re- 回 + store 存 → 把存過的東西拿回來）", "c": 1}, {"w": "service level agreement", "g": "服務等級協議（廠商保證的可用度，簡稱 SLA）", "c": 1}, {"w": "snapshot", "g": "快照（某一刻的完整備份）", "c": 1}, {"w": "standby", "g": "待命的、備援的（站在旁邊隨時準備上場的那台）", "c": 1}, {"w": "transaction", "g": "交易（一次買賣的紀錄）", "c": 1}, {"w": "troubleshooting", "g": "排除故障（trouble 問題 + shoot 射 → 把問題打掉）", "c": 1}, {"w": "version", "g": "版本", "c": 1}, {"w": "versioning", "g": "版本控制（保留舊版本，可以還原）", "c": 1}, {"w": "zero downtime", "g": "零停機（downtime 停機時間）", "c": 1}]}, {"name": "資料・分析", "rows": [{"w": "capacity", "g": "餘裕、負荷能力（此處指養不起資料科學家）", "c": 8}, {"w": "deploy", "g": "部署（把模型放上線提供服務）", "c": 5}, {"w": "pipeline", "g": "資料管線（資料從來源流到目的地中間的一連串處理）", "c": 5}, {"w": "unstructured", "g": "非結構化的（un- 否定 + structure 結構 → 沒有固定欄位）", "c": 4}, {"w": "archive", "g": "封存庫、存檔（大量長期保存的舊資料）", "c": 3}, {"w": "ingest", "g": "擷取、把資料吃進系統（資料工程高頻字）", "c": 3}, {"w": "at rest", "g": "靜態（資料存著不動時；對應 in transit 傳輸中）", "c": 2}, {"w": "dimension", "g": "維度（分析資料時的分類角度，例如地區、時間）", "c": 2}, {"w": "insights", "g": "洞察、看出來的門道（gather insights ＝ 從資料裡看出結論）", "c": 2}, {"w": "metadata", "g": "中繼資料（meta 關於 + data → 描述資料的資料，例如標籤、來源）", "c": 2}, {"w": "raw data", "g": "原始資料（raw 生的、未加工的）", "c": 2}, {"w": "reside", "g": "存放、位於（where it resides＝資料放在哪）", "c": 2}, {"w": "warehouse", "g": "倉儲（data warehouse 資料倉儲，放整理好的分析資料）", "c": 2}, {"w": "ad-hoc", "g": "臨時的、隨問隨查的（想到什麼問題就下什麼查詢）", "c": 1}, {"w": "additional training", "g": "額外訓練（additional 附加的）", "c": 1}, {"w": "application-managed data", "g": "由應用程式管理的資料（不是使用者上傳的檔案）", "c": 1}, {"w": "backfill", "g": "回填（把過去缺漏的資料事後補進去）", "c": 1}, {"w": "business intelligence", "g": "商業智慧（把資料變成主管看得懂的報表與儀表板）", "c": 1}, {"w": "capture", "g": "擷取、蒐集（抓取資料）", "c": 1}, {"w": "compliance resource", "g": "合規資源（可查閱的法遵資料）", "c": 1}, {"w": "data access policies", "g": "資料存取政策", "c": 1}, {"w": "data breach", "g": "資料外洩（breach 破口、違反）", "c": 1}, {"w": "data residency", "g": "資料落地（資料必須留在特定國家或地區）", "c": 1}, {"w": "data value chain", "g": "資料價值鏈（蒐集→處理→儲存→分析→活化的流程）", "c": 1}, {"w": "data warehouse", "g": "資料倉儲（存放整理過、供分析用的資料）", "c": 1}, {"w": "deployment model", "g": "部署模型（雲端要怎麼佈建：公有／私有／混合／社群）", "c": 1}, {"w": "durability", "g": "耐久度（資料不會遺失的保證，四種類別皆為 11 個 9）", "c": 1}, {"w": "engine", "g": "引擎（這裡指資料庫種類，如 MySQL engine）", "c": 1}, {"w": "generate insights", "g": "產生洞察（從資料裡看出可行動的結論）", "c": 1}, {"w": "growth in the amount of data", "g": "資料量的成長", "c": 1}, {"w": "historical data", "g": "歷史資料（過去累積下來的舊資料）", "c": 1}, {"w": "ingesting", "g": "擷取中（持續把資料吃進系統）", "c": 1}, {"w": "ingestion", "g": "擷取、匯入（ingest 吞進去 → 把資料吃進系統）", "c": 1}, {"w": "interpret", "g": "解讀、詮釋（把原始資料讀出意義）", "c": 1}, {"w": "key-value", "g": "鍵值（一把鑰匙對應一個值，最單純的資料模型）", "c": 1}, {"w": "leak", "g": "洩漏（data leak 資料外洩）", "c": 1}, {"w": "maintenance windows", "g": "維護時段（傳統資料庫升級要停機的那段時間）", "c": 1}, {"w": "metrics", "g": "指標、量測數據（複數，量化的數字）", "c": 1}, {"w": "mislabeled", "g": "標記錯誤的（mis 錯誤 + label 標籤）", "c": 1}, {"w": "overfitting", "g": "過度配適（模型把訓練資料「背起來」，換新資料就失準）", "c": 1}, {"w": "perform", "g": "執行（perform queries ＝ 執行查詢）", "c": 1}, {"w": "persistent disk", "g": "永久磁碟（VM 關機資料也還在）", "c": 1}, {"w": "point-in-time recovery", "g": "時間點還原（可以把資料庫倒回任一個時刻）", "c": 1}, {"w": "pre-trained", "g": "預先訓練好的（Google 已經訓練完，你直接呼叫）", "c": 1}, {"w": "predictions", "g": "預測（predict 預測 → 推估未來會怎樣）", "c": 1}, {"w": "predictive", "g": "預測性的（predict 預測）", "c": 1}, {"w": "production database", "g": "正式環境資料庫（真的在服務客戶的那一套，相對於測試環境）", "c": 1}, {"w": "projections", "g": "預測、推估（project 投射 → 推算未來數字）", "c": 1}, {"w": "real-time", "g": "即時（資料一有變動馬上反映）", "c": 1}, {"w": "reconciled", "g": "彙整核對（re 再 + concile 調和 → 把兩邊資料對起來）", "c": 1}, {"w": "reference", "g": "參考、查詢（refer 參照）", "c": 1}, {"w": "roll-back", "g": "回溯、還原（把資料退回先前狀態）", "c": 1}, {"w": "schema", "g": "資料結構定義（一張表有哪些欄位、各是什麼型別）", "c": 1}, {"w": "semi-structured", "g": "半結構化的（像 JSON，有結構但欄位不固定）", "c": 1}, {"w": "shards", "g": "分片（動詞用法：自動把資料切開分散存放）", "c": 1}, {"w": "shared responsibility model", "g": "共同責任模型", "c": 1}, {"w": "silo", "g": "穀倉、資訊孤島（各部門像獨立穀倉，資料不流通）", "c": 1}, {"w": "sink", "g": "目的地（資料管線的終點，與 source 來源成對出現）", "c": 1}, {"w": "standard sql", "g": "標準 SQL（BigQuery 的查詢語法）", "c": 1}, {"w": "streaming", "g": "串流（資料一來就馬上處理）", "c": 1}, {"w": "time-series", "g": "時間序列（依時間先後排列的量測資料）", "c": 1}, {"w": "transform", "g": "轉換（把資料整理成可分析的格式）", "c": 1}, {"w": "unlabeled", "g": "未標記的（un 否定 + label 標籤）", "c": 1}, {"w": "volumes", "g": "大量、數量（volume 體積 → 資料的量體）", "c": 1}]}, {"name": "成本・商業", "rows": [{"w": "cost-effective", "g": "符合成本效益的、划算的（考題用它暗示「不要選貴的 Spanner」）", "c": 4}, {"w": "budget", "g": "預算", "c": 2}, {"w": "capital expenditure", "g": "資本支出（一次買斷的大額投資，簡稱 CapEx）", "c": 2}, {"w": "efficient", "g": "有效率的（effective 有效果 vs efficient 有效率，考題常並列）", "c": 2}, {"w": "operational", "g": "營運的（operate 營運 → 日常運作產生的費用）", "c": 2}, {"w": "procure", "g": "採購（procurement 採購流程）", "c": 2}, {"w": "billed", "g": "被計費（does not get billed ＝ 不另外收費）", "c": 1}, {"w": "discount", "g": "折扣", "c": 1}, {"w": "energy-efficient", "g": "節能的（同樣的電做更多事）", "c": 1}, {"w": "error budget", "g": "錯誤預算（SRE 用語：允許的失誤額度）", "c": 1}, {"w": "event", "g": "事件（例如檔案上傳、資料寫入、折扣開跑）", "c": 1}, {"w": "exhausted", "g": "用盡的（exhaust 耗盡 → 錯誤預算被用光）", "c": 1}, {"w": "expenditure", "g": "支出、花費（expend 花費 → 花掉的錢）", "c": 1}, {"w": "expenditures", "g": "支出（花費的金額）", "c": 1}, {"w": "fixed pricing", "g": "固定價格（fix 固定 → 價格釘死不浮動）", "c": 1}, {"w": "investment", "g": "投資（此處指已投入的工具與流程）", "c": 1}, {"w": "investments", "g": "投資（投入的資金）", "c": 1}, {"w": "paid", "g": "付費的（pay 的過去分詞 → 要花錢的）", "c": 1}, {"w": "personnel", "g": "人事、人力（person 人 → 員工相關的成本）", "c": 1}, {"w": "return on investment", "g": "投資報酬率（ROI，投入的錢換回多少價值）", "c": 1}, {"w": "revenue", "g": "營收", "c": 1}, {"w": "total cost of ownership", "g": "總持有成本（TCO，買下來到用到報廢的所有花費）", "c": 1}]}, {"name": "法規・治理", "rows": [{"w": "retain", "g": "保留（re 回 + tain 持有 → 把東西留在手上）", "c": 7}, {"w": "compliance", "g": "法規遵循（comply 遵守 → 符合內外部規範）", "c": 4}, {"w": "regulation", "g": "法規（local regulations＝當地法規）", "c": 2}, {"w": "regulatory compliance", "g": "法規遵循（regulate 管制→regulatory；comply 遵守→compliance）", "c": 2}, {"w": "certification", "g": "認證（certify 核發證書、認證）", "c": 1}, {"w": "compliant", "g": "合規的、符合規範的", "c": 1}, {"w": "governance", "g": "治理（govern 治理 → 一整套管理規範與流程）", "c": 1}, {"w": "implement", "g": "落實、實施（implement policies＝把政策執行下去）", "c": 1}, {"w": "in compliance with", "g": "符合、遵循", "c": 1}, {"w": "industry standards", "g": "產業標準（例如 ISO、SOC）", "c": 1}, {"w": "maintain compliance", "g": "維持合規狀態", "c": 1}, {"w": "offering", "g": "提供項目（compliance offerings＝有哪些合規認證）", "c": 1}, {"w": "open standard", "g": "開放標準（公開通用的規格，大家都能實作）", "c": 1}, {"w": "privacy", "g": "隱私、私密性", "c": 1}, {"w": "sovereignty", "g": "主權（sovereign 有最高統治權的、君主）", "c": 1}]}, {"name": "流程・組織", "rows": [{"w": "vendor", "g": "供應商、廠商（contractor 承包商、約聘人員）", "c": 4}, {"w": "bottleneck", "g": "瓶頸（瓶子的窄脖子 → 整條流程被卡住的那一點）", "c": 2}, {"w": "enterprise", "g": "企業（大型組織）", "c": 2}, {"w": "orchestration", "g": "協調編排（把多個服務串成一套流程）", "c": 2}, {"w": "strategy", "g": "策略、做法（choose which strategy＝選哪種做法）", "c": 2}, {"w": "tactical", "g": "戰術性的（短期、局部的做法）／transformational 轉型式的（全面改變作法）", "c": 2}, {"w": "collaborate", "g": "協作（co- 一起 + labor 勞動 → 一起做事）", "c": 1}, {"w": "decentralized", "g": "去中心化的（de- 去除 + central 中心 → 決策散在各團隊）", "c": 1}, {"w": "directed", "g": "被指示、被要求（the team is being directed to ＝ 團隊被要求去做）", "c": 1}, {"w": "guide business decisions", "g": "指引商業決策", "c": 1}, {"w": "hinder", "g": "阻礙（把流程卡住）", "c": 1}, {"w": "lesions", "g": "病灶、病變組織（醫學影像題常見）", "c": 1}, {"w": "non-profit", "g": "非營利組織", "c": 1}, {"w": "onboarding", "g": "導入新使用者、註冊上手流程", "c": 1}, {"w": "process", "g": "流程", "c": 1}, {"w": "strategic", "g": "策略性的（strategy 策略 → 影響長期方向的）", "c": 1}, {"w": "strategic expansion", "g": "策略性擴張（公司要打進新市場）", "c": 1}, {"w": "streamline", "g": "簡化流程（stream 流 → 讓流程順暢不卡）", "c": 1}, {"w": "transformation", "g": "轉型（trans- 跨越 + form 形態 → 換一個樣子）", "c": 1}]}, {"name": "通用・動詞形容詞", "rows": [{"w": "consistent", "g": "一致的、穩定的（consist 構成 → 始終維持同樣水準）", "c": 6}, {"w": "flexible", "g": "彈性的（flex 彎曲 → 可以隨需求變形）", "c": 5}, {"w": "at scale", "g": "大規模地（考題慣用語，意思是「量很大的情況下」）", "c": 4}, {"w": "infrastructure", "g": "基礎設施（infra 底下 + structure 結構 → 底層那一層）", "c": 4}, {"w": "provision", "g": "佈建、開通（provision accounts＝開帳號）", "c": 4}, {"w": "batch", "g": "批次（累積一整批之後一次處理）", "c": 3}, {"w": "component", "g": "元件（com- 共同 + pon 放置 → 組成部分）", "c": 3}, {"w": "disruption", "g": "中斷、干擾（dis 分開 + rupt 破裂 → 把正常運作打斷）", "c": 3}, {"w": "guarantee", "g": "保證（承諾一定做到，做不到要負責）", "c": 3}, {"w": "instance", "g": "執行個體（跑起來的那一份）", "c": 3}, {"w": "inventory", "g": "庫存（存貨清單）", "c": 3}, {"w": "legacy", "g": "舊有、遺留（legacy system 指老舊但還在跑的系統）", "c": 3}, {"w": "maintain", "g": "維護、保存", "c": 3}, {"w": "mitigate", "g": "減輕、降低（把風險壓下來）", "c": 3}, {"w": "modernize", "g": "現代化（把老系統換成新架構）", "c": 3}, {"w": "ownership", "g": "所有權、負責歸屬（assign ownership＝指定由誰負責）", "c": 3}, {"w": "purpose-built", "g": "專門打造的（為了某個用途量身做的，不是通用工具）", "c": 3}, {"w": "reservation", "g": "預留、訂位（restaurant 訂位 → 先把位子留下來）", "c": 3}, {"w": "scalable", "g": "可擴展的（scale 規模 → 量變大時能跟著長）", "c": 3}, {"w": "visibility", "g": "可見度（visible 看得見 → 看得清楚的程度）", "c": 3}, {"w": "accessible", "g": "可存取的（access 存取 + -ible 可以）", "c": 2}, {"w": "adopt", "g": "採用、採納", "c": 2}, {"w": "advanced", "g": "進階的（比基本更深入的）", "c": 2}, {"w": "affected", "g": "受影響的（affect 影響）", "c": 2}, {"w": "anticipate", "g": "預期、預料（anticipate growth ＝ 預期會成長）", "c": 2}, {"w": "appropriate", "g": "適當的、正確的（合適的）", "c": 2}, {"w": "at-risk", "g": "有風險的（此處指有流失風險）", "c": 2}, {"w": "automated", "g": "自動化的", "c": 2}, {"w": "automatically", "g": "自動地（不需要人動手）", "c": 2}, {"w": "be responsible for", "g": "對…負責", "c": 2}, {"w": "brownfield", "g": "既有環境改建（棕地：舊廠址上重蓋，要處理舊東西）", "c": 2}, {"w": "categorize", "g": "分類（category 類別 + ize 變動詞）", "c": 2}, {"w": "centralized", "g": "集中式的（central 中心 → 全部匯到一個地方看）", "c": 2}, {"w": "cloud-native", "g": "雲端原生（一開始就為雲端而設計，而非搬上去）", "c": 2}, {"w": "compatible", "g": "相容的（com 一起 + pat 相合 → 能一起運作）", "c": 2}, {"w": "continuously", "g": "持續地（continue 繼續 → 不間斷）", "c": 2}, {"w": "critical", "g": "關鍵的、最重要的（critical requirement ＝ 最不能妥協的需求）", "c": 2}, {"w": "custom", "g": "自訂的（自己設計的）", "c": 2}, {"w": "cutover", "g": "切換上線的時點（舊系統停、新系統接手的那一刻）", "c": 2}, {"w": "dedicated", "g": "專屬的、專任的（dedicate 奉獻 → 只服務你一家）", "c": 2}, {"w": "demand", "g": "需求量", "c": 2}, {"w": "derive", "g": "得出、推導（derive insights ＝ 推導出結論）", "c": 2}, {"w": "dynamically", "g": "動態地（隨負載自己上下調整，不用人手動改）", "c": 2}, {"w": "estimate", "g": "估算（估出大概的數字）", "c": 2}, {"w": "evaluate", "g": "評估（value 價值 → 估算好壞）", "c": 2}, {"w": "expose", "g": "使暴露（expose the company to loss＝讓公司暴露在損失風險中）", "c": 2}, {"w": "full control", "g": "完整控制權", "c": 2}, {"w": "grant", "g": "授予（grant access 給予存取權；反義 revoke 撤銷）", "c": 2}, {"w": "greenfield", "g": "全新開發（綠地：空地上蓋新的，沒有包袱）", "c": 2}, {"w": "handle", "g": "處理、經手", "c": 2}, {"w": "hierarchy", "g": "階層（由上到下的層級結構）", "c": 2}, {"w": "identify", "g": "找出、辨識", "c": 2}, {"w": "in transit", "g": "傳輸途中（相對於 at rest 靜態存放）", "c": 2}, {"w": "individual", "g": "個別的（individual employees ＝ 每一位員工）", "c": 2}, {"w": "inherit", "g": "繼承（be inherited by＝被…繼承）", "c": 2}, {"w": "initially", "g": "一開始、初期（initial 最初的 → 第一步先怎麼做）", "c": 2}, {"w": "inspect", "g": "檢視、查看（in 進去 + spect 看 → 進去看內部狀態）", "c": 2}, {"w": "interface", "g": "介面（inter 之間 + face 面 → VM 對外接觸的那張網卡）", "c": 2}, {"w": "isolated", "g": "被隔離的（isolate 隔離 → 彼此互不影響）", "c": 2}, {"w": "lease", "g": "租賃（簽約承租，不買斷）", "c": 2}, {"w": "legacy application", "g": "舊有應用程式（老系統）", "c": 2}, {"w": "manually", "g": "手動地（反義 automatically）", "c": 2}, {"w": "measure", "g": "措施（此處不是「測量」，是「手段、做法」）", "c": 2}, {"w": "minimal", "g": "最小限度的", "c": 2}, {"w": "minimize", "g": "使最小化（minimum 最小 → 壓到最低）", "c": 2}, {"w": "multinational", "g": "跨國的（multi- 多 + national 國家的）", "c": 2}, {"w": "operating system", "g": "作業系統（OS，如 Linux、Windows）", "c": 2}, {"w": "own", "g": "負責、扛責（在共同責任題裡＝由誰負責）", "c": 2}, {"w": "pay-as-you-go", "g": "隨用隨付（用多少算多少）", "c": 2}, {"w": "periodically", "g": "定期地（period 週期 → 每隔一段時間做一次）", "c": 2}, {"w": "preemptible", "g": "可被搶占的（preempt 先占 → Google 需要時會收回）", "c": 2}, {"w": "programmatically", "g": "以程式方式（相對於 manually 手動）", "c": 2}, {"w": "provisioning", "g": "佈建、配置（provide 提供 → 事先準備好資源）", "c": 2}, {"w": "raw", "g": "原始、未加工的（raw material 原料）", "c": 2}, {"w": "refactor", "g": "重構（re 再 + factor 組成 → 把程式結構重新組過）", "c": 2}, {"w": "region", "g": "地區（一群 zone 組成）", "c": 2}, {"w": "relational", "g": "關聯式的（relation 關係 → 表與表之間互相參照）", "c": 2}, {"w": "reliability", "g": "可靠度（rely 依賴 → 系統值不值得信賴）", "c": 2}, {"w": "review", "g": "評論（此處不是「複習」）", "c": 2}, {"w": "robust", "g": "強固的、耐得住考驗的", "c": 2}, {"w": "routine", "g": "例行的（每天／每週都要做的）", "c": 2}, {"w": "segregate", "g": "區隔、隔離（se- 分開 + greg 群體 → 把群體分開）", "c": 2}, {"w": "sensitive", "g": "機密的、敏感的（sense 感覺 → 碰不得、一碰就有反應）", "c": 2}, {"w": "shared", "g": "共用的", "c": 2}, {"w": "significantly", "g": "顯著地（significant 顯著的 → 程度很大）", "c": 2}, {"w": "static", "g": "靜態的（固定不變的檔案，如 HTML、圖片）", "c": 2}, {"w": "subset", "g": "子集合、一部分（sub 之下 + set 集合 → 全體中的一小群）", "c": 2}, {"w": "sustainability", "g": "永續性（sustain 維持 → 能長久維持下去）", "c": 2}, {"w": "synchronize", "g": "同步（syn 一起 + chron 時間 → 讓兩邊時間點一致）", "c": 2}, {"w": "third-party", "g": "第三方（自己與客戶以外的第三方業者）", "c": 2}, {"w": "throughput", "g": "吞吐量（through 通過 + put 放 → 單位時間能塞進多少）", "c": 2}, {"w": "transactional", "g": "交易型的（transact 交易 → 一筆操作要嘛全成功要嘛全失敗）", "c": 2}, {"w": "transcripts", "g": "逐字稿（trans 轉換 + script 書寫 → 把講的話轉成文字）", "c": 2}, {"w": "transfer", "g": "轉移、搬遷", "c": 2}, {"w": "workload", "g": "工作負載（跑在系統上的任務）", "c": 2}, {"w": "a bunch of", "g": "一堆、許多", "c": 1}, {"w": "a mix of", "g": "混合了……的", "c": 1}, {"w": "a series of", "g": "一系列的、一批", "c": 1}, {"w": "a wide range of", "g": "各式各樣的、範圍很廣的", "c": 1}, {"w": "accelerate", "g": "加速（accelerator 油門 → 讓事情變快）", "c": 1}, {"w": "accidentally", "g": "不小心地（accident 意外 → 非故意的）", "c": 1}, {"w": "accomplish", "g": "達成、完成", "c": 1}, {"w": "accountability", "g": "當責、責任歸屬（account 帳 → 要對自己的帳負責）", "c": 1}, {"w": "accuracy", "g": "準確性", "c": 1}, {"w": "accurate", "g": "精確的（accuracy 準確度 → 貼近真實數字）", "c": 1}, {"w": "acquisition", "g": "取得、獲客（acquire 取得→user acquisition 拉新客）", "c": 1}, {"w": "across", "g": "橫跨、遍及", "c": 1}, {"w": "adhere to", "g": "遵守、依循（adhere 黏附 → 緊貼著規則走）", "c": 1}, {"w": "administration", "g": "管理、行政", "c": 1}, {"w": "adtech", "g": "廣告科技（廣告投放與追蹤的技術領域）", "c": 1}, {"w": "advertising purposes", "g": "廣告用途", "c": 1}, {"w": "afford", "g": "負擔得起（cannot afford 沒有餘力）", "c": 1}, {"w": "aggregate", "g": "匯總、彙集", "c": 1}, {"w": "agile", "g": "敏捷（小步快跑、快速迭代）", "c": 1}, {"w": "agreement", "g": "協議、約定（agree 同意 → 雙方談定的東西）", "c": 1}, {"w": "align", "g": "對齊、符合（aligned to interests 符合興趣）", "c": 1}, {"w": "alive", "g": "存活著、還在運作", "c": 1}, {"w": "allocate", "g": "配置、分配", "c": 1}, {"w": "always-on", "g": "永遠開著的（24 小時不打烊）", "c": 1}, {"w": "annually", "g": "每年地（annual 年度的 → 一年一次）", "c": 1}, {"w": "applied", "g": "被套用的（apply 套用 → 系統自動打在帳單上）", "c": 1}, {"w": "apply", "g": "套用、施加", "c": 1}, {"w": "apprehensive", "g": "憂慮的、不安的", "c": 1}, {"w": "approach", "g": "做法、途徑", "c": 1}, {"w": "architecture", "g": "架構", "c": 1}, {"w": "archival", "g": "封存用的（archive 封存 → 長期保存少存取）", "c": 1}, {"w": "arise", "g": "出現、產生（issues arise＝問題發生）", "c": 1}, {"w": "artifact", "g": "產物、成品（建置過程中產生的檔案）", "c": 1}, {"w": "as required", "g": "依需要、視情況", "c": 1}, {"w": "as they are", "g": "原封不動地、就照原樣", "c": 1}, {"w": "assign", "g": "指派、指定", "c": 1}, {"w": "assigned", "g": "被指派的（assign 分派 → 系統派給它一個 IP）", "c": 1}, {"w": "associated with", "g": "與…關聯（associate 使產生關聯）", "c": 1}, {"w": "assume", "g": "假設、預設", "c": 1}, {"w": "at will", "g": "隨意地、想什麼時候就什麼時候", "c": 1}, {"w": "automatically scale", "g": "自動擴展（量大就自己長大）", "c": 1}, {"w": "autoscale", "g": "自動擴展", "c": 1}, {"w": "autoscaling", "g": "自動擴展", "c": 1}, {"w": "availability hours", "g": "服務時段（可用的時間）", "c": 1}, {"w": "available on", "g": "在…平台上可取得的", "c": 1}, {"w": "backward compatible", "g": "向下相容（還能用舊東西）", "c": 1}, {"w": "based in", "g": "駐點於、位於（Canada-based＝駐加拿大的）", "c": 1}, {"w": "based on", "g": "依據、取決於（跟著某件事變動）", "c": 1}, {"w": "baseline", "g": "基準線（base 基礎 + line → 用量的最低水平線）", "c": 1}, {"w": "be subject to", "g": "受…約束、適用於", "c": 1}, {"w": "behavior", "g": "行為", "c": 1}, {"w": "best practice", "g": "最佳實務（業界公認的正確做法）", "c": 1}, {"w": "blamelessness", "g": "無責備（blame 責備 + -less 沒有 → 出事先找原因不找戰犯）", "c": 1}, {"w": "blast radius", "g": "爆炸半徑（出事時波及的範圍）", "c": 1}, {"w": "boot", "g": "開機、啟動", "c": 1}, {"w": "bot", "g": "機器人程式（自動化腳本冒充真人）", "c": 1}, {"w": "bounding", "g": "框住的（bounding box＝把目標框起來的方框）", "c": 1}, {"w": "build", "g": "建置（把原始碼編譯打包成可執行的東西）", "c": 1}, {"w": "built-in", "g": "內建的（一開始就做在裡面）", "c": 1}, {"w": "burglary", "g": "竊盜（burglar 竊賊）", "c": 1}, {"w": "business as usual", "g": "照舊營運（一切照原本方式做）", "c": 1}, {"w": "by default", "g": "預設地（不用另外設定就會發生）", "c": 1}, {"w": "caching", "g": "快取（把算過的結果先存起來，下次直接給）", "c": 1}, {"w": "capability", "g": "能力、功能（做得到的事）", "c": 1}, {"w": "capable of", "g": "有能力做⋯", "c": 1}, {"w": "capacity to spare", "g": "尚有餘裕的容量（spare 備用的）", "c": 1}, {"w": "carbon-neutral", "g": "碳中和（排多少就抵掉多少）", "c": 1}, {"w": "case insensitive", "g": "不分大小寫", "c": 1}, {"w": "centrally", "g": "集中地", "c": 1}, {"w": "chargeable", "g": "可收費的（charge 收費）", "c": 1}, {"w": "check-out", "g": "結帳（收銀）", "c": 1}, {"w": "clarity", "g": "清晰、明確（clear 清楚的名詞形）", "c": 1}, {"w": "classify", "g": "分類（名詞 classification）", "c": 1}, {"w": "clean up", "g": "清理、清除", "c": 1}, {"w": "cloud native", "g": "雲端原生（一開始就為雲端設計的技術）", "c": 1}, {"w": "cognition", "g": "認知（思考、理解、判斷的心智能力）", "c": 1}, {"w": "combination", "g": "組合、搭配", "c": 1}, {"w": "combined", "g": "合計的（combine 結合 → 加總起來）", "c": 1}, {"w": "comment on", "g": "針對⋯發表評論（這裡是要你判斷真假）", "c": 1}, {"w": "complexity", "g": "複雜度", "c": 1}, {"w": "comply with", "g": "遵守、符合（compliance 的動詞形）", "c": 1}, {"w": "composer", "g": "編輯器、撰寫工具（compose 撰寫）", "c": 1}, {"w": "configure", "g": "設定、組態", "c": 1}, {"w": "confined", "g": "被限制在（con- 一起 + fine 界限 → 關在界線內）", "c": 1}, {"w": "considered", "g": "被視為、被認為（consider 認為）", "c": 1}, {"w": "consist of", "g": "由……組成", "c": 1}, {"w": "consistently", "g": "一致地（consist 一致 → 每筆交易結果都相同，不會有的成功有的失敗）", "c": 1}, {"w": "console", "g": "主控台（管理介面）", "c": 1}, {"w": "consolidating", "g": "整合、集中（con 一起 + solid 固體 → 併成一整塊）", "c": 1}, {"w": "constantly", "g": "持續不斷地（constant 恆定 → 一直維持著）", "c": 1}, {"w": "constraint", "g": "限制條件（con- 一起 + strain 拉緊 → 綁住不准做的事）", "c": 1}, {"w": "contract", "g": "合約（con- 一起 + tract 拉 → 雙方拉在一起的約定）", "c": 1}, {"w": "contribute to", "g": "有助於、貢獻於", "c": 1}, {"w": "converge", "g": "匯聚、整併（con 一起 + verge 趨向 → 各路併成一條）", "c": 1}, {"w": "conversion", "g": "轉換（把瀏覽者變成實際行動者）", "c": 1}, {"w": "coordinates", "g": "座標（經緯度數字）", "c": 1}, {"w": "core storage options", "g": "核心儲存選項（Google 教材把 Storage／SQL／Spanner／Bigtable／Firestore 統稱核心選項）", "c": 1}, {"w": "cover", "g": "涵蓋、涵括", "c": 1}, {"w": "crack", "g": "裂縫", "c": 1}, {"w": "critical path", "g": "關鍵路徑（不能延誤的環節）", "c": 1}, {"w": "crm", "g": "客戶關係管理（Customer Relationship Management）", "c": 1}, {"w": "cron job", "g": "排程工作（時間一到就自動執行的指令）", "c": 1}, {"w": "cross-referenced", "g": "交叉參照的（訂單表用客戶編號指向客戶表）", "c": 1}, {"w": "custom image", "g": "自訂映像（自己做的 OS 磁碟範本）", "c": 1}, {"w": "customer-facing", "g": "面向客戶的（客戶會看到的那一面）", "c": 1}, {"w": "customization", "g": "客製化調整", "c": 1}, {"w": "customize", "g": "客製化、依需求調整", "c": 1}, {"w": "dashboards", "g": "儀表板（車上的儀表板 → 一眼看完所有數字的畫面）", "c": 1}, {"w": "de-identification", "g": "去識別化（de- 去除 + identification 識別）", "c": 1}, {"w": "deals with", "g": "處理、應付（deals with transactions ＝ 處理交易）", "c": 1}, {"w": "defective", "g": "有瑕疵的（defect 缺陷）", "c": 1}, {"w": "defenses", "g": "防禦措施（defense 防禦）", "c": 1}, {"w": "define", "g": "定義、制定", "c": 1}, {"w": "defining feature", "g": "定義性特徵（最能代表它、少了就不算它的那個特點）", "c": 1}, {"w": "demographic", "g": "人口統計的（年齡、性別、地區這類人口屬性）", "c": 1}, {"w": "denial", "g": "拒絕（deny 拒絕的名詞 → 讓服務無法回應）", "c": 1}, {"w": "deny list", "g": "封鎖清單（相對 allow list 允許清單）", "c": 1}, {"w": "department", "g": "部門", "c": 1}, {"w": "depend on", "g": "取決於（依賴 → 隨著另一件事而變）", "c": 1}, {"w": "dependent on", "g": "依賴於（depend 依靠）", "c": 1}, {"w": "depositing", "g": "存放（deposit 存入，像把錢存進銀行）", "c": 1}, {"w": "deprecated", "g": "已淘汰、不建議使用（未來會下架，但目前還能用）", "c": 1}, {"w": "deprioritized", "g": "被降低優先順序（de 降低 + priority 優先）", "c": 1}, {"w": "descriptions", "g": "描述文字（一段介紹用的文字）", "c": 1}, {"w": "desired", "g": "期望的、想要達到的（desire 渴望）", "c": 1}, {"w": "despite", "g": "儘管、即使（讓步語氣，暗示要排除這個因素）", "c": 1}, {"w": "destination", "g": "目的地（destiny 命運 → 封包最終要去的地方）", "c": 1}, {"w": "destination architecture", "g": "目標架構（搬完之後應該長成的樣子）", "c": 1}, {"w": "diagnose", "g": "診斷（dia 穿透 + gnose 知道→看穿問題）", "c": 1}, {"w": "dictate", "g": "規定、硬性要求", "c": 1}, {"w": "differ", "g": "有所不同（difference 的動詞）", "c": 1}, {"w": "direct route", "g": "最直接的路線", "c": 1}, {"w": "directory", "g": "目錄（LDAP directory＝企業帳號目錄服務）", "c": 1}, {"w": "discrete", "g": "離散的（一格一格分開的，對比 continuous 連續的）", "c": 1}, {"w": "disk", "g": "磁碟", "c": 1}, {"w": "distinguish", "g": "區分、辨別", "c": 1}, {"w": "domain", "g": "網域（公司的帳號範圍，例如 @company.com）", "c": 1}, {"w": "domain-specific", "g": "特定領域專用的", "c": 1}, {"w": "duplicate", "g": "複製、做出一份相同的（dual 雙 → 變成兩份）", "c": 1}, {"w": "dynamic", "g": "動態的（依請求即時產生的內容）", "c": 1}, {"w": "ecommerce", "g": "電子商務（e- 電子 + commerce 商務）", "c": 1}, {"w": "economical", "g": "經濟實惠的（economy 經濟 → 花小錢辦事）", "c": 1}, {"w": "ecosystem", "g": "生態系（一整套周邊工具）", "c": 1}, {"w": "edit", "g": "修改、編輯", "c": 1}, {"w": "effort", "g": "心力、投入（focus efforts on 把心力集中在）", "c": 1}, {"w": "egress", "g": "出向流量（e- 向外 + gress 走 → 往外走的流量；反義是 ingress）", "c": 1}, {"w": "elasticity", "g": "彈性（elastic 橡皮筋 → 可伸可縮）", "c": 1}, {"w": "electronically", "g": "以電子方式（相對於紙本）", "c": 1}, {"w": "emphasis", "g": "側重、重點（em- 加上 + phasis 顯現 → 強調哪一邊）", "c": 1}, {"w": "enable", "g": "啟用（en- 使 + able 能夠 → 讓它能用）", "c": 1}, {"w": "end users", "g": "終端使用者（實際在用系統的一般人，非工程師）", "c": 1}, {"w": "end-to-end", "g": "端到端、從頭到尾一條龍", "c": 1}, {"w": "endpoint management", "g": "端點管理（管員工的筆電、手機等裝置）", "c": 1}, {"w": "enormous", "g": "龐大的（enormous user ＝ 極大量使用者）", "c": 1}, {"w": "enroll", "g": "報名、加入（roll 名冊 → 把名字寫進名冊）", "c": 1}, {"w": "ensure", "g": "確保（en- 使 + sure 確定）", "c": 1}, {"w": "entail", "g": "需要、伴隨而來（what will this entail＝這會帶來什麼）", "c": 1}, {"w": "enterprise-grade", "g": "企業級的（撐得住企業規模）", "c": 1}, {"w": "enterprise-level", "g": "企業級的（規模與可靠度達企業要求）", "c": 1}, {"w": "entire", "g": "整個、全部的", "c": 1}, {"w": "entirely", "g": "完全地（entire 全部的）", "c": 1}, {"w": "environment", "g": "環境", "c": 1}, {"w": "erode", "g": "侵蝕、逐漸破壞（把品質一點一點磨掉）", "c": 1}, {"w": "ethical dilemma", "g": "倫理兩難（dilemma 兩難、進退維谷）", "c": 1}, {"w": "evenly", "g": "均勻地（even 平均的）", "c": 1}, {"w": "event-driven", "g": "事件驅動的（有事發生才觸發）", "c": 1}, {"w": "events", "g": "事件（系統中發生的每一件事）", "c": 1}, {"w": "exceeds", "g": "超過（exceed 超出 → 高過某個數字）", "c": 1}, {"w": "exclusively", "g": "專屬地、唯獨（exclusive 排他的）", "c": 1}, {"w": "exit", "g": "離開、退出（客戶結清帳戶）", "c": 1}, {"w": "experience", "g": "經歷、感受到（此處指使用者實際遇到）", "c": 1}, {"w": "experiment", "g": "做實驗、試（名詞也可當動詞）", "c": 1}, {"w": "expertise", "g": "專業能力（expert 專家）", "c": 1}, {"w": "extend", "g": "延伸、把⋯擴展出去", "c": 1}, {"w": "external ip address", "g": "外部 IP（外網可直接連到的位址）", "c": 1}, {"w": "extra", "g": "額外的（多出來的那一份）", "c": 1}, {"w": "extreme", "g": "極端的", "c": 1}, {"w": "facility", "g": "機構、場所（healthcare facility ＝ 醫療院所）", "c": 1}, {"w": "familiar to", "g": "對⋯而言熟悉的、類似於", "c": 1}, {"w": "familiar with", "g": "熟悉（be familiar with ＝ 對…很熟）", "c": 1}, {"w": "feature", "g": "功能、特色", "c": 1}, {"w": "fine", "g": "罰款（此處是名詞「罰金」，不是「很好」）", "c": 1}, {"w": "fine-grained", "g": "細顆粒度的（grain 顆粒 → 顆粒很細，能管到很細的地方）", "c": 1}, {"w": "fix", "g": "修復、修好", "c": 1}, {"w": "flat structure", "g": "扁平結構（沒有層級、全部平放）", "c": 1}, {"w": "flexibility", "g": "彈性（自己能調整的空間）", "c": 1}, {"w": "flip a bit", "g": "切一個開關（比喻改一個設定就好）", "c": 1}, {"w": "floating-point", "g": "浮點數（帶小數點的數值運算）", "c": 1}, {"w": "for legal reasons", "g": "基於法律原因", "c": 1}, {"w": "format", "g": "格式", "c": 1}, {"w": "frequently", "g": "頻繁地（frequent 常見的 → 常常做）", "c": 1}, {"w": "frictionless", "g": "無摩擦的、毫無阻礙的（friction 摩擦力 → 過程中沒有卡卡的地方）", "c": 1}, {"w": "from the get-go", "g": "從一開始（口語說法，等於 from the beginning）", "c": 1}, {"w": "frustrated", "g": "受挫、沮喪（被卡住的煩躁感）", "c": 1}, {"w": "fully featured", "g": "功能齊全的", "c": 1}, {"w": "function", "g": "功能（此處指要新增的應用功能）", "c": 1}, {"w": "functionality", "g": "功能、機能（function 功能的名詞化）", "c": 1}, {"w": "funding", "g": "資金、募得的資金（raised funding ＝ 募到錢了）", "c": 1}, {"w": "gain value", "g": "獲得價值（gain 得到）", "c": 1}, {"w": "gather", "g": "蒐集", "c": 1}, {"w": "generated", "g": "產生的（generate 產生 → 由應用程式產出的）", "c": 1}, {"w": "generative", "g": "生成式的（generate 產生）", "c": 1}, {"w": "globally unique", "g": "全域唯一（全世界不能有第二個同名）", "c": 1}, {"w": "grant access", "g": "授予存取權", "c": 1}, {"w": "granularity", "g": "顆粒度（切得多細；此處是干擾用詞）", "c": 1}, {"w": "graphical images", "g": "圖形影像檔", "c": 1}, {"w": "hackathon", "g": "黑客松（hack + marathon，短時間衝出成品的比賽）", "c": 1}, {"w": "hassle", "g": "麻煩、費事（without any hassle ＝ 不用你費心）", "c": 1}, {"w": "heavy load", "g": "高負載（把系統壓得很重）", "c": 1}, {"w": "helpline", "g": "客服專線（help 幫助 + line 線路）", "c": 1}, {"w": "high demand events", "g": "高需求時段（如搶購、開賽）", "c": 1}, {"w": "historical", "g": "歷史的、過往累積的", "c": 1}, {"w": "homegrown", "g": "自家開發的（自己種出來的）", "c": 1}, {"w": "homogenous", "g": "同質的、一致的", "c": 1}, {"w": "horizontally", "g": "水平地（加機器台數，不是把單台機器換更大）", "c": 1}, {"w": "host", "g": "託管、承載（動詞）", "c": 1}, {"w": "hosting", "g": "代管、託管（幫你把網站放上去讓人連）", "c": 1}, {"w": "hybrid", "g": "混合的（hybrid car 油電混合車）", "c": 1}, {"w": "hybrid cloud architecture", "g": "混合雲架構", "c": 1}, {"w": "idle", "g": "閒置的、空轉的", "c": 1}, {"w": "image", "g": "映像檔（軟體環境的完整快照，不是「圖片」）", "c": 1}, {"w": "impact", "g": "影響、衝擊（帶來的改變）", "c": 1}, {"w": "in real time", "g": "即時（正在發生的當下）", "c": 1}, {"w": "in-house", "g": "內部自有的（公司裡現成就有的人力）", "c": 1}, {"w": "inaccuracy", "g": "不準確（in 否定 + accuracy 準確度）", "c": 1}, {"w": "inconsistency", "g": "不一致（in 否定 + consistency 一致性）", "c": 1}, {"w": "incrementally", "g": "漸進地（increment 增量 → 一小口一小口地加）", "c": 1}, {"w": "indicator", "g": "指標（indicate 指出 → 指出目前狀況的數字）", "c": 1}, {"w": "infinite", "g": "無限的（in- 不 + finite 有限的）", "c": 1}, {"w": "inflexible", "g": "僵化、不靈活（in- 否定 + flexible 彈性）", "c": 1}, {"w": "influx", "g": "湧入（in 進來 + flux 流動 → 一大波人流進來）", "c": 1}, {"w": "infrequently", "g": "不常地（in 否定 + frequent 頻繁的）", "c": 1}, {"w": "ingress", "g": "流入的流量（進來的方向；反義 egress 流出）", "c": 1}, {"w": "insight", "g": "洞察、新發現", "c": 1}, {"w": "inspection", "g": "檢查、勘驗（inspect 檢視 + ion）", "c": 1}, {"w": "instance group", "g": "執行個體群組（一組會自動增減的 VM）", "c": 1}, {"w": "instead", "g": "而是（結果變成另一個，暗示買錯了）", "c": 1}, {"w": "instead of", "g": "而不是", "c": 1}, {"w": "instruction", "g": "指令、說明（一套規則告訴你怎麼呼叫）", "c": 1}, {"w": "instructional", "g": "教學用的（instruct 指導 → 用來教人的）", "c": 1}, {"w": "intact", "g": "完好無損的（in 不 + tact 觸碰→沒被動過）", "c": 1}, {"w": "integrated", "g": "整合的（integrate 結合 → 各元件天生接在一起）", "c": 1}, {"w": "integrates with", "g": "與…整合（integrate 整合 → 接得起來一起用）", "c": 1}, {"w": "interaction", "g": "互動、往來", "c": 1}, {"w": "interrupt", "g": "中斷（inter 之間 + rupt 破裂 → 中途插進來打斷）", "c": 1}, {"w": "intervals", "g": "間隔（每隔一段時間）", "c": 1}, {"w": "intervention", "g": "介入、干預（inter 之間 + vene 來→插進來）", "c": 1}, {"w": "intrusion", "g": "入侵（intrude 闖入）", "c": 1}, {"w": "intuition", "g": "直覺", "c": 1}, {"w": "invent", "g": "創建、發明", "c": 1}, {"w": "investigating", "g": "調查、研究（找出可行做法）", "c": 1}, {"w": "invoice", "g": "發票、帳單（公司月結請款單）", "c": 1}, {"w": "issue", "g": "核發（issue a visa 核發簽證，這裡不是「問題」）", "c": 1}, {"w": "issue resolution", "g": "問題解決（resolve 解決→resolution）", "c": 1}, {"w": "job function", "g": "職務職能（predefined role 就是照 job function 設計的）", "c": 1}, {"w": "keep pace", "g": "跟上腳步（have not kept pace＝沒跟上）", "c": 1}, {"w": "keep up with", "g": "跟上（跟得上腳步）", "c": 1}, {"w": "kiosk", "g": "自助服務機（賣場裡的觸控機台）", "c": 1}, {"w": "knob", "g": "旋鈕（比喻可以轉來調整的參數）", "c": 1}, {"w": "launch", "g": "啟動、發動", "c": 1}, {"w": "layout", "g": "配置、佈局", "c": 1}, {"w": "legacy system", "g": "舊系統", "c": 1}, {"w": "leverage", "g": "善用、槓桿（leverage cloud 借力雲端）", "c": 1}, {"w": "library", "g": "函式庫（現成程式碼的集合）", "c": 1}, {"w": "lifecycle management", "g": "生命週期管理（自動依規則轉類別或刪除）", "c": 1}, {"w": "lighter", "g": "更輕量的（占資源更少）", "c": 1}, {"w": "lightweight", "g": "輕量的（一小段程式碼）", "c": 1}, {"w": "likelihood", "g": "可能性（likely 可能的 → 名詞）", "c": 1}, {"w": "likely", "g": "可能的、預期的（估計會發生的）", "c": 1}, {"w": "limitation", "g": "限制（limit 界限）", "c": 1}, {"w": "loan", "g": "貸款", "c": 1}, {"w": "local time zone", "g": "當地時區", "c": 1}, {"w": "locate", "g": "放置、選址", "c": 1}, {"w": "locked into", "g": "被綁死在（lock 鎖 → 鎖進去出不來）", "c": 1}, {"w": "loyalty program", "g": "集點／會員忠誠方案（loyalty 忠誠）", "c": 1}, {"w": "mainframe", "g": "大型主機（老式企業級主機）", "c": 1}, {"w": "maintenance", "g": "維護（maintain 維護）", "c": 1}, {"w": "manner", "g": "方式、做法", "c": 1}, {"w": "margin", "g": "差距、幅度", "c": 1}, {"w": "market dynamics", "g": "市場動態（市場的變化情勢）", "c": 1}, {"w": "maturity level", "g": "成熟度層級（成長的階段）", "c": 1}, {"w": "membership", "g": "成員資格（group membership＝群組歸屬）", "c": 1}, {"w": "messaging service", "g": "訊息傳遞服務（幫程式之間送信）", "c": 1}, {"w": "microservices", "g": "微服務（把大應用拆成多個小服務）", "c": 1}, {"w": "migrate", "g": "遷移、搬移", "c": 1}, {"w": "migration", "g": "遷移（migrate 遷徙 → 把系統搬到雲端）", "c": 1}, {"w": "millisecond", "g": "毫秒（千分之一秒）", "c": 1}, {"w": "misconfiguration", "g": "設定錯誤（mis- 錯誤 + configuration 組態）", "c": 1}, {"w": "mission-critical", "g": "攸關營運存亡的（任務關鍵）", "c": 1}, {"w": "mobile app", "g": "行動應用程式", "c": 1}, {"w": "mobile application support", "g": "行動應用支援（提供給手機 App 直接用的 SDK）", "c": 1}, {"w": "monetize", "g": "變現、收費（money 錢 → 把東西變成錢）", "c": 1}, {"w": "monolithic", "g": "單體式的（整包綁在一起，一動全動）", "c": 1}, {"w": "multi-dimensional", "g": "多維度的（可以從時間、地區、產品等多個角度切）", "c": 1}, {"w": "multiple", "g": "多個的", "c": 1}, {"w": "nationwide", "g": "全國性的", "c": 1}, {"w": "native format", "g": "原生格式、原始格式（檔案原本長什麼樣就存什麼樣）", "c": 1}, {"w": "natively", "g": "原生地（不必外掛工具，本身就會）", "c": 1}, {"w": "near real time", "g": "近乎即時（幾秒內就有反應）", "c": 1}, {"w": "necessary", "g": "必要的", "c": 1}, {"w": "notice", "g": "事前通知（不是「注意」）", "c": 1}, {"w": "notification", "g": "通知（推播提示）", "c": 1}, {"w": "number crunching", "g": "大量數值運算（crunch 咬碎 → 把數字嚼碎）", "c": 1}, {"w": "obsession", "g": "執著、迷戀（obsessed with 對某事著迷）", "c": 1}, {"w": "occasionally", "g": "偶爾地、不常地", "c": 1}, {"w": "off mark", "g": "估不準、偏離目標", "c": 1}, {"w": "once", "g": "一次（build once, run anywhere 寫一次到處跑）", "c": 1}, {"w": "one stop", "g": "一站式的（一次到位、不用跑多個地方）", "c": 1}, {"w": "one-off", "g": "一次性的（只做這麼一次）", "c": 1}, {"w": "open-source", "g": "開放原始碼的", "c": 1}, {"w": "operability", "g": "可運作性（operate 運作）", "c": 1}, {"w": "operational risk", "g": "營運風險", "c": 1}, {"w": "optimized", "g": "最佳化的（optimize 最佳化 → 專門為某件事調校過）", "c": 1}, {"w": "option", "g": "選項、方案（可選擇的項目）", "c": 1}, {"w": "orchestrate", "g": "編排協調（像指揮樂團，把各聲部湊在一起）", "c": 1}, {"w": "outcome", "g": "成果（結果、產出）", "c": 1}, {"w": "outgoing", "g": "對外的、往外送的", "c": 1}, {"w": "overbuilding capacity", "g": "超額建置產能（怕不夠用而買太多）", "c": 1}, {"w": "overprovisioned", "g": "過度佈建的（over 過度 + provision 佈建 → 買太多）", "c": 1}, {"w": "partner", "g": "合作夥伴（這裡指餐廳端）", "c": 1}, {"w": "partner company", "g": "合作夥伴公司", "c": 1}, {"w": "partnership", "g": "夥伴關係（partner 夥伴 → 合作分工的關係）", "c": 1}, {"w": "path", "g": "路徑、途徑", "c": 1}, {"w": "payments", "g": "支付、款項（manage payments ＝ 管理金流）", "c": 1}, {"w": "peak", "g": "尖峰、高峰（山頂 → 最高點）", "c": 1}, {"w": "peak period", "g": "尖峰時段（用量最高的那段時間）", "c": 1}, {"w": "peak usage", "g": "使用尖峰", "c": 1}, {"w": "peer-to-peer", "g": "同儕之間（peer 同輩）", "c": 1}, {"w": "percentage", "g": "百分比（percent 百分之 → 佔比）", "c": 1}, {"w": "performing", "g": "表現（perform 執行、表現）", "c": 1}, {"w": "perimeter security", "g": "周邊／邊界防護（perimeter 圍牆、外圍）", "c": 1}, {"w": "persistent", "g": "永久的、持續存在的（per 貫穿 + sist 站立 → 一直在那裡，VM 關機也不消失）", "c": 1}, {"w": "philosophy", "g": "理念、哲學（一套做事的信念）", "c": 1}, {"w": "photograph", "g": "照片（正式用字，等同 photo）", "c": 1}, {"w": "physician", "g": "醫師（內科醫生，相對於 surgeon 外科醫生）", "c": 1}, {"w": "platform", "g": "平台", "c": 1}, {"w": "plug-and-play", "g": "隨插即用（插上就能用，不用自己組裝）", "c": 1}, {"w": "point of sale", "g": "銷售點（就是收銀台 POS 系統）", "c": 1}, {"w": "popular", "g": "受歡迎的（此處引申為流量大小）", "c": 1}, {"w": "popularity", "g": "熱門程度（popular + ity）", "c": 1}, {"w": "postmortem", "g": "事後檢討（原意驗屍 → 事故後回顧發生了什麼）", "c": 1}, {"w": "pre-allocated", "g": "事先配置好的（先開好放著）", "c": 1}, {"w": "preconfigured", "g": "預先設定好的（pre 事先 + configure 設定）", "c": 1}, {"w": "predefined", "g": "預先定義的（pre- 事先 + define 定義 → 系統內建好的）", "c": 1}, {"w": "predetermined", "g": "事先決定的（pre- 事先 + determine 決定）", "c": 1}, {"w": "preempt", "g": "搶先占用（pre 先 + empt 拿取 → 被別人先拿走）", "c": 1}, {"w": "preoccupation", "g": "專注於、被佔據心思（這裡指還在忙手動作業）", "c": 1}, {"w": "previous", "g": "先前的（在這之前的那個狀態）", "c": 1}, {"w": "primarily", "g": "主要地（primary 主要的 → 最主要的變化）", "c": 1}, {"w": "principle", "g": "原則（注意別跟 principal 主體／校長 搞混）", "c": 1}, {"w": "prior", "g": "先前的", "c": 1}, {"w": "private cloud", "g": "私有雲（自己蓋的雲）", "c": 1}, {"w": "proactive", "g": "主動預防的（pro- 事前 + active 行動 → 出事前就先做）", "c": 1}, {"w": "product", "g": "產品（此處指服務）", "c": 1}, {"w": "production job", "g": "正式環境的工作、批次任務", "c": 1}, {"w": "prolonged", "g": "拖長的、長時間的（prolong 延長）", "c": 1}, {"w": "prompt", "g": "促使、觸發（prompt this decision 什麼促成了這個決定）", "c": 1}, {"w": "pronounced", "g": "明顯的（此處不是「發音」）", "c": 1}, {"w": "propagate", "g": "傳播、傳遞（請求在服務之間一站一站傳下去）", "c": 1}, {"w": "proper", "g": "適當的（the proper role＝合適的角色）", "c": 1}, {"w": "prospect", "g": "潛在客戶（有機會成交的對象）", "c": 1}, {"w": "prospective", "g": "潛在的、未來可能的（prospective customer 準客戶）", "c": 1}, {"w": "publicly accessible", "g": "可公開存取的（access 存取 + -ible 可以被）", "c": 1}, {"w": "publish", "g": "發布、公開（把研究成果放出來）", "c": 1}, {"w": "questionnaire", "g": "問卷（調查表）", "c": 1}, {"w": "queue up", "g": "排隊等候（queue 隊伍）", "c": 1}, {"w": "raise a ticket", "g": "開一張服務單（raise 提出）", "c": 1}, {"w": "rather than", "g": "而不是", "c": 1}, {"w": "ratings score", "g": "評分分數（rating 評分等級，如 1 到 5 顆星）", "c": 1}, {"w": "re-architect", "g": "重新架構（把系統打掉重設計）", "c": 1}, {"w": "readily", "g": "隨時地、輕易地（ready 準備好 → 一伸手就拿得到）", "c": 1}, {"w": "recommendation", "g": "建議（recommend 建議）", "c": 1}, {"w": "recording", "g": "錄音檔", "c": 1}, {"w": "redefine", "g": "重新定義（re- 再 + define 定義）", "c": 1}, {"w": "reduce the risk", "g": "降低風險", "c": 1}, {"w": "register", "g": "註冊（registration 註冊動作）", "c": 1}, {"w": "registry", "g": "登錄庫、倉庫（存放映像檔的地方）", "c": 1}, {"w": "rehost", "g": "重新託管（換個地方跑，內容不動）", "c": 1}, {"w": "relate to", "g": "與……有關", "c": 1}, {"w": "release velocity", "g": "發布速度（velocity 速度）", "c": 1}, {"w": "reliable", "g": "可靠的（rely 依賴 → 靠得住不出包）", "c": 1}, {"w": "remain", "g": "仍然是、維持（remains the responsibility＝仍屬…的責任）", "c": 1}, {"w": "rendering/transcoding", "g": "算圖／轉檔（典型可重跑的批次工作）", "c": 1}, {"w": "renewal", "g": "續約、更新（renew 更新 → 到期再簽一次）", "c": 1}, {"w": "repetitive", "g": "重複性的（repeat 重複 → 一直做同樣的事）", "c": 1}, {"w": "replatform", "g": "換平台（不改應用，只換底層跑的地方）", "c": 1}, {"w": "replica", "g": "複本、副本（replicate 複製 → 一模一樣的另一份）", "c": 1}, {"w": "repositories", "g": "儲存庫（repository 放東西的地方）", "c": 1}, {"w": "repository", "g": "儲存庫（統一存放東西的地方）", "c": 1}, {"w": "represent", "g": "代表、屬於", "c": 1}, {"w": "reprimand", "g": "譴責、懲處（責罵）", "c": 1}, {"w": "requester", "g": "請求者、取用者（request 請求 → 來下載的人）", "c": 1}, {"w": "require", "g": "需要", "c": 1}, {"w": "requirement", "g": "要求、必要條件", "c": 1}, {"w": "resemble", "g": "相似於", "c": 1}, {"w": "respectively", "g": "分別地（照前面列出的順序一一對應）", "c": 1}, {"w": "respond to", "g": "回應、對……做出反應", "c": 1}, {"w": "response time", "g": "回應時間（回覆所需時間）", "c": 1}, {"w": "responsibility", "g": "職責（job responsibilities＝職務內容）", "c": 1}, {"w": "restrict", "g": "限制（restrict A from B：禁止 A 做 B）", "c": 1}, {"w": "restriction", "g": "限制（restrict 限制）", "c": 1}, {"w": "restrictive", "g": "限制性的（more restrictive＝更嚴格的）", "c": 1}, {"w": "revenue stream", "g": "收入來源（stream 流 → 錢流進來的管道）", "c": 1}, {"w": "rewrite", "g": "改寫、重寫", "c": 1}, {"w": "rightsizing", "g": "調整為適當規模（right 恰當 + size 尺寸 → 不多不少剛剛好）", "c": 1}, {"w": "risk", "g": "使……面臨風險（此處當動詞用）", "c": 1}, {"w": "role", "g": "角色、職責", "c": 1}, {"w": "rolling update", "g": "滾動更新（一台一台換，服務不中斷）", "c": 1}, {"w": "runtime plane", "g": "執行層（實際跑 API 流量的那一層）", "c": 1}, {"w": "rust", "g": "鐵鏽", "c": 1}, {"w": "satellite", "g": "衛星", "c": 1}, {"w": "satisfy the requirement", "g": "滿足需求", "c": 1}, {"w": "saturation", "g": "飽和（saturate 灌滿 → 資源被塞滿的程度）", "c": 1}, {"w": "scalability", "g": "可擴展性（scale 規模 → 規模能放大縮小）", "c": 1}, {"w": "scale", "g": "擴展規模（動詞）", "c": 1}, {"w": "scanned", "g": "掃描的", "c": 1}, {"w": "seamless", "g": "無縫的（seam 接縫 → 看不到接縫）", "c": 1}, {"w": "seasonal", "g": "季節性的", "c": 1}, {"w": "sector", "g": "產業、部門", "c": 1}, {"w": "segment", "g": "切分、區隔（動詞）", "c": 1}, {"w": "self-managed", "g": "自行管理的（相對於 fully-managed 全託管）", "c": 1}, {"w": "sensor", "g": "感測器（devices 裝置上量測溫度、位置的元件）", "c": 1}, {"w": "sentiment", "g": "情緒、觀感", "c": 1}, {"w": "separation of concerns", "g": "關注點分離（各管各的、互不干擾）", "c": 1}, {"w": "service level", "g": "服務等級（服務的規格層級）", "c": 1}, {"w": "service model", "g": "服務模式（IaaS/PaaS/SaaS 這種分層）", "c": 1}, {"w": "service provider", "g": "服務供應商", "c": 1}, {"w": "shard", "g": "分片（把一大張表切給不同機器各存一段）", "c": 1}, {"w": "shift", "g": "轉移、轉向（移動 → 重心換到另一邊）", "c": 1}, {"w": "signals", "g": "訊號、指標（要盯著看的關鍵數字）", "c": 1}, {"w": "siloed", "g": "孤島化的（各存各的，互不流通）", "c": 1}, {"w": "simplify", "g": "簡化（simple 的動詞形）", "c": 1}, {"w": "slot", "g": "運算單位（BigQuery 的計算資源計量單位）", "c": 1}, {"w": "smoothly", "g": "順利地、沒有意外地", "c": 1}, {"w": "sole-tenant", "g": "單一租戶（sole 唯一 + tenant 房客 → 整棟樓只有你一個房客）", "c": 1}, {"w": "spawn", "g": "衍生、生出（原意產卵 → 生出下一代）", "c": 1}, {"w": "specialized", "g": "特殊專門的", "c": 1}, {"w": "specification", "g": "規格、規格書", "c": 1}, {"w": "spikes", "g": "尖峰、突增（尖刺 → 用量突然衝高）", "c": 1}, {"w": "spread all around the world", "g": "遍布全球（spread 散布）", "c": 1}, {"w": "spurious", "g": "假的、不實的（spurious traffic＝偽造或垃圾流量）", "c": 1}, {"w": "stability", "g": "穩定性（stable 穩定 → 會不會當掉）", "c": 1}, {"w": "stamp", "g": "蓋章、印戳（護照上的入出境章）", "c": 1}, {"w": "statement", "g": "敘述（判斷敘述真假的題型）", "c": 1}, {"w": "stock inventory", "g": "存貨庫存（stock 存貨 + inventory 清點清單）", "c": 1}, {"w": "store", "g": "儲存（把東西放起來）", "c": 1}, {"w": "strictly enforced", "g": "被嚴格強制執行的（enforce 強制執行）", "c": 1}, {"w": "struggle", "g": "苦於、掙扎（做得很吃力）", "c": 1}, {"w": "struggling", "g": "苦於、難以應付（掙扎 → 做得很吃力）", "c": 1}, {"w": "submit", "g": "提交、上傳", "c": 1}, {"w": "submit an order", "g": "提交訂單", "c": 1}, {"w": "subsidiary", "g": "子公司（母公司底下的公司）", "c": 1}, {"w": "suggestion", "g": "建議", "c": 1}, {"w": "suitable", "g": "合適的", "c": 1}, {"w": "supersede", "g": "取代、凌駕（super- 在上 + sede 坐 → 坐上去壓過）", "c": 1}, {"w": "supply chain", "g": "供應鏈（軟體從開發到上線的整條鏈）", "c": 1}, {"w": "supported", "g": "被支援的（support 支撐 → 官方有搭配）", "c": 1}, {"w": "supporting documentation", "g": "佐證文件", "c": 1}, {"w": "surge", "g": "暴增、湧入（浪頭突然衝上來）", "c": 1}, {"w": "surgery", "g": "外科手術", "c": 1}, {"w": "survey", "g": "問卷、調查", "c": 1}, {"w": "susceptibility", "g": "易受影響的程度（susceptible 易受…影響的）", "c": 1}, {"w": "sustained", "g": "持續的（sustain 維持 → 一直開著沒關）", "c": 1}, {"w": "tabular", "g": "表格形式的（table 表格→tabular）", "c": 1}, {"w": "tagged", "g": "貼標籤的（tag 標籤 → 給資源掛上分類）", "c": 1}, {"w": "take stock of", "g": "盤點、檢視（看看目前進度到哪）", "c": 1}, {"w": "target audience", "g": "目標客群", "c": 1}, {"w": "temporary", "g": "臨時的（反義 permanent 永久的）", "c": 1}, {"w": "temporary files", "g": "暫存檔（處理過程中臨時產生的檔案）", "c": 1}, {"w": "tenancy", "g": "租用狀態（tenant 房客 → 多房客共住一棟樓）", "c": 1}, {"w": "terabyte", "g": "兆位元組（TB，1024 GB）", "c": 1}, {"w": "terminate", "g": "終止、停用（terminated account＝已停用的帳號）", "c": 1}, {"w": "threshold", "g": "門檻、臨界值（門檻 → 跨過就觸發）", "c": 1}, {"w": "thrive", "g": "蓬勃發展（survive 活下來 → thrive 活得好）", "c": 1}, {"w": "tier", "g": "層級、等級（分級 → 服務分成幾個檔次）", "c": 1}, {"w": "time critical", "g": "對時間敏感的、耽誤不得的", "c": 1}, {"w": "time-consuming", "g": "耗時的（consume 消耗 + time 時間）", "c": 1}, {"w": "toil", "g": "苦工（SRE 用語：重複、手動、沒有長期價值的工作）", "c": 1}, {"w": "transcript", "g": "逐字稿（trans 轉換 + script 書寫→把講的話寫下來）", "c": 1}, {"w": "transfer rate", "g": "傳輸速率（下載／上傳的快慢）", "c": 1}, {"w": "trigger", "g": "觸發器（某事件發生時自動啟動另一件事）", "c": 1}, {"w": "tweak", "g": "微調", "c": 1}, {"w": "umbrella term", "g": "統稱、大傘詞（一把傘罩住底下所有東西）", "c": 1}, {"w": "underutilized", "g": "使用率不足的（under 不足 + utilize 使用 → 買了卻用不到）", "c": 1}, {"w": "unexpected", "g": "非預期的（un- 不 + expect 預期）", "c": 1}, {"w": "unified", "g": "統一的（uni- 一 → 合為一體）", "c": 1}, {"w": "unique value", "g": "獨特價值（別家做不出來的差異化）", "c": 1}, {"w": "unlikely", "g": "不太可能的（un 否定 + likely 可能）", "c": 1}, {"w": "unusual activity", "g": "異常活動", "c": 1}, {"w": "up-to-date", "g": "最新的（更新到今天為止）", "c": 1}, {"w": "upfront", "g": "預先的、前期的（up front 擺在前面 → 一開始就要付的錢）", "c": 1}, {"w": "upload", "g": "上傳", "c": 1}, {"w": "upskill", "g": "提升技能（up 向上 + skill 技能）", "c": 1}, {"w": "uptime", "g": "正常運行時間（up 運作中 + time → 服務活著的時間）", "c": 1}, {"w": "use cases", "g": "使用情境（實務上拿來做什麼）", "c": 1}, {"w": "utilization", "g": "使用率（utilize 使用 → 資源實際被用掉的比例）", "c": 1}, {"w": "validity", "g": "有效期（valid 有效 + ity）", "c": 1}, {"w": "variable", "g": "變動的（vary 變化 → 金額會浮動）", "c": 1}, {"w": "various sources", "g": "各種來源", "c": 1}, {"w": "vary", "g": "變動、有差異（various 各種 → 每月都不一樣）", "c": 1}, {"w": "vary widely", "g": "差異很大（vary 變化 + widely 廣泛地）", "c": 1}, {"w": "vast", "g": "大量的、廣大的（vast amounts of ＝ 極大量的）", "c": 1}, {"w": "vending machine", "g": "自動販賣機", "c": 1}, {"w": "vendor lock-in", "g": "廠商鎖定（被綁在單一供應商，要換家代價極高）", "c": 1}, {"w": "violate", "g": "違反（違背規定）", "c": 1}, {"w": "violation", "g": "違規（violate 違反）", "c": 1}, {"w": "visitor", "g": "訪客", "c": 1}, {"w": "waste", "g": "浪費、耗損", "c": 1}, {"w": "with respect to", "g": "就……而言（關於這一點）", "c": 1}, {"w": "within", "g": "在…之內", "c": 1}, {"w": "withstand", "g": "承受得住（with 對抗 + stand 站著 → 頂得住）", "c": 1}]}];
+function renderVocab(kw){
+  kw = (kw||'').trim().toLowerCase();
+  let h = '', shown = 0;
+  VOCAB.forEach(function(g){
+    const rows = g.rows.filter(function(r){
+      return !kw || r.w.indexOf(kw) >= 0 || r.g.toLowerCase().indexOf(kw) >= 0;
+    });
+    if(!rows.length) return;
+    h += '<h3>' + g.name + ' <span style="color:#64748b;font-weight:400;font-size:12px">' + rows.length + ' 個</span></h3>';
+    h += '<table><tr><th style="width:34%">英文</th><th>中文與記憶鉤子</th></tr>';
+    rows.forEach(function(r){
+      shown++;
+      h += '<tr><td class="en" style="color:#fde047">' + r.w +
+           (r.c > 1 ? ' <span style="color:#64748b;font-size:11px">×' + r.c + '</span>' : '') +
+           '</td><td style="font-size:13px;color:#c4d2e8">' + r.g + '</td></tr>';
+    });
+    h += '</table>';
+  });
+  document.getElementById('vroot').innerHTML = h || '<p class="tiny" style="padding:16px">查無這個字。</p>';
+}
+document.getElementById('vsearch').addEventListener('input', function(e){ renderVocab(e.target.value); });
+renderVocab('');
+</script>
+
