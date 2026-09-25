@@ -3362,6 +3362,13 @@ function addVocab(word, zh, origin, example){
   try { localStorage.setItem(VOCAB_KEY, JSON.stringify(st)); } catch(e){}
   return st[k].count;
 }
+function vocabCount(){ return Object.keys(getVocab()).length; }
+function vocabText(){
+  const V = Object.values(getVocab()).sort((x,y) => (y.count||1)-(x.count||1) || String(x.word).localeCompare(String(y.word)));
+  const src = v => [v.origin].concat(v.origins||[]).filter(Boolean).map(o => o.replace('CDL課程 ','')).join('、');
+  return [`【CDL 生字庫】共 ${V.length} 個（${new Date().toLocaleString('zh-TW')}）`, '格式：英文｜中文｜標記次數｜出處']
+    .concat(V.map(v => `${v.word}｜${v.zh||'待補'}｜×${v.count||1}｜${src(v)}`)).join('\n');
+}
 function copyText(t){
   const done = () => toast('✅ 已複製，貼給麥口就行');
   if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(t).then(done, () => fallback());
@@ -3422,6 +3429,7 @@ function renderHome(){
     <div class="tiny" style="margin-top:6px">💡 看不懂的英文字直接點（驗收時點字只會標橘色，看解析才給中文）。標過的字會進這個網頁的生字庫。</div>
   </div>
   ${revCount() ? `<div class="box warn row"><div class="sp"><b>🔁 複習區：${revCount()} 題</b><div class="tiny">答錯或勾了「猜的」的題。開新課前先清一清——隔天再考還對，才是真的會。</div></div><button class="btn pri" onclick="openRev()">開始複習</button></div>` : ''}
+  ${vocabCount() ? `<div class="box row"><div class="sp"><b>📒 生字庫：${vocabCount()} 個</b><div class="tiny">你在各課點過、加進來的字都在這。一鍵複製全部，貼給麥口幫你整理記憶法。</div></div><button class="btn pri" onclick="copyText(vocabText())">📋 複製所有生字給麥口</button></div>` : ''}
   <h2>課程</h2>
   ${LESSONS.map(l => `<div class="lc ${l.ready?'':'soon'}" ${l.ready?`onclick="openLesson(${l.id})"`:''}>
      <div class="n">${l.id}</div><div class="sp"><div class="t">${l.title}</div><div class="tiny">${l.ch}</div></div>${statusOf(l)}</div>`).join('')}
