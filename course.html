@@ -3403,7 +3403,7 @@ function vocabText(){
   const V = Object.values(getVocab()).sort((x,y) => (y.count||1)-(x.count||1) || String(x.word).localeCompare(String(y.word)));
   const src = v => [v.origin].concat(v.origins||[]).filter(Boolean).map(o => o.replace('CDL課程 ','')).join('、');
   return [`【CDL 生字庫】共 ${V.length} 個（${new Date().toLocaleString('zh-TW')}）`, '格式：英文｜中文｜標記次數｜出處']
-    .concat(V.map(v => `${v.word}｜${v.zh||'待補'}｜×${v.count||1}｜${src(v)}`)).join('\n');
+    .concat(V.map(v => `${v.word}｜${v.zh||'待補'}｜×${v.count||1}｜${src(v)}`)).join('\n') + phText();
 }
 function copyText(t){
   const done = () => toast('✅ 已複製，貼給麥口就行');
@@ -3465,6 +3465,7 @@ function renderHome(){
     <div class="tiny" style="margin-top:6px">💡 看不懂的英文字直接點（驗收時點字只會標橘色，看解析才給中文）。標過的字會進這個網頁的生字庫。</div>
   </div>
   ${revCount() ? `<div class="box warn row"><div class="sp"><b>🔁 複習區：${revCount()} 題</b><div class="tiny">答錯或勾了「猜的」的題。開新課前先清一清——隔天再考還對，才是真的會。</div></div><button class="btn pri" onclick="openRev()">開始複習</button></div>` : ''}
+  <div class="box row"><div class="sp"><b>⚡ 片語秒答</b> ${phTickCount() ? `<span class="chip y">打勾 ${phTickCount()} 組</span>` : ''}<div class="tiny">看英文片語，3 秒內講出它指向哪個概念。想不出來的打勾、講一句比喻，下一輪只考打勾的。全部 ${PHRASES().length} 組一輪約 12 分鐘。</div></div><div class="row"><button class="btn pri" onclick="openPh('mine')">上過的課</button><button class="btn" onclick="openPh('all')">全部</button>${phTickCount() ? `<button class="btn" onclick="openPh('tick')">只考打勾的</button>` : ''}</div></div>
   ${vocabCount() ? `<div class="box row"><div class="sp"><b>📒 生字庫：${vocabCount()} 個</b><div class="tiny">你在各課點過、加進來的字都在這。一鍵複製全部，貼給麥口幫你整理記憶法。</div></div><button class="btn pri" onclick="copyText(vocabText())">📋 複製所有生字給麥口</button></div>` : ''}
   <h2>課程</h2>
   ${LESSONS.map(l => `<div class="lc ${l.ready?'':'soon'}" ${l.ready?`onclick="openLesson(${l.id})"`:''}>
@@ -3485,8 +3486,9 @@ function render(){
   closePop();
   if (UI.view === 'home') return renderHome();
   if (UI.view === 'rev') return renderRev();
+  if (UI.view === 'ph') return renderPh();
   const l = L(), s = LS(l.id);
-  const head = `<header class="top"><div class="row"><button class="btn sm" onclick="goHome()">← 課程列表</button><b>第 ${l.id} 課</b><span class="tiny">${l.title}</span></div>
+  const head = `<header class="top"><div class="row"><button class="btn sm" onclick="goHome()">← 課程列表</button><b>第 ${l.id} 課</b><span class="tiny">${l.title}</span><span class="sp"></span><button class="btn sm" onclick="openPh('L${l.id}')">⚡ 本課片語</button></div>
     <div class="steps">${STEPS.map((t,i) => `<span class="step ${UI.stage===i+1?'cur':''} ${s.done[i+1]?'ok':''}" onclick="goStage(${i+1})">${t}</span>`).join('')}</div></header>`;
   const body = [null, st1, st2, st3, st4, st5][UI.stage](l, s);
   $app.innerHTML = head + body;
@@ -3765,6 +3767,85 @@ function resultText(){
   return [`【CDL 第${l.id}課驗收】${s.score}/${l.exam.length}（${s.green?'轉綠':'未轉綠'}）`].concat(l.exam.map(q => qLine(q, E))).concat(vl).join('\n');
 }
 function xRetry(){ const s = LS(UI.id); s.ex = {a:{},g:{},m:{},r:{},t:{},done:{},sub:false}; saveS(); UI.showNo = null; UI.qNo = null; render(); window.scrollTo(0,0); }
+
+/* ⚡ 片語秒答：①配對每題解析開頭的英文粗體＝決勝片語 → 答案概念。先想再看；想不出來的打勾、講一句比喻，
+   下一輪只考打勾的，打勾後連兩輪秒答才移出。2026-09-26 定案，見 教材暫存/生字方法研究/片語秒答法_定案.md */
+const PHRASE_KEY = 'cdl_phrase_v1';
+function getPh(){ try { return JSON.parse(localStorage.getItem(PHRASE_KEY)) || {}; } catch(e){ return {}; } }
+function savePh(p){ try { localStorage.setItem(PHRASE_KEY, JSON.stringify(p)); } catch(e){} }
+function PHRASES(){
+  if (PHRASES._c) return PHRASES._c;
+  const out = [];
+  LESSONS.filter(l => l.ready).forEach(l => (l.match || []).forEach((m, i) => {
+    const b = (m.why || '').match(/<b>([^<]*[A-Za-z][^<]*)<\/b>/);
+    if (!b) return;
+    const cue = b[1].trim();
+    if (cue.toLowerCase() === String(m.ans).toLowerCase()) return;   // 片語就是答案本身，練不到東西
+    out.push({ id: `${l.id}-${i}`, lid: l.id, cue, ans: m.ans, en: m.en, why: m.why, alt: (m.opts || []).filter(o => o !== m.ans) });
+  }));
+  return PHRASES._c = out;
+}
+const phTicked = r => !!r && r.miss > 0 && (r.ok || 0) < 2;
+function phTickCount(){ const P = getPh(); return PHRASES().filter(x => phTicked(P[x.id])).length; }
+function openPh(scope){
+  const P = getPh(), V = Object.keys(getVocab());
+  let list = scope === 'tick' ? PHRASES().filter(x => phTicked(P[x.id]))
+    : scope === 'mine' ? PHRASES().filter(x => S.l[x.lid])
+    : /^L\d+$/.test(scope) ? PHRASES().filter(x => x.lid === +scope.slice(1))
+    : PHRASES();
+  if (!list.length) return toast(scope === 'tick' ? '🎉 打勾清單是空的' : '還沒有上過的課');
+  const hit = x => V.some(w => new RegExp(`\\b${w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'i').test(x.cue + ' ' + x.en));
+  list = list.filter(hit).concat(list.filter(x => !hit(x)));   // 含你點過的生字的排前面
+  UI.view = 'ph'; UI.ph = { scope, queue: list.map(x => x.id), i: 0, show: false, res: {} };
+  render(); window.scrollTo(0,0);
+}
+function renderPh(){
+  const E = UI.ph, n = E.queue.length;
+  const name = E.scope === 'tick' ? '只考打勾的' : E.scope === 'mine' ? '上過的課' : E.scope === 'all' ? `全部 ${PHRASES().length} 組` : `第 ${E.scope.slice(1)} 課`;
+  const head = `<header class="top"><div class="row"><button class="btn sm" onclick="goHome()">← 課程列表</button><b>⚡ 片語秒答</b><span class="tiny">${name}</span></div></header>`;
+  if (E.i >= n) { $app.innerHTML = head + phSummary(); return; }
+  const x = PHRASES().find(p => p.id === E.queue[E.i]), r = getPh()[x.id] || {};
+  UI.id = x.lid;   // 點字加進生字庫時記對課別
+  let body = `${progress(E.i, n)}<p class="tiny">第 ${E.i+1} / ${n} 組 · 第 ${x.lid} 課${phTicked(r) ? ` · <span style="color:var(--o)">打勾過 ${r.miss} 次</span>` : ''}</p>
+    <div class="box"><div class="big en-t" style="font-size:22px;line-height:1.5">${esc(x.cue)}</div><button class="speak" data-say="${esc(x.cue)}">🔊</button>
+    <p class="tiny">先在心裡講出它指向哪個概念。3 秒內講不出來，就算沒想出來。</p></div>`;
+  if (!E.show) body += `<div class="nav"><span></span><button class="btn pri" onclick="UI.ph.show=true;render()">看答案</button></div>`;
+  else {
+    body += `<div class="box key"><div class="res">${esc(x.ans)}</div>
+      <div class="en-t" data-mode="learn" style="margin-top:6px">${esc(x.en)}</div>
+      <div class="tiny" style="margin-top:6px">${x.why}</div></div>`;
+    if (E.res[x.id] === undefined) body += `<div class="row"><button class="btn pri" onclick="phMark(true)">✅ 秒答出來</button><button class="btn" onclick="phMark(false)">❌ 沒想出來（打勾）</button></div>`;
+    else body += `<div class="box warn"><b>✍️ 用你教學生的方式講一句（可以跳過）</b>
+      <div class="tiny">最容易跟它搞混的：<b>${x.alt.map(esc).join('</b>、<b>')}</b>。講一句比喻，再說它跟這兩個差在哪。</div>
+      <textarea id="phNote" rows="3" style="width:100%;box-sizing:border-box;margin-top:8px;background:var(--panel2);color:var(--tx);border:1px solid var(--line);border-radius:8px;padding:8px;font:inherit" placeholder="${esc(`例：${x.ans} 就像＿＿＿；跟 ${x.alt[0] || '＿＿'} 不一樣，因為＿＿＿。`)}">${esc(r.note || '')}</textarea>
+      <div class="nav"><span></span><button class="btn pri" onclick="phNext(true)">存起來，下一組 →</button></div></div>`;
+  }
+  $app.innerHTML = head + body;
+  wrapWords($app);
+}
+function phMark(ok){
+  const E = UI.ph, id = E.queue[E.i], P = getPh(), r = P[id] || { miss: 0, ok: 0 };
+  if (ok) { if (r.miss) r.ok = (r.ok || 0) + 1; } else { r.miss = (r.miss || 0) + 1; r.ok = 0; }
+  r.at = new Date().toISOString(); P[id] = r; savePh(P); E.res[id] = ok;
+  if (ok) phNext(false); else render();
+}
+function phNext(save){
+  const E = UI.ph, id = E.queue[E.i];
+  if (save) { const t = document.getElementById('phNote'), P = getPh(); if (t && P[id]) { P[id].note = t.value.trim(); savePh(P); } }
+  E.i++; E.show = false; render(); window.scrollTo(0,0);
+}
+function phSummary(){
+  const E = UI.ph, n = E.queue.length, miss = Object.values(E.res).filter(v => v === false).length, left = phTickCount();
+  return `<div class="box ${miss ? 'warn' : 'key'}"><div class="res">${n - miss} / ${n} 組秒答</div>
+    <p>${left ? `打勾清單還有 ${left} 組，下一輪只考它們。打勾過的要連兩輪秒答才會移出。` : '🎉 打勾清單清空了！'}</p>
+    <div class="row">${left ? `<button class="btn pri" onclick="openPh('tick')">再考打勾的 ${left} 組</button>` : ''}<button class="btn" onclick="copyText(vocabText())">📋 複製生字＋打勾清單給麥口</button><button class="btn" onclick="goHome()">回課程列表</button></div></div>`;
+}
+function phText(){
+  const P = getPh(), T = PHRASES().filter(x => phTicked(P[x.id]));
+  if (!T.length) return '';
+  return '\n\n' + [`【片語秒答・打勾清單】共 ${T.length} 組`, '格式：片語 → 答案｜打勾次數｜我的比喻']
+    .concat(T.map(x => `${x.cue} → ${x.ans}｜×${P[x.id].miss}｜${P[x.id].note || '（沒寫）'}`)).join('\n');
+}
 
 /* 🔁 複習區：所有課答錯或矇對的題，答對（且沒勾猜的）才畢業 */
 function revCount(){ return Object.keys(S.rev || {}).length; }
