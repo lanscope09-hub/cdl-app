@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>CDL 中文診斷小考</title>
+<meta name="theme-color" content="#0f172a">
+<style>
+:root{--bg:#0f172a;--card:#1e293b;--line:#334155;--text:#f8fafc;--muted:#94a3b8;--primary:#38bdf8;--ok:#22c55e;--bad:#f87171;--warn:#f59e0b}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:max(env(safe-area-inset-top),16px) 16px max(env(safe-area-inset-bottom),24px)}
+.wrap{max-width:640px;margin:0 auto}
+a{color:var(--primary)}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.bar{height:4px;background:var(--line);border-radius:2px;margin-bottom:20px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--primary);transition:width .2s}
+h1{font-size:1.4rem;margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:16px}
+.intro p{margin-bottom:10px;color:#cbd5e1}
+.intro li{margin:0 0 6px 20px;color:#cbd5e1}
+.tag{display:inline-block;font-size:.75rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 10px;margin-bottom:10px}
+.stem{font-size:1.05rem;margin-bottom:16px}
+.opt{display:flex;gap:10px;width:100%;text-align:left;background:transparent;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px;font-size:1rem;line-height:1.6;cursor:pointer;font-family:inherit}
+.opt b{color:var(--primary);flex:none}
+.opt.on{border-color:var(--primary);background:rgba(56,189,248,.12)}
+.lbl{font-size:.85rem;color:var(--muted);margin:14px 0 8px}
+.conf{display:flex;gap:8px;flex-wrap:wrap}
+.conf button{flex:1;min-width:90px;background:transparent;color:var(--text);border:1px solid var(--line);border-radius:999px;padding:8px 6px;font-size:.9rem;cursor:pointer;font-family:inherit}
+.conf button.on{border-color:var(--warn);background:rgba(245,158,11,.15)}
+textarea{width:100%;min-height:64px;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:.95rem;font-family:inherit}
+.nav{display:flex;gap:10px;margin-top:4px}
+.btn{flex:1;background:var(--primary);color:#0f172a;border:0;border-radius:10px;padding:12px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);font-weight:400}
+.btn:disabled{opacity:.35}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+td,th{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--muted);font-weight:400;font-size:.85rem}
+.big{font-size:2rem;font-weight:800}
+.ok{color:var(--ok)}.bad{color:var(--bad)}.muted{color:var(--muted)}
+.row{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.row span:first-child{flex:none;width:58px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%);background:var(--ok);color:#0f172a;padding:8px 16px;border-radius:999px;font-weight:700;display:none}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<div class="toast" id="toast">已複製</div>
+<script>
+const QS = [{"id": "S1-01", "section": 1, "stem": "一家成立 60 年的連鎖書店，全台有 80 間門市，過去以精美的精裝百科全書與大型實體書牆聞名。近年電子書與線上學習平台快速成長，門市客流量連續三年下滑。經營團隊內部分成兩派，一派認為應該加碼投資更大的門市與倉儲，守住「賣書」的專業；另一派主張盡快導入電子書平台、會員 App 與線上課程，越多越好。董事長要決定轉型的第一步該怎麼走。請問下列哪一項最符合成功的數位轉型思維？", "options": {"A": "持續優化印刷、倉儲與配送流程，把現有「怎麼賣書」的作法做到極致", "B": "暫緩採用新科技，等市場上的電子書技術穩定成熟後，再評估是否跟進", "C": "先釐清公司「為何存在」，再把每一項新科技當成達成這個使命的工具", "D": "鎖定目前最普及的單一技術平台，並把所有新服務都綁定在這個平台上"}, "answer": "C"}, {"id": "S1-02", "section": 1, "stem": "一家區域型醫院集團有 6 間院區，病歷系統與影像歸檔系統受法規限制，資料必須留在院內機房，另外有一套老舊的大型主機仍在運作，短期內無法搬遷。同時，醫院想導入進階分析服務，用來預測急診就診量，但現有機房已無擴充空間，董事會也不願再增加資料中心的資本支出。請問哪一種部署策略最能同時滿足這些需求？", "options": {"A": "採用 hybrid cloud，法規資料與舊系統留在院內，分析工作負載擴展到公有雲", "B": "採用 multicloud，把所有系統分散到兩家以上的公有雲業者並全部遷出機房", "C": "採用 private cloud，在院內機房擴建虛擬化環境並自行維運所有分析服務", "D": "採用單一公有雲，立即把病歷、影像與大型主機應用全部搬到雲端上執行"}, "answer": "A"}, {"id": "S1-03", "section": 1, "stem": "一家中型銀行的 25 人數位團隊，正在開發一套行動支付 App 的後端服務。團隊過去在自建伺服器上花了大量時間處理作業系統修補、容量規劃與環境設定，導致新功能上線一再延誤。經理希望開發人員能把時間集中在撰寫程式與創新，由雲端業者負責底層基礎設施的管理、更新與維護，同時仍要能自行部署並控制自己的應用程式與資料。請問最適合採用哪一種做法？", "options": {"A": "IaaS：租用虛擬機器，由團隊自行安裝並維護作業系統與執行環境", "B": "SaaS：直接訂閱現成的支付應用程式，不再自行開發任何後端功能", "C": "維持 on-premises：擴編維運人力，專責負責所有伺服器的修補作業", "D": "PaaS：使用雲端平台的開發與部署環境，由業者負責底層維運與修補"}, "answer": "D"}, {"id": "S1-04", "section": 1, "stem": "一家醫學中心決定把院內的門診掛號系統搬到雲端，採用 IaaS，在 Google Cloud 上租用虛擬機器來執行。資訊長在內部會議上表示：「搬上雲端之後，安全就都交給 Google 處理了。」資安主管對此有疑慮，因為系統中存有大量病患個資，她要向管理層說明搬遷後院方仍然必須負責哪些項目。請問下列哪一項說明最正確？", "options": {"A": "Google 負責虛擬機器的作業系統與應用程式，院方只需管理使用者帳號", "B": "Google 負責實體資源，院方仍須負責作業系統、執行應用的軟體與資料的安全", "C": "Google 負責所有安全工作，因為病患資料已經存放在雲端業者的資料中心內", "D": "院方只需負責資料中心實體門禁，其餘安全項目一律由 Google 全權處理"}, "answer": "B"}, {"id": "S1-05", "section": 1, "stem": "一家線上教育平台在東京與倫敦各有約 20 萬名學生，原本所有影片與練習題都放在位於單一區域的伺服器上，東京學生常抱怨載入緩慢。平台近期也擔心若該區域遭遇天然災害，所有課程會同時中斷。公司希望在不重寫應用程式的前提下，同時降低各地學生的延遲並提高區域層級的容錯能力。請問最適合的作法是什麼？", "options": {"A": "把應用程式部署在同一區域內的多個 zone，讓資源在單一區域內有備援", "B": "購買更大頻寬的專線連到現有區域，讓東京的連線速度與倫敦一樣快", "C": "把全部內容集中放在最靠近總公司的單一區域，並加上定期備份檔案", "D": "把應用程式與資料部署在不同區域，讓資源更接近各地使用者並分散風險"}, "answer": "D"}, {"id": "S1-06", "section": 1, "stem": "某市政府的稅務局每年報稅季的 4 月會湧入大量線上申報，流量是平日的 15 倍，其他月份機房伺服器使用率不到 15%。過去局裡依照尖峰需求採購了大量硬體，但每年仍有幾天系統當機，其餘時間則大量閒置，維護費用高居不下。局長想找出一個能同時解決尖峰當機與平日浪費的作法。請問下列哪一項最能達成目標？", "options": {"A": "再依照預估的未來尖峰，提前三年採購更多伺服器，確保流量暴增時有足夠容量", "B": "採用公有雲的隨需資源，尖峰時擴充，平日縮減，只為實際用量付費", "C": "把現有機房改成 private cloud，由局內人力負責虛擬化資源的維運與擴充", "D": "同時簽約兩家公有雲業者，並把所有流量固定平分，以降低單一業者的風險"}, "answer": "B"}, {"id": "S3-01", "section": 3, "stem": "一家擁有 6 間分院的區域醫院，每天要處理上千通預約改期的來電與訊息。病患常描述得很複雜，例如「我下週要回診但剛好要做檢查」。院方希望新系統能理解病患的需求、查詢病患的看診紀錄與醫師排程、自行完成改約並寄出通知，只有遇到特殊狀況才交給人員處理，同時保留人員監督。請問哪一種做法最符合院方的需求？", "options": {"A": "導入生成式 AI 工具，為每位病患自動撰寫語氣親切的改期通知信草稿，再由櫃台人員逐封寄出", "B": "導入代理式 AI（agentic AI），讓系統能理解目標、規劃步驟，並串接排程與病歷系統完成整個改約流程", "C": "撰寫固定腳本的傳統自動化流程，依照預先設定的關鍵字與排程規則，逐步處理每一筆改期請求", "D": "建置商業智慧儀表板，統計各分院每月的改期次數與原因，讓管理人員據以調整人力配置"}, "answer": "B"}, {"id": "S3-02", "section": 3, "stem": "一家擁有 300 萬名客戶的全國性銀行，目前每月由分析團隊製作儀表板，呈現各分行過去一年的客訴件數與處理時間。管理層發現這些報表只能說明已經發生的事，希望能在客戶提出客訴之前，就預測哪些客戶很可能不滿意，並提前調整客服人力與關懷做法。銀行已累積多年客訴紀錄與交易資料。請問下列哪一項做法最合適？", "options": {"A": "增加更多歷史圖表與篩選條件，讓分析師能從不同角度觀察過去客訴的趨勢", "B": "把客訴資料彙整成更詳細的月報，並要求各分行主管每週開會檢討過去的客訴原因", "C": "改用資料庫即時查詢，統計目前每小時進線的客訴數量，再據此臨時調派客服人員", "D": "以過去的客訴與交易資料訓練機器學習模型，用已知結果的範例讓系統學會預測可能的客訴"}, "answer": "D"}, {"id": "S3-03", "section": 3, "stem": "一個醫療集團要用旗下 5 家醫院的病患資料，訓練預測再入院風險的模型。資料工程師檢查後發現：各欄位沒有缺漏，日期格式也符合規範，資料很新，也沒有重複的紀錄；但是同一位病患在 A 醫院系統裡登記為「王小明」，在 B 醫院系統裡卻是「王 小明」或「Wang, Xiao-Ming」，造成模型把他當成不同人。請問這屬於哪一個資料品質問題，應該優先怎麼處理？", "options": {"A": "一致性（consistency）問題，應統一同一病患在各系統中的名稱與識別方式，避免相互矛盾", "B": "完整性（completeness）問題，應向各醫院補齊缺漏的病患欄位，確保每筆紀錄的資訊都齊全", "C": "唯一性（uniqueness）問題，應刪除重複的紀錄，避免模型被大量重複的資料影響學習結果", "D": "時效性（timeliness）問題，應重新蒐集最新的病患資料，確保模型反映目前的就醫狀況"}, "answer": "A"}, {"id": "S3-04", "section": 3, "stem": "一家擁有 800 名員工的製造業公司，已把多年的產線感測器與機台維修紀錄存放在 Google Cloud 的資料倉儲服務中。公司想預測哪些機台下個月可能故障，但目前沒有資料科學家或 ML 工程師，只有 3 位平常用查詢語言從資料倉儲撈報表的資料分析師。資訊部門也不希望把大量資料匯出到其他工具。公司希望一季內做出可用的預測，不打算增聘人手，也不想讓分析師另外學新的程式語言。請問哪一種建模路徑最適合？", "options": {"A": "在 Gemini Enterprise Agent Platform 上，由團隊自行撰寫程式碼，從資料標記、訓練到部署完整自建模型", "B": "使用 Google 預先訓練好的 API，直接呼叫現成模型來預測自家機台的故障時間", "C": "使用 BigQuery ML，讓分析師以標準 SQL 在資料所在的 BigQuery 中直接建立並執行模型", "D": "改用 Agent Studio 的視覺化介面，先將資料匯出並上傳，再由系統自動比較演算法並調整參數"}, "answer": "C"}, {"id": "S3-05", "section": 3, "stem": "一家區域型物流公司擁有 40 輛貨車與 120 名員工，希望在 8 週後的年終旺季前，上線一套協助處理客戶查詢貨況的 AI 客服。公司內部沒有資料科學家，預算有限；管理層表示客服的口吻是否獨一無二並不重要，最重要的是準時上線且能立即運作。請問下列哪一個方向最合適？", "options": {"A": "在 Cloud TPU 與 NVIDIA GPU 上從頭開發自家的客服模型，以取得對整體架構的完全掌控", "B": "採用由 Google 管理基礎架構與模型的 SaaS 全託管服務，不需要資料科學背景就能快速產出成果", "C": "利用 Gemini Enterprise Agent Platform 取得基礎模型，並以公司專屬資料微調出獨特的客服口吻", "D": "先招募資料科學團隊並投入資料標記，花時間打造完全客製的模型，再逐步擴大到所有客服情境"}, "answer": "B"}, {"id": "S5-01", "section": 5, "stem": "一家有 12 家分院的區域醫院集團，正在開發給護理師使用的內部 AI 助理，底層是 Gemini 模型，護理師會用自然語言詢問病患照護問題。資安長擔心兩件事：有人刻意輸入指令誘使模型忽略系統設定，以及模型的回答不小心帶出病患的病歷號碼與診斷內容，違反 HIPAA 規範。團隊希望不必修改模型本身，就能在每次對話時擋下這兩種風險。請問哪一個做法最適合？", "options": {"A": "啟用 Security Command Center 的 AI Protection，用來盤點 AI 資產並找出設定弱點", "B": "部署 Model Armor，檢查並過濾提問與回答，偵測 prompt injection 並防止敏感資料外洩", "C": "在 AI 助理前方部署 Google Cloud Armor，阻擋來自惡意來源的大量流量", "D": "改用 Confidential VM 執行模型，讓資料在記憶體處理時保持加密狀態"}, "answer": "B"}, {"id": "S5-02", "section": 5, "stem": "某國的國家級醫療研究機構要把病患影像與基因資料搬上 Google Cloud。當地法規明文規定，公民的醫療個資只能儲存在國境內的伺服器。機構有 60 位研究人員與外部合作的開發者，都能自行建立儲存資源。資安主管最擔心的不是惡意攻擊，而是有人一時疏忽，把資源建在境外的區域，導致違規。機構想用事前限制的方式，從源頭避免這種狀況。請問哪個做法最適合？", "options": {"A": "對所有儲存資料啟用 Cloud KMS 管理的金鑰加密，確保即使資料放錯地方也無法被讀取", "B": "要求研究人員每週手動檢查資源所在區域，並把檢查結果回報給資安團隊留存", "C": "使用 Google Cloud Armor 限制外部負載平衡器的流量來源地區，避免境外使用者存取", "D": "選擇國內的 Google Cloud 區域，並搭配組織政策限制條件與 IAM 設定，防止資料誤存到其他區域"}, "answer": "D"}, {"id": "S5-03", "section": 5, "stem": "一家中型銀行有 30 多個只供內部使用的網頁應用程式，現在要開放給 200 位外部委外顧問使用。顧問多半使用自己的電腦，在不同地點連線。過去銀行的做法是發放 VPN 帳號，讓顧問進入內網，但稽核指出，一旦登入成功，顧問就能接觸到整個內網。銀行希望改成每次存取都依使用者身分與情境驗證，不把內部資源暴露在公開網際網路上。請問哪一個方案最符合需求？", "options": {"A": "採用 BeyondCorp Enterprise 與 Identity-Aware Proxy，依身分與情境逐次驗證存取", "B": "建立 Cloud Interconnect，為每位顧問所在地建立專用實體連線，連回銀行的內網", "C": "為顧問設定 Cloud VPN 通道，並把帳號密碼的有效期限縮短為 24 小時以內", "D": "利用 VPC Service Controls 建立服務邊界，並以 Shared VPC 集中管理顧問的網路資源"}, "answer": "A"}, {"id": "S5-04", "section": 5, "stem": "某市政府資訊處管理市民服務平台，約 40 位工程師與承包商共同維運。最近內部檢查發現，一個存放市民申請文件的儲存空間因為設定錯誤而被公開，所幸尚未外洩。調查後得知，幾乎所有維運人員都被授予專案層級的管理員權限，方便「出問題時快速處理」。資訊長要求從根本降低類似設定錯誤造成的風險。請問最優先的做法是什麼？", "options": {"A": "對所有儲存空間改用客戶自行管理的加密金鑰，讓公開的檔案無法被讀取", "B": "在平台前方啟用 Google Cloud Armor，過濾所有進入平台的惡意流量", "C": "依最小權限原則重新檢視角色，只給每位人員執行工作所需的最低存取權限", "D": "安排全體維運人員參加社交工程與網路釣魚的資安意識訓練課程"}, "answer": "C"}, {"id": "S5-05", "section": 5, "stem": "一家在 8 個國家營運的跨國電商，正在準備國際資訊安全管理標準認證的外部稽核。稽核員要求公司證明：所使用的雲端供應商本身，也已經被獨立的第三方機構查核過，並符合國際安全標準。法遵團隊希望這些證明能直接附進稽核資料，而且任何時候需要都能自己拿到，不用每次寫信請業務窗口幫忙，也不想自己去重新查核一次供應商。請問應該使用哪個資源？", "options": {"A": "Sensitive Data Protection", "B": "Compliance Reports Manager", "C": "VPC Service Controls", "D": "Security Command Center"}, "answer": "B"}, {"id": "S6-01", "section": 6, "stem": "一家擁有 80 家門市的連鎖家具零售商，目前自行營運 2 間機房，伺服器是 5 年前一次買斷的。財務長打算評估是否把電商網站遷移到 Google Cloud，於是把機房每月的電費帳單，直接拿來跟雲端試算出的每月預估帳單相比，發現雲端數字較高，因此傾向維持現狀。IT 主管覺得這樣的比較不公平，但財務長認為兩邊都是「每月花的錢」，沒有什麼不同。請問 IT 主管應該怎麼回應，才最符合做 TCO 分析的正確觀念？", "options": {"A": "同意財務長的做法，因為每月實際支出是最客觀的比較基準，雲端月費較高就代表遷移並不划算", "B": "把機房硬體依使用年限攤提成月費，再與雲端帳單逐項對照，其餘由雲端供應商處理的項目就不必計入", "C": "把機房的完整營運負擔（維運人力、自動化工具、手動維護）與不遷移的機會成本一併納入，並認清兩種模式不同", "D": "建議先預付三年的雲端用量，讓雲端費用也變成固定的大額支出，這樣兩邊成本結構一致才好比較"}, "answer": "C"}, {"id": "S6-02", "section": 6, "stem": "一家串流影音媒體公司每晚會執行批次影片轉檔，這些工作不急，即使中途被中斷也能自動重跑，但每週用量波動很大。公司採用雲端後，工程師可以隨時自行開啟運算資源，上個月帳單已經超出預算，財務部門抱怨直到收到帳單才知道出事。主管希望同時達成兩件事：降低轉檔工作的運算成本，以及在花費接近上限時能提早收到通知，好在失控之前採取行動。請問哪一組做法最適合？", "options": {"A": "轉檔工作改用 Spot VMs，並設定 budget threshold rules，在費用超過特定金額時發出警示", "B": "轉檔工作改買一年期 committed use discounts，並每月檢視 Cloud Billing reports 追蹤已花費金額", "C": "轉檔工作改用 Spot VMs，並把帳單資料匯出到 BigQuery，月底再分析各部門花費", "D": "轉檔工作改買一年期 committed use discounts，並以 resource quota policies 限制每位工程師的用量"}, "answer": "A"}, {"id": "S6-03", "section": 6, "stem": "一個區域醫院集團旗下有 3 家分院，各分院都有自己的醫療資訊系統專案，也有獨立的研究專案。集團資安長要求：病患資料保存的安全政策必須套用到集團所有資產，每家分院的所有專案要共用同一組存取規則，而且研究專案必須與正式環境彼此隔離。日後新增的專案也要自動遵守這些規則，不需要逐一設定。請問在 Google Cloud 的資源階層中，哪一種設計最合適？", "options": {"A": "在每個專案各自設定全部政策，因為專案是政策能套用的最細層級，這樣一來控管起來最為精準", "B": "在 organization node 為每家分院分別設定不同政策，再把所有專案直接放在 organization node 底下", "C": "每家分院只建立一個專案，把正式與研究資源全放在裡面，再逐一替每個資源個別設定存取規則", "D": "在 organization node 設定全集團安全政策，每家分院各建一個 folder 放共用規則，正式與研究環境各用獨立專案"}, "answer": "D"}, {"id": "S6-04", "section": 6, "stem": "一家線上支付新創公司與企業客戶簽訂合約，保證結帳服務每月可用性達 99.9%，未達標就必須退還部分訂閱費。目前工程團隊的內部目標也設為 99.9%，過去三個月有兩個月只差一點點就違約。有人主張立刻改成多區域同步複寫來求保險，但團隊其實還沒有持續監控延遲、流量、飽和度與錯誤這四項指標。身為技術主管，你希望降低違約風險，又不想在沒有依據的情況下大幅增加成本與複雜度。請問最適合的做法是什麼？", "options": {"A": "把內部 SLO 放寬到與合約相同並持續追蹤，只要沒有違反 SLA 就不必額外投資可靠度", "B": "把內部 SLO 訂得比 SLA 更嚴格，並依錯誤預算消耗情況決定何時暫停新功能、優先處理穩定性", "C": "向客戶修改合約，把可用性承諾降為只當作內部參考目標，不再附帶退款的責任", "D": "立即採用多區域同步複寫，因為這是確保可用性最直接的方法，成本之後再評估即可"}, "answer": "B"}];
+const SEC = {1:"數位轉型",3:"AI",5:"信任與資安",6:"維運擴展"};
+const CONF = ["有把握","不太確定","用猜的"];
+const KEY = "cdl_diag_v1";
+let S = {i:-1, a:{}, c:{}, n:{}, t0:null, t1:null, done:false};
+try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.a) S = s; } catch(e) {}
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} }
+const $ = h => document.getElementById("app").innerHTML = h;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function mins(){ if(!S.t0) return 0; return Math.round(((S.t1||Date.now()) - S.t0)/60000); }
+
+function render(){
+  if (S.done) return result();
+  if (S.i < 0) return intro();
+  const q = QS[S.i], id = q.id;
+  const opts = ["A","B","C","D"].map(k =>
+    `<button class="opt ${S.a[id]===k?"on":""}" onclick="pick('${k}')"><b>${k}</b><span>${esc(q.options[k])}</span></button>`).join("");
+  const conf = CONF.map((c,j) => `<button class="${S.c[id]===j?"on":""}" onclick="conf(${j})">${c}</button>`).join("");
+  const last = S.i === QS.length-1;
+  const ready = S.a[id] && S.c[id] !== undefined;
+  $(`<div class="top"><span>第 ${S.i+1} / ${QS.length} 題</span><span>已作答 ${Object.keys(S.a).length} 題・${mins()} 分鐘</span></div>
+  <div class="bar"><i style="width:${(S.i+1)/QS.length*100}%"></i></div>
+  <div class="card"><span class="tag">${SEC[q.section]}</span>
+  <p class="stem">${esc(q.stem)}</p>${opts}
+  <p class="lbl">你對這題的把握</p><div class="conf">${conf}</div>
+  <p class="lbl">卡在哪、或你怎麼想的（選填，寫一點點就很有用）</p>
+  <textarea oninput="note(this.value)">${esc(S.n[id]||"")}</textarea></div>
+  <div class="nav"><button class="btn ghost" onclick="go(-1)" ${S.i===0?"disabled":""}>上一題</button>
+  <button class="btn" onclick="${last?"finish()":"go(1)"}" ${ready?"":"disabled"}>${last?"交卷":"下一題"}</button></div>`);
+  window.scrollTo(0,0);
+}
+function intro(){
+  $(`<h1>CDL 中文診斷小考</h1><div class="card intro">
+  <p>這份小考只考你首考沒過的四節，共 ${QS.length} 題，題目長度和難度照正式考試出，只是換成中文。</p>
+  <p>目的是確認一件事：<b>換成中文，你答不答得出來？</b>答得出來，接下來就專心練英文；答不出來，就先補內容。</p>
+  <ul><li>每題選一個答案，再選你的把握程度。猜的就老實按「用猜的」，這比答對答錯還重要。</li>
+  <li>想法可以隨手寫在框框裡，寫錯也沒關係，麥口會從這裡判斷你卡在哪。</li>
+  <li>不用查資料，建議一次做完，大約 30 分鐘。中途關掉網頁，進度會留著。</li></ul></div>
+  <button class="btn" onclick="start()">開始</button>`);
+}
+function result(){
+  const by = {};
+  let ok = 0, lucky = 0;
+  QS.forEach(q => { const s = by[q.section] = by[q.section] || {n:0,ok:0,sure:0};
+    s.n++; const right = S.a[q.id] === q.answer;
+    if (right) { ok++; s.ok++; if (S.c[q.id] === 0) s.sure++; if (S.c[q.id] === 2) lucky++; } });
+  const rows = Object.keys(by).map(k => `<tr><td>${SEC[k]}</td><td>${by[k].ok} / ${by[k].n}</td><td>${by[k].sure}</td></tr>`).join("");
+  const list = QS.map((q,i) => { const right = S.a[q.id] === q.answer;
+    return `<div class="row"><span>第 ${i+1} 題</span><span class="${right?"ok":"bad"}">${right?"○":"✕"} 你選 ${S.a[q.id]||"—"}・正解 ${q.answer}</span><span class="muted">${CONF[S.c[q.id]]||""}</span></div>`; }).join("");
+  $(`<h1>做完了</h1><div class="card"><p class="big">${ok} / ${QS.length}</p>
+  <p class="muted">花了 ${mins()} 分鐘${lucky?`・其中 ${lucky} 題是猜對的`:""}</p></div>
+  <div class="card"><table><tr><th>單元</th><th>答對</th><th>答對又有把握</th></tr>${rows}</table></div>
+  <button class="btn" onclick="copyOut()">📋 複製結果給麥口</button>
+  <p class="lbl">複製後貼回對話，麥口會逐題講解，順便判斷你是哪裡卡住。</p>
+  <div class="card">${list}</div>
+  <button class="btn ghost" onclick="reset()">清除重做</button>`);
+}
+function start(){ S.i = 0; if (!S.t0) S.t0 = Date.now(); save(); render(); }
+function pick(k){ S.a[QS[S.i].id] = k; save(); render(); }
+function conf(j){ S.c[QS[S.i].id] = j; save(); render(); }
+function note(v){ S.n[QS[S.i].id] = v; save(); }
+function go(d){ S.i = Math.max(0, Math.min(QS.length-1, S.i+d)); save(); render(); }
+function finish(){ S.done = true; S.t1 = Date.now(); save(); render(); }
+function reset(){ if (S.done) { S = {i:-1,a:{},c:{},n:{},t0:null,t1:null,done:false}; save(); render(); } }
+function copyOut(){
+  const lines = ["CDL 中文診斷小考結果", `花費 ${mins()} 分鐘`, ""];
+  QS.forEach((q,i) => lines.push(`第 ${i+1} 題 [${q.id}・${SEC[q.section]}] 選 ${S.a[q.id]||"—"}（正解 ${q.answer}）・${CONF[S.c[q.id]]||"未選"}${S.n[q.id]?`・想法：${S.n[q.id].replace(/\n/g," ")}`:""}`));
+  const txt = lines.join("\n");
+  const done = () => { const t = document.getElementById("toast"); t.style.display = "block"; setTimeout(() => t.style.display = "none", 1500); };
+  if (navigator.clipboard) navigator.clipboard.writeText(txt).then(done, () => fallback(txt, done)); else fallback(txt, done);
+}
+function fallback(txt, done){ const ta = document.createElement("textarea"); ta.value = txt; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); done(); } catch(e) {} ta.remove(); }
+render();
+</script>
+</body>
+</html>
